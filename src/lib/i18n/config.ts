@@ -1,0 +1,98 @@
+export type Locale = "de" | "en";
+
+export const locales: Locale[] = ["de", "en"];
+export const defaultLocale: Locale = "de";
+
+export type RouteKey =
+  | "home"
+  | "solutions"
+  | "knowledge"
+  | "about"
+  | "contact"
+  | "dashboard"
+  | "packages";
+
+export const routes: Record<Locale, Record<RouteKey, string>> = {
+  de: {
+    home: "/de",
+    solutions: "/de/loesungen",
+    knowledge: "/de/wissen",
+    about: "/de/ueber-uns",
+    contact: "/de/kontakt",
+    dashboard: "/de/dashboard",
+    packages: "/de/pakete",
+  },
+  en: {
+    home: "/en",
+    solutions: "/en/solutions",
+    knowledge: "/en/knowledge",
+    about: "/en/about-us",
+    contact: "/en/contact",
+    dashboard: "/en/dashboard",
+    packages: "/en/packages",
+  },
+};
+
+export function getRoute(locale: Locale, key: RouteKey): string {
+  return routes[locale][key];
+}
+
+export function getAlternateLocale(locale: Locale): Locale {
+  return locale === "de" ? "en" : "de";
+}
+
+export function getAlternatePath(pathname: string): string {
+  const dePrefix = "/de";
+  const enPrefix = "/en";
+
+  if (pathname === dePrefix || pathname.startsWith(dePrefix + "/")) {
+    const suffix = pathname.slice(dePrefix.length) || "";
+    const enSuffix = deToEnPath(suffix);
+    return enPrefix + enSuffix;
+  }
+
+  if (pathname === enPrefix || pathname.startsWith(enPrefix + "/")) {
+    const suffix = pathname.slice(enPrefix.length) || "";
+    const deSuffix = enToDePath(suffix);
+    return dePrefix + deSuffix;
+  }
+
+  return routes.en.home;
+}
+
+const pathMapDeToEn: Record<string, string> = {
+  "": "",
+  "/loesungen": "/solutions",
+  "/wissen": "/knowledge",
+  "/ueber-uns": "/about-us",
+  "/kontakt": "/contact",
+  "/dashboard": "/dashboard",
+  "/pakete": "/packages",
+};
+
+const pathMapEnToDe: Record<string, string> = Object.fromEntries(
+  Object.entries(pathMapDeToEn).map(([de, en]) => [en, de]),
+);
+
+function deToEnPath(suffix: string): string {
+  return pathMapDeToEn[suffix] ?? suffix;
+}
+
+function enToDePath(suffix: string): string {
+  return pathMapEnToDe[suffix] ?? suffix;
+}
+
+export function getLocaleFromPath(pathname: string): Locale | null {
+  if (pathname === "/de" || pathname.startsWith("/de/")) return "de";
+  if (pathname === "/en" || pathname.startsWith("/en/")) return "en";
+  return null;
+}
+
+export type NavItemKey = "home" | "solutions" | "knowledge" | "about" | "contact" | "dashboard";
+
+export function isActiveRoute(pathname: string, href: string): boolean {
+  if (href === "/de" || href === "/en") {
+    return pathname === href;
+  }
+  return pathname === href || pathname.startsWith(href + "/");
+}
