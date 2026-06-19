@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "white";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -18,6 +18,8 @@ const variantStyles: Record<ButtonVariant, string> = {
   secondary:
     "bg-transparent text-foreground border border-warm-gray/80 hover:border-gold-500/60 hover:bg-white/40",
   ghost: "bg-transparent text-foreground hover:bg-black/5 border border-transparent",
+  white:
+    "bg-white text-[#1D1D1B] border border-white/35 hover:bg-white/90 hover:border-white/60",
 };
 
 export function Button({

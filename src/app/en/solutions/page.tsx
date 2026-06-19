@@ -1,7 +1,5 @@
-import { PlaceholderPage } from "@/components/ui/PlaceholderPage";
-import { getTranslations } from "@/lib/i18n";
+import { LoesungenPage } from "@/components/pages/LoesungenPage";
 
 export default function EnSolutionsPage() {
-  const t = getTranslations("en");
-  return <PlaceholderPage locale="en" title={t.pages.solutions} />;
+  return <LoesungenPage locale="en" />;
 }

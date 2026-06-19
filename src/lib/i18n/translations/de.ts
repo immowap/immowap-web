@@ -18,11 +18,11 @@ export const de = {
       title: "Für Ihre Ziele",
       items: [
         { label: "Eigennutzung", href: "/de/loesungen/eigennutzung" },
-        { label: "Kapitalanlage", href: "/de/loesungen" },
-        { label: "Fix & Flip", href: "/de/loesungen" },
-        { label: "Sanierung & Modernisierung", href: "/de/loesungen" },
-        { label: "Mehrfamilienhäuser", href: "/de/loesungen" },
-        { label: "Gewerbeimmobilien", href: "/de/loesungen" },
+        { label: "Kapitalanlage", href: "/de/loesungen/kapitalanlage" },
+        { label: "Fix & Flip", href: "/de/loesungen/fix-flip" },
+        { label: "Sanierung & Modernisierung", href: "/de/loesungen/sanierung-modernisierung" },
+        { label: "Mehrfamilienhäuser", href: "/de/loesungen/mehrfamilienhaeuser" },
+        { label: "Gewerbeimmobilien", href: "/de/loesungen/gewerbeimmobilien" },
       ],
     },
     analyses: {
@@ -53,9 +53,9 @@ export const de = {
   },
   knowledgeMenu: {
     items: [
-      { label: "Immobilienwissen", href: "/de/wissen" },
-      { label: "Markt & Trends", href: "/de/wissen" },
-      { label: "FAQ & Antworten", href: "/de/wissen" },
+      { label: "Immobilienwissen", href: "/de/wissen/immobilienwissen" },
+      { label: "Markt & Trends", href: "/de/wissen/markt-trends" },
+      { label: "FAQ & Antworten", href: "/de/wissen/faq" },
     ],
   },
   footer: {
@@ -70,9 +70,9 @@ export const de = {
     knowledge: {
       title: "Wissen",
       items: [
-        { label: "Immobilienwissen", href: "/de/wissen" },
-        { label: "Markt & Trends", href: "/de/wissen" },
-        { label: "FAQ & Antworten", href: "/de/wissen" },
+        { label: "Immobilienwissen", href: "/de/wissen/immobilienwissen" },
+        { label: "Markt & Trends", href: "/de/wissen/markt-trends" },
+        { label: "FAQ & Antworten", href: "/de/wissen/faq" },
       ],
     },
     company: {

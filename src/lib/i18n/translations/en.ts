@@ -17,12 +17,12 @@ export const en = {
     goals: {
       title: "For your goals",
       items: [
-        { label: "Own use", href: "/en/solutions" },
-        { label: "Investment", href: "/en/solutions" },
-        { label: "Fix & Flip", href: "/en/solutions" },
-        { label: "Renovation & Modernisation", href: "/en/solutions" },
-        { label: "Multi-family properties", href: "/en/solutions" },
-        { label: "Commercial properties", href: "/en/solutions" },
+        { label: "Owner Occupation", href: "/en/solutions/owner-occupation" },
+        { label: "Investment Property", href: "/en/solutions/investment-property" },
+        { label: "Fix & Flip", href: "/en/solutions/fix-flip" },
+        { label: "Renovation & Modernisation", href: "/en/solutions/renovation-modernization" },
+        { label: "Multi-Family Properties", href: "/en/solutions/multi-family-properties" },
+        { label: "Commercial Real Estate", href: "/en/solutions/commercial-real-estate" },
       ],
     },
     analyses: {
@@ -53,9 +53,9 @@ export const en = {
   },
   knowledgeMenu: {
     items: [
-      { label: "Property knowledge", href: "/en/knowledge" },
-      { label: "Market & trends", href: "/en/knowledge" },
-      { label: "FAQ & answers", href: "/en/knowledge" },
+      { label: "Property knowledge", href: "/en/knowledge/property-knowledge" },
+      { label: "Market & trends", href: "/en/knowledge/market-trends" },
+      { label: "FAQ & answers", href: "/en/knowledge/faq" },
     ],
   },
   footer: {
@@ -70,9 +70,9 @@ export const en = {
     knowledge: {
       title: "Knowledge",
       items: [
-        { label: "Property knowledge", href: "/en/knowledge" },
-        { label: "Market & trends", href: "/en/knowledge" },
-        { label: "FAQ & answers", href: "/en/knowledge" },
+        { label: "Property knowledge", href: "/en/knowledge/property-knowledge" },
+        { label: "Market & trends", href: "/en/knowledge/market-trends" },
+        { label: "FAQ & answers", href: "/en/knowledge/faq" },
       ],
     },
     company: {

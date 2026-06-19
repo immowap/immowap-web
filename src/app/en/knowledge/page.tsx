@@ -1,7 +1,11 @@
-import { PlaceholderPage } from "@/components/ui/PlaceholderPage";
-import { getTranslations } from "@/lib/i18n";
+import { WissenPage } from "@/components/pages/WissenPage";
+
+export const metadata = {
+  title: "Knowledge | immowap",
+  description:
+    "Property knowledge, market trends and structured FAQ around real estate decisions.",
+};
 
 export default function EnKnowledgePage() {
-  const t = getTranslations("en");
-  return <PlaceholderPage locale="en" title={t.pages.knowledge} />;
+  return <WissenPage locale="en" />;
 }

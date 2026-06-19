@@ -1,5 +1,4 @@
 import type { Locale } from "@/lib/i18n/config";
-import { getRoute } from "@/lib/i18n/config";
 import { getTranslations } from "@/lib/i18n";
 
 export interface MenuLink {
@@ -27,11 +26,10 @@ export function getSolutionsMenu(locale: Locale): MenuColumn[] {
 
 export function getKnowledgeMenu(locale: Locale): MenuLink[] {
   const t = getTranslations(locale);
-  const href = getRoute(locale, "knowledge");
 
   return t.knowledgeMenu.items.map((item) => ({
     label: item.label,
-    href,
+    href: item.href,
   }));
 }
 
