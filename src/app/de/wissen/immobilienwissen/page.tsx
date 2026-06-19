@@ -1,11 +1,11 @@
 import { ImmobilienwissenPage } from "@/components/pages/ImmobilienwissenPage";
+import { propertyKnowledgeOverviewCopy } from "@/lib/i18n/property-knowledge";
 
 export const metadata = {
-  title: "Immobilienwissen | immowap",
-  description:
-    "Fundiertes Wissen rund um Immobilien, Bewertung, Finanzierung und Strategien. Verständlich aufbereitet und langfristig erweiterbar.",
+  title: propertyKnowledgeOverviewCopy.de.metaTitle,
+  description: propertyKnowledgeOverviewCopy.de.metaDescription,
 };
 
 export default function DeImmobilienwissenPage() {
-  return <ImmobilienwissenPage />;
+  return <ImmobilienwissenPage locale="de" />;
 }

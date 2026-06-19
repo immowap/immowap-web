@@ -3,12 +3,12 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   TYPES
-   Defined once here so future articles / categories can be added by simply
-   extending the `articles` array without touching layout code.
-───────────────────────────────────────────────────────────────────────────── */
+import type { Locale } from "@/lib/i18n/config";
+import {
+  propertyKnowledgeArticles,
+  propertyKnowledgeOverviewCopy,
+  propertyKnowledgeUi,
+} from "@/lib/i18n/property-knowledge";
 
 type IconName =
   | "scale"
@@ -21,21 +21,6 @@ type IconName =
   | "receipt"
   | "chart"
   | "book";
-
-export interface Article {
-  id: string;
-  title: string;
-  description: string;
-  icon: IconName;
-  /** Set to a real path once the article page is published. */
-  href: string | null;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   ICON PATHS
-   Stroke-style paths (Heroicons v2, 24×24 viewBox).
-   Multiple M-commands within a single <path d="…"> are valid SVG.
-───────────────────────────────────────────────────────────────────────────── */
 
 const ICON_PATHS: Record<IconName, string> = {
   scale:
@@ -75,204 +60,87 @@ function ArticleIcon({ name }: { name: IconName }) {
   );
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ARTICLE DATA
-   Add new articles by appending to this array. The grid layout adapts
-   automatically. Set href once the article page is published.
-───────────────────────────────────────────────────────────────────────────── */
+function ArticleCard({
+  locale,
+  icon,
+  title,
+  description,
+  href,
+}: {
+  locale: Locale;
+  icon: IconName;
+  title: string;
+  description: string;
+  href: string;
+}) {
+  const ui = propertyKnowledgeUi[locale];
 
-export const articles: Article[] = [
-  {
-    id: "immobilienbewertung",
-    title: "Immobilienbewertung",
-    description:
-      "Den Wert einer Immobilie richtig verstehen – von Marktwert und Verkehrswert bis zu den wichtigsten Bewertungsverfahren.",
-    icon: "scale",
-    href: null,
-  },
-  {
-    id: "finanzierung",
-    title: "Finanzierung",
-    description:
-      "Grundlagen der Immobilienfinanzierung, Eigenkapital, Zinsbindung und wichtige Aspekte der Kreditvergabe.",
-    icon: "banknote",
-    href: null,
-  },
-  {
-    id: "kaufprozess",
-    title: "Kaufprozess",
-    description:
-      "Der Immobilienkauf Schritt für Schritt – von der Suche bis zur Übergabe.",
-    icon: "key",
-    href: null,
-  },
-  {
-    id: "dokumente",
-    title: "Dokumente verstehen",
-    description:
-      "Wichtige Unterlagen vor dem Kauf richtig einordnen und bewerten.",
-    icon: "document",
-    href: null,
-  },
-  {
-    id: "weg",
-    title: "Eigentumswohnung & WEG",
-    description:
-      "Hausgeld, Rücklagen, Sonderumlagen und die wichtigsten Grundlagen der Wohnungseigentümergemeinschaft.",
-    icon: "building",
-    href: null,
-  },
-  {
-    id: "vermietung",
-    title: "Vermietung",
-    description:
-      "Grundlagen für Eigentümer und Investoren rund um Mietvertrag, Nebenkosten und Vermietung.",
-    icon: "home",
-    href: null,
-  },
-  {
-    id: "sanierung",
-    title: "Sanierung & Modernisierung",
-    description:
-      "Renovieren, modernisieren oder sanieren – welche Maßnahmen sinnvoll sein können.",
-    icon: "tool",
-    href: null,
-  },
-  {
-    id: "steuern",
-    title: "Steuern rund um Immobilien",
-    description:
-      "Wichtige steuerliche Aspekte beim Kauf, Besitz und Verkauf von Immobilien.",
-    icon: "receipt",
-    href: null,
-  },
-  {
-    id: "strategien",
-    title: "Immobilienstrategien",
-    description:
-      "Eigennutzung, Kapitalanlage, Fix & Flip, Mehrfamilienhäuser und unterschiedliche Investitionsansätze.",
-    icon: "chart",
-    href: null,
-  },
-  {
-    id: "lexikon",
-    title: "Immobilienlexikon",
-    description:
-      "Die wichtigsten Begriffe rund um Immobilien einfach erklärt.",
-    icon: "book",
-    href: null,
-  },
-];
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   ARTICLE CARD
-   Renders as a <Link> when href is set, otherwise as a static <article>.
-───────────────────────────────────────────────────────────────────────────── */
-
-function ArticleCard({ article }: { article: Article }) {
   const inner = (
     <div
       className={cn(
         "card-premium flex h-full flex-col gap-4",
         "border-[#D7D2C8] shadow-[0_4px_20px_rgba(15,61,46,0.06)]",
-        article.href &&
-          "border-[#B9965B]/25 shadow-[0_8px_32px_rgba(185,150,91,0.09)] ring-1 ring-[#B9965B]/12",
+        "border-[#B9965B]/25 shadow-[0_8px_32px_rgba(185,150,91,0.09)] ring-1 ring-[#B9965B]/12",
       )}
     >
-      {/* Top row: icon + category badge */}
       <div className="flex items-start justify-between gap-3">
-        <ArticleIcon name={article.icon} />
-        <span
-          className={cn(
-            "text-label shrink-0",
-            article.href ? "text-gold-500" : "text-[#D7D2C8]",
-          )}
-        >
-          {article.href ? "Immobilienwissen" : "Demnächst"}
-        </span>
+        <ArticleIcon name={icon} />
+        <span className="text-label shrink-0 text-gold-500">{ui.category}</span>
       </div>
-
-      {/* Title */}
-      <h3
-        className={cn(
-          "text-h3 text-brand-800",
-          article.href &&
-            "transition-colors duration-300 group-hover:text-brand-600",
-        )}
-      >
-        {article.title}
+      <h3 className="text-h3 text-brand-800 transition-colors duration-300 group-hover:text-brand-600">
+        {title}
       </h3>
-
-      {/* Description */}
-      <p className="flex-1 text-base leading-[1.8] text-muted">
-        {article.description}
-      </p>
-
-      {/* Footer action */}
-      {article.href ? (
-        <span className="text-label mt-auto inline-flex items-center gap-2 text-gold-600 transition-all duration-300 group-hover:gap-3">
-          Mehr erfahren
-          <span aria-hidden="true">→</span>
-        </span>
-      ) : (
-        <span className="text-label mt-auto text-[#D7D2C8]">
-          Bald verfügbar
-        </span>
-      )}
+      <p className="flex-1 text-base leading-[1.8] text-muted">{description}</p>
+      <span className="text-label mt-auto inline-flex items-center gap-2 text-gold-600 transition-all duration-300 group-hover:gap-3">
+        {ui.mehrErfahren}
+        <span aria-hidden="true">→</span>
+      </span>
     </div>
   );
 
-  if (article.href) {
-    return (
-      <Link href={article.href} className="group block no-underline">
-        {inner}
-      </Link>
-    );
-  }
-
-  return <article>{inner}</article>;
+  return (
+    <Link href={href} className="group block no-underline">
+      {inner}
+    </Link>
+  );
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   PAGE COMPONENT
-───────────────────────────────────────────────────────────────────────────── */
+const HERO_IMAGE = "/images/knowledge/immobilienwissen.jpg";
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1400&q=85";
+interface ImmobilienwissenPageProps {
+  locale: Locale;
+}
 
-export function ImmobilienwissenPage() {
+export function ImmobilienwissenPage({ locale }: ImmobilienwissenPageProps) {
+  const copy = propertyKnowledgeOverviewCopy[locale];
+
   return (
     <>
-      {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section className="overflow-hidden bg-cream" id="top">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="grid items-center gap-12 py-20 lg:min-h-[calc(100svh-5rem)] lg:grid-cols-2 lg:gap-16 lg:py-0">
-            {/* Left – text */}
             <div className="lg:py-28">
-              <p className="text-label mb-6 block text-gold-600">Wissen</p>
-              <h1 className="text-h1 text-brand-800">Immobilienwissen</h1>
+              <p className="text-label mb-6 block text-gold-600">{copy.heroLabel}</p>
+              <h1 className="text-h1 text-brand-800">{copy.heroHeadline}</h1>
               <div className="gold-rule mt-8" aria-hidden="true" />
               <p className="mt-8 max-w-lg text-lg leading-[1.8] text-muted">
-                Fundiertes Wissen rund um Immobilien, Bewertung, Finanzierung
-                und Strategien. Verständlich aufbereitet und langfristig
-                erweiterbar.
+                {copy.heroSubheadline}
               </p>
               <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
-                <Button href="#artikel">Artikel entdecken</Button>
-                <Button href="/de/wissen/faq" variant="secondary">
-                  FAQ &amp; Antworten
+                <Button href="#artikel">{copy.heroBtnPrimary}</Button>
+                <Button href={copy.faqHref} variant="secondary">
+                  {copy.heroBtnSecondary}
                 </Button>
               </div>
             </div>
-
-            {/* Right – image */}
             <div className="relative h-[420px] overflow-hidden rounded-3xl sm:h-[540px] lg:h-[calc(100svh-8rem)] lg:rounded-[2rem]">
               <Image
                 src={HERO_IMAGE}
-                alt="Elegantes europäisches Wohngebäude – Immobilienwissen"
-                fill
+                alt={copy.heroImageAlt}
+                width={1400}
+                height={1120}
                 priority
-                className="object-cover object-center"
+                className="h-full w-full object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div
@@ -284,56 +152,48 @@ export function ImmobilienwissenPage() {
         </div>
       </section>
 
-      {/* ── INTRODUCTION ────────────────────────────────────────────────── */}
       <Section variant="muted" className="py-24 md:py-32">
         <div className="mx-auto max-w-3xl">
-          <h2 className="text-h2 text-brand-800">
-            Wissen als Grundlage guter Entscheidungen
-          </h2>
+          <h2 className="text-h2 text-brand-800">{copy.introHeadline}</h2>
           <div className="gold-rule mt-8" aria-hidden="true" />
-          <p className="mt-8 text-lg leading-[1.8] text-muted">
-            Immobilienentscheidungen betreffen häufig langfristige finanzielle
-            und persönliche Ziele. Deshalb stellt immowap ausgewählte Themen
-            verständlich und strukturiert dar. Die Inhalte werden kontinuierlich
-            erweitert und orientieren sich an den Bedürfnissen von Eigentümern,
-            Käufern und Investoren.
-          </p>
+          <p className="mt-8 text-lg leading-[1.8] text-muted">{copy.introText}</p>
         </div>
       </Section>
 
-      {/* ── ARTICLE GRID ─────────────────────────────────────────────────── */}
       <Section id="artikel" className="py-24 md:py-32">
         <SectionHeader
-          label="Themenübersicht"
-          headline="Immobilienwissen im Überblick"
-          description="Grundlagen, Begriffe und strukturierte Einordnungen zu den wichtigsten Themen rund um Immobilien. Die Sammlung wird kontinuierlich erweitert."
+          label={copy.gridLabel}
+          headline={copy.gridHeadline}
+          description={copy.gridDescription}
         />
-
-        {/* Dynamic grid: 3 / 2 / 1 columns — scales to any number of articles */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
+          {propertyKnowledgeArticles.map((article) => (
+            <ArticleCard
+              key={article.id}
+              locale={locale}
+              icon={article.icon}
+              title={article[locale].title}
+              description={article[locale].description}
+              href={article[locale].href}
+            />
           ))}
         </div>
       </Section>
 
-      {/* ── BOTTOM SECTION ──────────────────────────────────────────────── */}
       <Section variant="muted" className="py-24 md:py-32">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-label mb-6 block text-gold-600">Ausblick</p>
-          <h2 className="text-h2 text-brand-800">Weitere Inhalte folgen</h2>
+          <p className="text-label mb-6 block text-gold-600">{copy.outlookLabel}</p>
+          <h2 className="text-h2 text-brand-800">{copy.outlookHeadline}</h2>
           <div className="gold-rule mx-auto mt-8" aria-hidden="true" />
           <p className="mx-auto mt-8 max-w-xl text-lg leading-[1.8] text-muted">
-            Das Immobilienwissen von immowap wird kontinuierlich erweitert. Neben
-            Grundlagenartikeln entstehen zusätzliche Beiträge zu Markttrends,
-            Strategien und häufig gestellten Fragen.
+            {copy.outlookText}
           </p>
           <div className="mt-12 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
-            <Button href="/de/wissen/markt-trends" variant="secondary">
-              Markt &amp; Trends
+            <Button href={copy.marketHref} variant="secondary">
+              {copy.outlookBtnMarket}
             </Button>
-            <Button href="/de/wissen/faq" variant="secondary">
-              FAQ &amp; Antworten
+            <Button href={copy.faqHref} variant="secondary">
+              {copy.outlookBtnFaq}
             </Button>
           </div>
         </div>

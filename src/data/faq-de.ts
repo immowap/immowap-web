@@ -1,16 +1,8 @@
-export interface FAQItem {
-  question: string;
-  answer: string;
-}
+import type { FAQCategory } from "./faq-types";
 
-export interface FAQCategory {
-  id: string;
-  title: string;
-  description: string;
-  items: FAQItem[];
-}
+export type { FAQItem, FAQCategory } from "./faq-types";
 
-export const faqCategories: FAQCategory[] = [
+export const faqCategoriesDe: FAQCategory[] = [
   {
     id: "eigennutzung",
     title: "Eigennutzung",

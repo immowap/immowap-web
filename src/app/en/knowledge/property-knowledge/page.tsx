@@ -1,11 +1,11 @@
-import { PlaceholderPage } from "@/components/ui/PlaceholderPage";
+import { ImmobilienwissenPage } from "@/components/pages/ImmobilienwissenPage";
+import { propertyKnowledgeOverviewCopy } from "@/lib/i18n/property-knowledge";
 
 export const metadata = {
-  title: "Property Knowledge | immowap",
-  description:
-    "Fundamentals, terminology and orientation on buying, valuation, financing and property strategy.",
+  title: propertyKnowledgeOverviewCopy.en.metaTitle,
+  description: propertyKnowledgeOverviewCopy.en.metaDescription,
 };
 
 export default function EnPropertyKnowledgePage() {
-  return <PlaceholderPage locale="en" title="Property Knowledge" />;
+  return <ImmobilienwissenPage locale="en" />;
 }

@@ -1,30 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import type { FAQCategory } from "@/data/faq-de";
+import type { Locale } from "@/lib/i18n/config";
+import type { FAQCategory } from "@/data/faq-types";
+import { faqPageCopy } from "@/data/faq-ui";
 import { FAQQuestionAccordion } from "./FAQQuestionAccordion";
 
 interface FAQCategoryAccordionProps {
+  locale: Locale;
   category: FAQCategory;
   index: number;
 }
 
 export function FAQCategoryAccordion({
+  locale,
   category,
   index,
 }: FAQCategoryAccordionProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const copy = faqPageCopy[locale];
 
   return (
     <div className="overflow-hidden rounded-2xl shadow-[0_4px_24px_rgba(15,61,46,0.10)]">
-      {/* ── Category header ─────────────────────────────────────── */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         className="group flex w-full items-center justify-between gap-6 bg-[#0F3D2E] px-8 py-7 text-left transition-colors duration-200 hover:bg-[#0d3528] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B9965B]/60 focus-visible:ring-inset md:px-10 md:py-8"
       >
         <div className="flex items-center gap-6">
-          {/* Category number */}
           <span className="text-label shrink-0 tabular-nums text-[#B9965B]/50">
             {String(index + 1).padStart(2, "0")}
           </span>
@@ -39,7 +42,6 @@ export function FAQCategoryAccordion({
           </div>
         </div>
 
-        {/* Chevron icon */}
         <span
           aria-hidden="true"
           className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#B9965B]/30 text-[#B9965B] transition-transform duration-300 ${
@@ -61,7 +63,6 @@ export function FAQCategoryAccordion({
         </span>
       </button>
 
-      {/* ── Questions list (animated) ────────────────────────────── */}
       <div
         style={{
           display: "grid",
@@ -71,14 +72,13 @@ export function FAQCategoryAccordion({
       >
         <div className="overflow-hidden bg-[#F7F5EF]">
           <div className="px-8 py-4 md:px-10 md:py-6">
-            {/* Subtle gold top rule */}
             <div
               className="mb-2 h-px w-16 rounded-full bg-[#B9965B]/40"
               aria-hidden="true"
             />
 
             <p className="mb-6 text-sm text-[#1D1D1B]/50">
-              {category.items.length} Fragen in dieser Kategorie
+              {copy.questionsInCategory(category.items.length)}
             </p>
 
             <div>

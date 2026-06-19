@@ -1,11 +1,7 @@
-import { FAQPage } from "@/components/pages/FAQPage";
+import { FAQPage, getFaqPageMetadata } from "@/components/pages/FAQPage";
 
-export const metadata = {
-  title: "FAQ & Answers | immowap",
-  description:
-    "Answers to 120 common questions on owner occupation, investment property, fix & flip, renovation, multi-family houses and commercial real estate.",
-};
+export const metadata = getFaqPageMetadata("en");
 
 export default function EnKnowledgeFAQPage() {
-  return <FAQPage />;
+  return <FAQPage locale="en" />;
 }

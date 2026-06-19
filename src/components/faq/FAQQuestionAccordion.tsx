@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { FAQItem } from "@/data/faq-de";
+import type { FAQItem } from "@/data/faq-types";
 
 interface FAQQuestionAccordionProps {
   item: FAQItem;
