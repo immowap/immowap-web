@@ -117,7 +117,18 @@ export function MobileMenu({
                       <ul className="space-y-0.5">
                         {section.items.map((item) => (
                           <li key={item.label}>
-                            <Link href={item.href} onClick={onClose} className={itemLinkClass}>
+                            <Link
+                              href={item.href}
+                              onClick={onClose}
+                              className={cn(
+                                itemLinkClass,
+                                isActiveRoute(pathname, item.href) &&
+                                  "bg-gold-500/20 font-medium text-brand-800",
+                              )}
+                              aria-current={
+                                isActiveRoute(pathname, item.href) ? "page" : undefined
+                              }
+                            >
                               {item.label}
                             </Link>
                           </li>

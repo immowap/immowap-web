@@ -28,14 +28,14 @@ export const en = {
     analyses: {
       title: "Analyses",
       items: [
-        { label: "Market value analysis", href: "/en/solutions" },
-        { label: "Return analysis", href: "/en/solutions" },
-        { label: "Cash flow analysis", href: "/en/solutions" },
-        { label: "Risk analysis", href: "/en/solutions" },
-        { label: "Location analysis", href: "/en/solutions" },
-        { label: "Market comparison", href: "/en/solutions" },
-        { label: "Document analysis", href: "/en/solutions" },
-        { label: "Individual property analysis", href: "/en/solutions" },
+        { label: "Market value analysis", href: "/en/solutions/market-value-analysis" },
+        { label: "Cost approach", href: "/en/solutions/analyses/cost-approach" },
+        { label: "Income approach", href: "/en/solutions/analyses/income-approach" },
+        { label: "Risk analysis", href: "/en/solutions/analyses/risk-analysis" },
+        { label: "Location analysis", href: "/en/solutions/analyses/location-analysis" },
+        { label: "Sales comparison approach", href: "/en/solutions/analyses/sales-comparison-approach" },
+        { label: "Document analysis", href: "/en/solutions/analyses/document-analysis" },
+        { label: "Individual property analysis", href: "/en/solutions/analyses/individual-property-analysis" },
       ],
     },
     tools: {
@@ -63,7 +63,19 @@ export const en = {
       title: "Solutions",
       items: [
         { label: "For your goals", href: "/en/solutions" },
-        { label: "Analyses", href: "/en/solutions" },
+        { label: "Market value analysis", href: "/en/solutions/market-value-analysis" },
+        {
+          label: "Sales comparison approach",
+          href: "/en/solutions/analyses/sales-comparison-approach",
+        },
+        {
+          label: "Cost approach",
+          href: "/en/solutions/analyses/cost-approach",
+        },
+        {
+          label: "Income approach",
+          href: "/en/solutions/analyses/income-approach",
+        },
         { label: "Tools & Reports", href: "/en/solutions" },
       ],
     },

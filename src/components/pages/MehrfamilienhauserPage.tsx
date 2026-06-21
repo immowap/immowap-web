@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { SolutionHeroSection } from "@/components/ui/SolutionHeroSection";
 import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import type { Locale } from "@/lib/i18n/config";
@@ -303,41 +304,19 @@ export function MehrfamilienhauserPage({ locale }: MehrfamilienhauserPageProps) 
 
   return (
     <>
-      {/* ─── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="overflow-hidden bg-cream">
-        <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <div className="grid items-center gap-12 py-20 lg:min-h-[calc(100svh-5rem)] lg:grid-cols-2 lg:gap-16 lg:py-0">
-            <div className="lg:py-28">
-              <p className="text-label mb-6 block text-gold-600">{c.heroLabel}</p>
-              <h1 className="text-h1 text-brand-800">{c.heroHeadline}</h1>
-              <div className="gold-rule mt-8" aria-hidden="true" />
-              <p className="mt-8 max-w-lg text-lg leading-[1.8] text-muted">
-                {c.heroSubheadline}
-              </p>
-              <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
-                <Button href={dashboardHref}>{c.heroBtnPrimary}</Button>
-                <Button href={contactHref} variant="secondary">
-                  {c.heroBtnSecondary}
-                </Button>
-              </div>
-            </div>
-            <div className="relative h-[420px] overflow-hidden rounded-3xl sm:h-[540px] lg:h-[calc(100svh-8rem)] lg:rounded-[2rem]">
-              <Image
-                src="/images/mehrfamilienhaeuser/hero.jpg"
-                alt="Elegant European multi-family building — timeless architecture"
-                fill
-                priority
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-bl from-[#0F3D2E]/8 to-transparent"
-                aria-hidden="true"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <SolutionHeroSection
+        label={c.heroLabel}
+        headline={c.heroHeadline}
+        primaryHref={dashboardHref}
+        primaryLabel={c.heroBtnPrimary}
+        secondaryHref={contactHref}
+        secondaryLabel={c.heroBtnSecondary}
+        imageSrc="/images/mehrfamilienhaeuser/hero.jpg"
+        imageAlt="Elegant European multi-family building — timeless architecture"
+        imageOverlayClassName="from-[#0F3D2E]/8"
+      >
+        <p className="mt-8 text-lg leading-[1.8] text-muted">{c.heroSubheadline}</p>
+      </SolutionHeroSection>
 
       {/* ─── SECTION 1 ────────────────────────────────────────────────────── */}
       <Section variant="muted" className="py-24 md:py-32">

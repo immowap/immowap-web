@@ -2,17 +2,22 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { isActiveRoute } from "@/lib/i18n/config";
 import type { MenuColumn, MenuLink } from "@/lib/navigation/menus";
 
 const linkClassName =
   "block rounded-lg px-2 py-1.5 -mx-2 text-[15px] leading-snug text-brand-800 transition-colors hover:bg-brand-800/[0.04] hover:text-brand-600";
 
+const activeLinkClassName =
+  "bg-gold-500/20 text-brand-800 font-medium";
+
 interface MegaMenuProps {
   columns: MenuColumn[];
   open: boolean;
+  pathname: string;
 }
 
-export function MegaMenu({ columns, open }: MegaMenuProps) {
+export function MegaMenu({ columns, open, pathname }: MegaMenuProps) {
   if (!open) return null;
 
   return (
@@ -27,7 +32,16 @@ export function MegaMenu({ columns, open }: MegaMenuProps) {
                 <ul className="space-y-1">
                   {column.items.map((item) => (
                     <li key={item.label}>
-                      <Link href={item.href} className={linkClassName}>
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          linkClassName,
+                          isActiveRoute(pathname, item.href) && activeLinkClassName,
+                        )}
+                        aria-current={
+                          isActiveRoute(pathname, item.href) ? "page" : undefined
+                        }
+                      >
                         {item.label}
                       </Link>
                     </li>

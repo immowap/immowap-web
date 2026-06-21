@@ -168,7 +168,7 @@ export function Header({ locale, t }: HeaderProps) {
             onMouseEnter={openSolutions}
             onMouseLeave={scheduleCloseSolutions}
           >
-            <MegaMenu columns={solutionsMenu} open={solutionsOpen} />
+            <MegaMenu columns={solutionsMenu} open={solutionsOpen} pathname={pathname} />
           </div>
         )}
       </header>

@@ -9,6 +9,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/de/loesungen/vergleichswertverfahren",
+        destination: "/de/loesungen/analysen/vergleichswertverfahren",
+        permanent: true,
+      },
+      {
+        source: "/en/solutions/sales-comparison-approach",
+        destination: "/en/solutions/analyses/sales-comparison-approach",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

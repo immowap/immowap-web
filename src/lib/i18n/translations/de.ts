@@ -28,14 +28,14 @@ export const de = {
     analyses: {
       title: "Analysen",
       items: [
-        { label: "Marktwertanalyse", href: "/de/loesungen" },
-        { label: "Renditeanalyse", href: "/de/loesungen" },
-        { label: "Cashflow-Analyse", href: "/de/loesungen" },
-        { label: "Risikoanalyse", href: "/de/loesungen" },
-        { label: "Standortanalyse", href: "/de/loesungen" },
-        { label: "Marktvergleich", href: "/de/loesungen" },
-        { label: "Dokumentenanalyse", href: "/de/loesungen" },
-        { label: "Individuelle Immobilienanalyse", href: "/de/loesungen" },
+        { label: "Marktwertanalyse", href: "/de/loesungen/marktwertanalyse" },
+        { label: "Sachwertverfahren", href: "/de/loesungen/analysen/sachwertverfahren" },
+        { label: "Ertragswertverfahren", href: "/de/loesungen/analysen/ertragswertverfahren" },
+        { label: "Risikoanalyse", href: "/de/loesungen/analysen/risikoanalyse" },
+        { label: "Standortanalyse", href: "/de/loesungen/analysen/standortanalyse" },
+        { label: "Vergleichswertverfahren", href: "/de/loesungen/analysen/vergleichswertverfahren" },
+        { label: "Dokumentenanalyse", href: "/de/loesungen/analysen/dokumentenanalyse" },
+        { label: "Individuelle Immobilienanalyse", href: "/de/loesungen/analysen/individuelle-immobilienanalyse" },
       ],
     },
     tools: {
@@ -63,7 +63,19 @@ export const de = {
       title: "Lösungen",
       items: [
         { label: "Für Ihre Ziele", href: "/de/loesungen" },
-        { label: "Analysen", href: "/de/loesungen" },
+        { label: "Marktwertanalyse", href: "/de/loesungen/marktwertanalyse" },
+        {
+          label: "Vergleichswertverfahren",
+          href: "/de/loesungen/analysen/vergleichswertverfahren",
+        },
+        {
+          label: "Sachwertverfahren",
+          href: "/de/loesungen/analysen/sachwertverfahren",
+        },
+        {
+          label: "Ertragswertverfahren",
+          href: "/de/loesungen/analysen/ertragswertverfahren",
+        },
         { label: "Tools & Reports", href: "/de/loesungen" },
       ],
     },
