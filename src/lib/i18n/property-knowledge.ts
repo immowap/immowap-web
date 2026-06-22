@@ -210,16 +210,16 @@ export const propertyKnowledgeArticles: PropertyKnowledgeArticle[] = [
     de: {
       href: "/de/wissen/immobilienwissen/sanierung-modernisierung",
       pathSuffix: "/wissen/immobilienwissen/sanierung-modernisierung",
-      title: "Sanierung & Modernisierung",
+      title: "Projektentwicklung",
       description:
-        "Renovieren, modernisieren oder sanieren – welche Maßnahmen sinnvoll sein können.",
+        "Grundstücke, Neubau, Aufteilung, Umbau und Nachverdichtung – strukturiert von der Idee bis zur Exit-Strategie.",
     },
     en: {
       href: "/en/knowledge/property-knowledge/renovation-modernization",
       pathSuffix: "/knowledge/property-knowledge/renovation-modernization",
-      title: "Renovation & Modernization",
+      title: "Project Development",
       description:
-        "Renovating, modernising or refurbishing – which measures may make sense.",
+        "Land, new build, subdivision, conversion and densification – structured from concept to exit strategy.",
     },
   },
   {
@@ -248,14 +248,14 @@ export const propertyKnowledgeArticles: PropertyKnowledgeArticle[] = [
       pathSuffix: "/wissen/immobilienwissen/immobilienstrategien",
       title: "Immobilienstrategien",
       description:
-        "Eigennutzung, Kapitalanlage, Fix & Flip, Mehrfamilienhäuser und unterschiedliche Investitionsansätze.",
+        "Eigennutzung, Kapitalanlage, Fix & Flip, Individuelle Strategie und unterschiedliche Investitionsansätze.",
     },
     en: {
       href: "/en/knowledge/property-knowledge/property-strategies",
       pathSuffix: "/knowledge/property-knowledge/property-strategies",
       title: "Property Strategies",
       description:
-        "Owner-occupation, buy-to-let, fix & flip, multi-family homes and different investment approaches.",
+        "Owner-occupation, buy-to-let, fix & flip, individual strategy and different investment approaches.",
     },
   },
   {

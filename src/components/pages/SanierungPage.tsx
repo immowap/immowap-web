@@ -13,51 +13,51 @@ interface SanierungPageProps {
 const copy = {
   de: {
     heroLabel: "Für Ihre Ziele",
-    heroHeadline: "Bestehende Immobilien weiterdenken.",
+    heroHeadline: "Projekte entwickeln. Potenziale realisieren.",
     heroSubheadline:
-      "Modernisierung und Sanierung bedeuten mehr als reine Baumaßnahmen. Entscheidend sind individuelle Ziele, technische Anforderungen und langfristige Perspektiven.",
+      "Projektentwicklung verbindet Grundstücke, Neubau, Umbau und Nachverdichtung mit klaren wirtschaftlichen Zielen – von der ersten Idee bis zur Exit-Strategie.",
     heroBtnPrimary: "Analyse starten",
     heroBtnSecondary: "Anfrage senden",
-    section1Headline: "Potenziale erkennen und gezielt entwickeln.",
+    section1Headline: "Vom Grundstück bis zur Entscheidung.",
     section1Text:
-      "Jede Immobilie besitzt unterschiedliche Entwicklungsmöglichkeiten. Umfang, Wirtschaftlichkeit und Zielsetzung sollten strukturiert betrachtet werden, bevor Entscheidungen getroffen werden.",
+      "Ob Neubau, Aufteilung, Umbau oder Bauträgerprojekt: Entscheidend sind Standort, Genehmigungslage, Wirtschaftlichkeit und ein realistischer Exit. Diese Faktoren sollten strukturiert zusammen betrachtet werden.",
     section2Label: "Unsere Betrachtung",
     section2Headline: "Was wir berücksichtigen",
     considerationCards: [
       {
-        title: "Zustand der Immobilie",
+        title: "Grundstücke",
         description:
-          "Strukturierte Bestandsaufnahme als Ausgangspunkt – technisch, energetisch und baulich.",
+          "Bewertung von Lage, Bebauungsplan, Erschließung und Entwicklungsfähigkeit als Basis jeder Projektentscheidung.",
       },
       {
-        title: "Modernisierungspotenzial",
+        title: "Neubau & Umbau",
         description:
-          "Einschätzung der realistischen Entwicklungsmöglichkeiten in Relation zu Aufwand und Zielsetzung.",
+          "Einordnung von Baukonzept, Kostenrahmen, Zeitplan und technischen Anforderungen im jeweiligen Marktkontext.",
       },
       {
-        title: "Investitionsvolumen",
+        title: "Aufteilung & Nachverdichtung",
         description:
-          "Planung und Einordnung des Kostenrahmens für eine wirtschaftlich tragfähige Entscheidung.",
+          "Prüfung von Teilungs- und Verdichtungspotenzialen – rechtlich, baulich und wirtschaftlich.",
       },
       {
-        title: "Energieeffizienz",
+        title: "Bauträgerprojekte",
         description:
-          "Berücksichtigung energetischer Anforderungen, Fördermöglichkeiten und langfristiger Betriebskosten.",
+          "Strukturierte Betrachtung von Projektstruktur, Risikoverteilung, Vertrieb und Finanzierung im Bauträgerkontext.",
       },
       {
-        title: "Langfristige Wertentwicklung",
+        title: "Wirtschaftlichkeit",
         description:
-          "Einschätzung des Wertsteigerungspotenzials durch gezielte Maßnahmen im Marktkontext.",
+          "Realistische Kalkulation von Kosten, Erträgen, Rendite und Sensitivitäten für belastbare Entscheidungen.",
       },
       {
-        title: "Chancen und Risiken",
+        title: "Exit-Strategien",
         description:
-          "Ganzheitliche Betrachtung von Potenzialen und möglichen Unsicherheiten vor Entscheidungsbeginn.",
+          "Frühzeitige Klärung, ob Verkauf, Bestandshaltung oder Teilveräußerung zum Projektziel passt.",
       },
     ],
-    section3Headline: "Strukturierte Entscheidungen statt Einzelmaßnahmen",
+    section3Headline: "Strukturierte Projektentscheidungen statt Bauchgefühl",
     section3Text:
-      "Durch eine ganzheitliche Betrachtung lassen sich Maßnahmen besser priorisieren und langfristige Ziele gezielt verfolgen.",
+      "Durch ganzheitliche Analysen lassen sich Chancen, Risiken und wirtschaftliche Potenziale frühzeitig erkennen – bevor Kapital gebunden wird.",
     section3Btn: "Mehr über unsere Analysen",
     section4Label: "Analyse",
     section4Headline: "Relevante Analysen",
@@ -65,141 +65,141 @@ const copy = {
     analysisCards: [
       {
         title: "Marktwertanalyse",
-        description: "Bewertung der Immobilie vor und nach geplanten Maßnahmen.",
+        description: "Einordnung von Grundstück, Bestand und geplantem Ergebnis im Marktumfeld.",
         href: "/de/loesungen/marktwertanalyse",
       },
       {
         title: "Risikoanalyse",
-        description: "Identifikation möglicher technischer und wirtschaftlicher Risiken.",
+        description: "Identifikation baulicher, regulatorischer und wirtschaftlicher Projektunsicherheiten.",
         href: "/de/loesungen",
       },
       {
         title: "Dokumentenanalyse",
-        description: "Strukturierte Auswertung vorhandener Unterlagen.",
+        description: "Auswertung von Bebauungsplan, Gutachten, Kalkulationen und Vertragsunterlagen.",
         href: "/de/loesungen",
       },
       {
         title: "Individuelle Immobilienanalyse",
-        description: "Berücksichtigung der jeweiligen Zielsetzung und Rahmenbedingungen.",
+        description: "Projektspezifische Bewertung entlang Ihrer Ziele und Exit-Strategie.",
         href: "/de/loesungen",
       },
     ],
-    section5Label: "Vorhabentypen",
-    section5Headline: "Für unterschiedliche Vorhaben",
+    section5Label: "Projekttypen",
+    section5Headline: "Typische Entwicklungsvorhaben",
     vorhabenCards: [
       {
-        title: "Energetische Sanierung",
+        title: "Neubau",
         description:
-          "Gezielte Maßnahmen zur Verbesserung der Energieeffizienz und Senkung langfristiger Betriebskosten.",
+          "Neue Wohn- oder Nutzflächen auf entwickelten Grundstücken – mit Fokus auf Markt, Kosten und Vermarktbarkeit.",
         image: "/images/sanierung/vorhaben-1.jpg",
       },
       {
-        title: "Modernisierung von Wohnungen",
+        title: "Aufteilung",
         description:
-          "Aufwertung des Wohnraums durch durchdachte Maßnahmen mit klarem Qualitäts- und Wertanspruch.",
+          "Aufteilung bestehender Gebäude in Einheiten – als strategischer Hebel für Verkauf oder langfristigen Bestand.",
         image: "/images/sanierung/vorhaben-2.jpg",
       },
       {
-        title: "Wertsteigerung bestehender Immobilien",
+        title: "Nachverdichtung",
         description:
-          "Strukturierte Entwicklung des Bestandsobjekts für nachhaltige Wertsteigerung im Marktkontext.",
+          "Zusätzliche Flächen durch Aufstockung, Anbau oder Umnutzung – unter Berücksichtigung von Genehmigung und Wirtschaftlichkeit.",
         image: "/images/sanierung/vorhaben-3.jpg",
       },
       {
-        title: "Langfristige Bestandshaltung",
+        title: "Verkauf oder Bestand",
         description:
-          "Erhalt und Optimierung bestehender Immobilien mit Fokus auf Qualität und Langlebigkeit.",
+          "Abwägung zwischen sofortigem Verkauf, Halten im Portfolio und gestaffelter Exit-Strategie.",
         image: "/images/sanierung/vorhaben-4.jpg",
       },
     ],
     section6Label: "Was uns unterscheidet",
-    section6Headline: "Nicht jede Modernisierung verfolgt dasselbe Ziel.",
+    section6Headline: "Jedes Projekt verfolgt ein anderes Ziel.",
     section6Text:
-      "Ob Eigennutzung, Kapitalanlage oder langfristiger Werterhalt – immowap betrachtet jede Maßnahme im Zusammenhang mit den individuellen Erwartungen und Prioritäten.",
+      "Ob Bauträgerprojekt, Bestandsentwicklung oder individuelle Grundstücksentwicklung – immowap betrachtet jedes Vorhaben im Zusammenhang mit Wirtschaftlichkeit, Risiko und persönlicher Strategie.",
     section6TextSecondary:
-      "Es gibt keine Standardlösungen. Jede Analyse orientiert sich am individuellen Kontext der Immobilie und ihrer Nutzung.",
+      "Es gibt keine Standardlösung. Jede Analyse orientiert sich am konkreten Projekt, den Rahmenbedingungen und der geplanten Exit-Strategie.",
     section6ListLabel: "Jede Analyse basiert auf",
     section6Items: [
-      "Individuellen Zielen",
-      "Technischen Anforderungen",
-      "Budgetprioritäten",
-      "Langfristigen Erwartungen",
+      "Projektziel und Exit",
+      "Standort und Genehmigungslage",
+      "Wirtschaftlichkeit und Potenziale",
+      "Individuellen Rahmenbedingungen",
     ],
-    section7Headline: "Bestehende Werte weiterentwickeln.",
+    section7Headline: "Potenziale erkennen. Entscheidungen fundieren.",
     principleCards: [
       {
         number: "01",
-        title: "Nachhaltigkeit",
+        title: "Wirtschaftlichkeit zuerst",
         description:
-          "Fokus auf langfristige Perspektiven und Energieeffizienz – Maßnahmen mit dauerhaftem Mehrwert.",
+          "Fokus auf realistische Kalkulation, Sensitivitäten und nachvollziehbare Renditeperspektiven.",
       },
       {
         number: "02",
-        title: "Strukturierte Planung",
+        title: "Strukturierte Projektplanung",
         description:
-          "Ganzheitliche Entscheidungen statt isolierter Einzelmaßnahmen – koordiniert und zielorientiert.",
+          "Ganzheitliche Betrachtung von Grundstück, Bauprojekt, Finanzierung und Exit – statt isolierter Einzelentscheidungen.",
       },
       {
         number: "03",
-        title: "Individuelle Betrachtung",
+        title: "Individuelle Einordnung",
         description:
-          "Jede Immobilie wird im jeweiligen Kontext bewertet – ohne pauschale Empfehlungen.",
+          "Jedes Vorhaben wird im jeweiligen Markt- und Projektkontext bewertet – transparent und nachvollziehbar.",
       },
     ],
     ctaLabel: "Nächster Schritt",
-    ctaHeadline: "Bestehende Werte weiterentwickeln.",
+    ctaHeadline: "Potenziale erkennen. Entscheidungen fundieren.",
     ctaText:
-      "Strukturierte Analysen unterstützen dabei, Potenziale besser zu erkennen und Entscheidungen fundiert zu treffen.",
+      "Strukturierte Analysen schaffen Transparenz über Wirtschaftlichkeit, Risiken und realistische Exit-Optionen.",
     ctaBtnPrimary: "Analyse starten",
     ctaBtnSecondary: "Kontakt aufnehmen",
   },
   en: {
     heroLabel: "For your goals",
-    heroHeadline: "Rethinking existing properties.",
+    heroHeadline: "Develop projects. Realise potential.",
     heroSubheadline:
-      "Modernisation and renovation mean more than mere construction measures. Individual goals, technical requirements and long-term perspectives are decisive.",
+      "Project development connects land, new build, conversion and densification with clear economic goals – from the first idea to the exit strategy.",
     heroBtnPrimary: "Start analysis",
     heroBtnSecondary: "Send enquiry",
-    section1Headline: "Identifying potential and developing it in a targeted way.",
+    section1Headline: "From land to decision.",
     section1Text:
-      "Every property has different development possibilities. Scope, economic viability and objectives should be considered in a structured way before decisions are made.",
+      "Whether new build, subdivision, conversion or developer project: location, planning status, economic viability and a realistic exit are decisive. These factors should be assessed together in a structured way.",
     section2Label: "Our assessment",
     section2Headline: "What we take into account",
     considerationCards: [
       {
-        title: "Property condition",
+        title: "Land",
         description:
-          "Structured condition assessment as a starting point — technical, energy-related and structural.",
+          "Assessment of location, zoning, infrastructure and development potential as the basis of every project decision.",
       },
       {
-        title: "Modernisation potential",
+        title: "New build & conversion",
         description:
-          "Assessment of realistic development possibilities in relation to effort and objectives.",
+          "Classification of building concept, cost framework, timeline and technical requirements in the relevant market context.",
       },
       {
-        title: "Investment volume",
+        title: "Subdivision & densification",
         description:
-          "Planning and classification of the cost framework for an economically viable decision.",
+          "Review of subdivision and densification potential – legally, structurally and economically.",
       },
       {
-        title: "Energy efficiency",
+        title: "Developer projects",
         description:
-          "Consideration of energy requirements, funding opportunities and long-term operating costs.",
+          "Structured review of project structure, risk allocation, sales and financing in a developer context.",
       },
       {
-        title: "Long-term value development",
+        title: "Economic viability",
         description:
-          "Assessment of value appreciation potential through targeted measures in the market context.",
+          "Realistic calculation of costs, income, returns and sensitivities for robust decisions.",
       },
       {
-        title: "Opportunities & risks",
+        title: "Exit strategies",
         description:
-          "Holistic view of potential and possible uncertainties before decision-making begins.",
+          "Early clarification of whether sale, retention or partial disposal fits the project goal.",
       },
     ],
-    section3Headline: "Structured decisions instead of isolated measures",
+    section3Headline: "Structured project decisions instead of gut feeling",
     section3Text:
-      "Through a holistic approach, measures can be better prioritised and long-term goals pursued in a targeted manner.",
+      "Holistic analyses help identify opportunities, risks and economic potential early – before capital is committed.",
     section3Btn: "Learn more about our analyses",
     section4Label: "Analysis",
     section4Headline: "Relevant analyses",
@@ -207,91 +207,91 @@ const copy = {
     analysisCards: [
       {
         title: "Market value analysis",
-        description: "Assessment of the property before and after planned measures.",
+        description: "Assessment of land, existing stock and planned outcome in the market environment.",
         href: "/en/solutions/market-value-analysis",
       },
       {
         title: "Risk analysis",
-        description: "Identification of possible technical and economic risks.",
+        description: "Identification of structural, regulatory and economic project uncertainties.",
         href: "/en/solutions",
       },
       {
         title: "Document analysis",
-        description: "Structured evaluation of available documentation.",
+        description: "Review of zoning plans, surveys, calculations and contract documents.",
         href: "/en/solutions",
       },
       {
         title: "Individual property analysis",
-        description: "Consideration of the respective objectives and framework conditions.",
+        description: "Project-specific assessment aligned with your goals and exit strategy.",
         href: "/en/solutions",
       },
     ],
     section5Label: "Project types",
-    section5Headline: "For different projects",
+    section5Headline: "Typical development projects",
     vorhabenCards: [
       {
-        title: "Energy renovation",
+        title: "New build",
         description:
-          "Targeted measures to improve energy efficiency and reduce long-term operating costs.",
+          "New residential or commercial space on developed land – with a focus on market, costs and marketability.",
         image: "/images/sanierung/vorhaben-1.jpg",
       },
       {
-        title: "Apartment modernisation",
+        title: "Subdivision",
         description:
-          "Upgrading living space through well-conceived measures with a clear quality and value ambition.",
+          "Splitting existing buildings into units – as a strategic lever for sale or long-term retention.",
         image: "/images/sanierung/vorhaben-2.jpg",
       },
       {
-        title: "Value enhancement of existing properties",
+        title: "Densification",
         description:
-          "Structured development of existing stock for sustainable value appreciation in the market context.",
+          "Additional space through extensions, roof additions or change of use – considering permits and viability.",
         image: "/images/sanierung/vorhaben-3.jpg",
       },
       {
-        title: "Long-term portfolio retention",
+        title: "Sale or retention",
         description:
-          "Maintenance and optimisation of existing properties with a focus on quality and longevity.",
+          "Weighing immediate sale, portfolio retention and a phased exit strategy.",
         image: "/images/sanierung/vorhaben-4.jpg",
       },
     ],
     section6Label: "What sets us apart",
-    section6Headline: "Not every modernisation pursues the same goal.",
+    section6Headline: "Every project pursues a different goal.",
     section6Text:
-      "Whether owner-occupation, investment or long-term value preservation — immowap considers every measure in relation to individual expectations and priorities.",
+      "Whether a developer project, stock development or individual land development – immowap considers every venture in relation to viability, risk and personal strategy.",
     section6TextSecondary:
-      "There are no standard solutions. Every analysis is based on the individual context of the property and its use.",
+      "There is no standard solution. Every analysis is based on the specific project, framework conditions and planned exit strategy.",
     section6ListLabel: "Every analysis is based on",
     section6Items: [
-      "Individual goals",
-      "Technical requirements",
-      "Budget priorities",
-      "Long-term expectations",
+      "Project goal and exit",
+      "Location and planning status",
+      "Viability and potential",
+      "Individual framework conditions",
     ],
-    section7Headline: "Developing existing values further.",
+    section7Headline: "Recognise potential. Make informed decisions.",
     principleCards: [
       {
         number: "01",
-        title: "Sustainability",
+        title: "Viability first",
         description:
-          "Focus on long-term perspectives and energy efficiency — measures with lasting added value.",
+          "Focus on realistic calculation, sensitivities and traceable return perspectives.",
       },
       {
         number: "02",
-        title: "Structured planning",
+        title: "Structured project planning",
         description:
-          "Holistic decisions instead of isolated individual measures — coordinated and goal-oriented.",
+          "Holistic view of land, build, financing and exit – instead of isolated individual decisions.",
       },
       {
         number: "03",
         title: "Individual assessment",
         description:
-          "Every property is evaluated in its respective context — without blanket recommendations.",
+          "Every project is evaluated in its market and project context – transparently and traceably.",
       },
     ],
     ctaLabel: "Next step",
-    ctaHeadline: "Developing existing values further.",
+    ctaHeadline: "Recognise potential. Make informed decisions.",
     ctaText:
-      "Structured analyses support the better identification of potential and making well-founded decisions.",
+      "Structured analyses create transparency on viability, risks and realistic exit options.",
     ctaBtnPrimary: "Start analysis",
     ctaBtnSecondary: "Get in touch",
   },
@@ -313,7 +313,7 @@ export function SanierungPage({ locale }: SanierungPageProps) {
         secondaryHref={contactHref}
         secondaryLabel={c.heroBtnSecondary}
         imageSrc="/images/sanierung/hero.jpg"
-        imageAlt="Elegant architecture and timeless interior — Renovation & Modernisation"
+        imageAlt="Architecture and project development — land, new build and conversion"
         imageOverlayClassName="from-[#0F3D2E]/8"
       >
         <p className="mt-8 text-lg leading-[1.8] text-muted">{c.heroSubheadline}</p>

@@ -31,7 +31,7 @@ const areasDE: KnowledgeArea[] = [
   {
     title: "FAQ & Antworten",
     description:
-      "120 strukturierte Fragen und Antworten zu Eigennutzung, Kapitalanlage, Fix & Flip, Sanierung, Mehrfamilienhäusern und Gewerbeimmobilien.",
+      "120 strukturierte Fragen und Antworten zu Eigennutzung, Kapitalanlage, Fix & Flip, Projektentwicklung, Individueller Strategie und Gewerbeimmobilien.",
     href: "/de/wissen/faq",
   },
 ];

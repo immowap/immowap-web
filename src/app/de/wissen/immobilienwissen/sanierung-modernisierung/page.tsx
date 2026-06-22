@@ -1,9 +1,9 @@
 import { SanierungModernisierungPage } from "@/components/pages/SanierungModernisierungPage";
 
 export const metadata = {
-  title: "Sanierung & Modernisierung | Renovieren oder sanieren? | immowap",
+  title: "Projektentwicklung | Grundstück, Neubau & Exit | immowap",
   description:
-    "Unterschiede zwischen Renovierung, Modernisierung und Sanierung verstehen. Informationen zu Dach, Fenstern, Heizung, Dämmung, Elektrik, Förderprogrammen und Wertsteigerung durch Modernisierung.",
+    "Projektentwicklung verstehen: Grundstücke, Neubau, Aufteilung, Umbau, Nachverdichtung, Bauträgerprojekte, Wirtschaftlichkeit und Exit-Strategien – Verkauf oder Bestand.",
 };
 
 export default function DeSanierungModernisierungPage() {

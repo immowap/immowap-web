@@ -135,15 +135,15 @@ const goalsDE: GoalCard[] = [
     href: "/de/loesungen/fix-flip",
   },
   {
-    title: "Sanierung & Modernisierung",
+    title: "Projektentwicklung",
     description:
-      "Analyse von Sanierungsaufwand, Fördermöglichkeiten und langfristigem Mehrwert einer Modernisierung.",
+      "Grundstücke, Neubau, Aufteilung, Umbau und Nachverdichtung – von der Idee bis zur Exit-Strategie.",
     href: "/de/loesungen/sanierung-modernisierung",
   },
   {
-    title: "Mehrfamilienhäuser",
+    title: "Individuelle Strategie",
     description:
-      "Bewertung von Mehrfamilienhäusern nach Ertrag, Verwaltungsaufwand und langfristigem Risikoprofil.",
+      "Maßgeschneiderte Betrachtung für Vermögensaufbau, Portfolioaufbau, Fix & Hold und langfristige Ziele – ohne Standardlösungen.",
     href: "/de/loesungen/mehrfamilienhaeuser",
   },
   {
@@ -174,15 +174,15 @@ const goalsEN: GoalCard[] = [
     href: "/en/solutions/fix-flip",
   },
   {
-    title: "Renovation & Modernisation",
+    title: "Project Development",
     description:
-      "Analysis of renovation scope, funding opportunities and the long-term value added by modernisation.",
+      "Land, new build, subdivision, conversion and densification – from concept to exit strategy.",
     href: "/en/solutions/renovation-modernization",
   },
   {
-    title: "Multi-Family Properties",
+    title: "Individual Strategy",
     description:
-      "Evaluation of multi-family properties by yield, management requirements and long-term risk profile.",
+      "Tailored assessment for wealth building, portfolio development, fix & hold and long-term goals – without one-size-fits-all solutions.",
     href: "/en/solutions/multi-family-properties",
   },
   {
@@ -438,7 +438,7 @@ const copy = {
     cardLink: "Mehr erfahren",
     differentiatorHeadline: "Nicht jede Immobilie wird gleich betrachtet.",
     differentiatorText:
-      "Unterschiedliche Ziele erfordern unterschiedliche Betrachtungsweisen. immowap strukturiert Analysen nach dem jeweiligen Kontext – ob Eigennutzung, Kapitalanlage oder Sanierung.",
+      "Unterschiedliche Ziele erfordern unterschiedliche Betrachtungsweisen. immowap strukturiert Analysen nach dem jeweiligen Kontext – ob Eigennutzung, Kapitalanlage oder Projektentwicklung.",
     ctaHeadline: "Bereit für eine strukturierte Analyse?",
     ctaText:
       "Teilen Sie uns Ihr Vorhaben mit. Wir erstellen eine individuelle Einschätzung abgestimmt auf Ihre Ziele.",
@@ -465,7 +465,7 @@ const copy = {
     cardLink: "Learn more",
     differentiatorHeadline: "Not every property is evaluated in the same way.",
     differentiatorText:
-      "Different goals require different perspectives. immowap structures analyses according to the respective context — whether owner-occupation, investment or renovation.",
+      "Different goals require different perspectives. immowap structures analyses according to the respective context — whether owner-occupation, investment or project development.",
     ctaHeadline: "Ready for a structured analysis?",
     ctaText:
       "Share your plans with us. We will create an individual assessment aligned with your goals.",

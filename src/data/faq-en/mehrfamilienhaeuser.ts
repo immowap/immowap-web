@@ -2,111 +2,109 @@ import type { FAQCategory } from "../faq-types";
 
 export const mehrfamilienhaeuserCategoryEn: FAQCategory = {
   id: "mehrfamilienhaeuser",
-  title: "Multi-Family Properties",
+  title: "Individual Strategy",
   description:
-    "Questions on yield calculation, rent structure, management, financing and long-term portfolio strategy for multi-family buildings.",
+    "Questions on wealth building, financial independence, portfolio development, fix & hold, strategy combinations and individual decision-making.",
   items: [
     {
-      question:
-        "How does a multi-family building differ from other property investments?",
+      question: "What is an individual property strategy?",
       answer:
-        "A multi-family building offers several independent rental units in one structure, improving risk spread compared with single units. It requires more management effort and more capital on acquisition. Long term, multi-family buildings are considered stable, value-retaining investments.",
+        "An individual strategy aligns property decisions with personal goals instead of off-the-shelf product recommendations. It can combine owner-occupation, buy-to-let, fix & hold, project development and other approaches – depending on priorities, risk profile and time horizon.",
     },
     {
-      question: "How do you calculate yield on a multi-family building?",
+      question: "How does property support wealth building?",
       answer:
-        "Yield is total rent from all units relative to purchase price and running costs. For realistic net yield, deduct management, maintenance reserves, void allowance and financing. Careful cash flow analysis is essential for economic assessment.",
+        "Property can build wealth through appreciation, rental income, debt reduction and portfolio growth over time. Success depends on object selection, financing, management and a consistent long-term approach – not short-term speculation alone.",
     },
     {
-      question: "What is the gross income multiplier (GIM) for multi-family buildings?",
+      question: "Can property contribute to financial independence?",
       answer:
-        "The gross income multiplier is purchase price divided by annual gross rent from all units. It shows how many years of rent the price represents and helps compare objects. Lower multipliers tend to indicate more attractive prices – always in local market context.",
+        "Yes, when income from letting or realised gains reduces dependence on earned income over the long term. This requires realistic cash flow planning, reserves and a strategy matched to personal life goals. There is no single path for everyone.",
     },
     {
-      question: "How do you assess rent structure in a multi-family building?",
+      question: "How do you build a property portfolio step by step?",
       answer:
-        "Check whether existing rents are market-level or well below local norms. Contract terms, indexation and tenant diversification also matter. Rents with catch-up potential can offer additional return opportunity.",
+        "Sustainable portfolio building often starts with one solid investment that generates positive cash flow and equity. That equity can fund further acquisitions. Diversification across locations and strategies reduces overall risk.",
     },
     {
-      question: "What is the difference between net rent and gross rent?",
+      question: "What is fix & hold as a strategy?",
       answer:
-        "Net rent is base rent without service charges. Gross rent includes net rent plus recoverable charges such as heating, water and waste. For investors, net rent is the relevant income figure as charges are usually passed to tenants.",
+        "Fix & hold means acquiring property, improving it if needed and retaining it long term for income and appreciation. Unlike fix & flip, the focus is on stability and ongoing returns rather than quick resale. Financing and management must support the long horizon.",
     },
     {
-      question: "How do you analyse void risk in a multi-family building?",
+      question: "Can different strategies be combined?",
       answer:
-        "Void risk depends on location, unit size and quality and local demand. Key indicators are regional void rates, population trends and new supply. In strong-demand areas void is lower; in weak regions it can persist.",
+        "Many owners combine approaches – for example owner-occupied home plus buy-to-let, or retention plus selective development. Combination requires clear priorities and sufficient capacity for financing and management. A structured overview prevents conflicting decisions.",
     },
     {
-      question:
-        "What are the main cost items in operating a multi-family building?",
+      question: "Why are long-term goals important?",
       answer:
-        "Main running costs include management, maintenance reserves, non-recoverable charges, financing and tax. Realistic operating cost calculation is essential to determine true net cash flow. Many investors underestimate these at purchase.",
+        "Property decisions often bind capital for years or decades. Without clear long-term goals, short-term market noise or isolated opportunities can lead to inconsistent decisions. Goals define which objects, financing and strategies fit.",
     },
     {
-      question: "How does service charge accounting work for multi-family buildings?",
+      question: "How do you optimise existing properties in a portfolio?",
       answer:
-        "Landlords must produce an annual service charge statement allocating recoverable costs to tenants, usually by floor area or measured heating use. Incorrect or late statements can mean lost income.",
+        "Optimisation can include rent adjustments, targeted improvements, refinancing, restructuring or selective disposal. Each measure should be weighed against costs, risk and alignment with overall strategy. Not every improvement pays off in every context.",
     },
     {
-      question: "What is service charge (Hausgeld) and what costs does it cover?",
+      question: "Why is individual analysis important?",
       answer:
-        "Service charge is the monthly payment owners in a condominium association (WEG) make for running costs and maintenance reserves. In full freehold multi-family buildings there is no WEG charge; the owner bears all costs directly. The level is important in yield calculation.",
+        "Standard benchmarks and generic advice rarely capture personal tax situation, risk appetite, liquidity needs and life plans. Individual analysis maps opportunities and risks to your specific context – as a basis for informed decisions.",
     },
     {
-      question: "How important is property management for investment success?",
+      question: "Why are there no standard solutions?",
       answer:
-        "Professional management handles tenant search, contracts, service charge accounting and contractor coordination. Good management improves occupancy, reduces voids and limits legal errors. Typical fees of €20–50 per unit per month are usually well spent.",
+        "Owners differ in capital, experience, time, risk tolerance and goals. A strategy that suits one investor may be unsuitable for another. immowap focuses on structured individual assessment rather than one-size-fits-all recommendations.",
     },
     {
-      question: "What is a division declaration and when is it relevant?",
+      question: "How does risk profile affect strategy choice?",
       answer:
-        "The division declaration (Teilungserklärung) defines split of a WEG into individual and common parts and owners' rights and duties. It matters when a building is subdivided or units sold to different owners. Ability to subdivide is often a value driver.",
+        "Higher risk tolerance may allow more leverage, development or concentrated locations. Lower tolerance favours stable income, diversification and stronger reserves. Strategy should match what you can sustain financially and emotionally over the long term.",
     },
     {
-      question: "How do you assess development potential in a multi-family building?",
+      question: "Cash flow or appreciation – what takes priority?",
       answer:
-        "Potential may lie in rent increases, extensions such as loft conversion or subdivision and individual sale. Development plan, plot size and structural condition are decisive. Objects with realistic upside can outperform apparently more attractive alternatives long term.",
+        "Priority depends on goals. Income-focused strategies emphasise stable cash flow; growth-focused strategies accept lower current income for appreciation potential. Many individual strategies balance both over different portfolio segments.",
     },
     {
-      question: "What is the difference between a rental house and a WEG?",
+      question: "How does property fit into generational planning?",
       answer:
-        "In a rental house one owner holds full title and decides alone. A WEG exists when the building is split into separate units owned by different parties. In a WEG, major decisions require owners' assembly agreement.",
+        "Property can be part of succession and generational wealth transfer. Legal structure, financing, tax and family goals should be coordinated early. Individual strategy includes how assets support future generations – not only current returns.",
     },
     {
-      question: "What maintenance reserves should be set for a multi-family building?",
+      question: "How important is diversification?",
       answer:
-        "Experts often suggest €10–15 per square metre per year, more for older stock. Reserves fund future repairs without external finance. Insufficient reserves can cause financial stress on major damage.",
+        "Diversification across locations, object types and strategies reduces dependence on a single market or asset. For individual portfolios, diversification should match capacity – too many small positions can increase management burden without reducing risk effectively.",
     },
     {
-      question: "How do you evaluate tenancy agreements on acquisition?",
+      question: "How is financing tailored to individual strategy?",
       answer:
-        "Existing tenancies transfer to the buyer (purchase does not break lease). Relevant are terms, stepped or index rent, comparison with market rent and special agreements. Below-market rents offer medium-term increase potential.",
+        "Financing should match time horizon, cash flow and risk. Long-term retention may favour stable annuity loans; shorter horizons or development may need flexible structures. Individual analysis clarifies what financing supports the strategy sustainably.",
     },
     {
-      question: "What are tenant rights and how do they affect investors?",
+      question: "What role does tax planning play?",
       answer:
-        "Tenants in Germany have strong legal protection, especially on termination, rent caps and modernisation notice. This limits owner flexibility but supports tenancy stability. Investors should review the legal framework before purchase.",
+        "Tax affects net returns from letting, sales and development. Individual strategy considers depreciation, speculation period, trade tax and personal income tax effects. Tax advice should be integrated into strategy planning, not added afterwards.",
     },
     {
-      question: "How is a multi-family building financed?",
+      question: "How do you make decisions when options are unclear?",
       answer:
-        "Financing is usually via standard annuity loans, often with equity and KfW promotional loans. Banks assess price, income value and borrower creditworthiness. Larger assets often need more complex structures with several lenders.",
+        "Structured comparison of scenarios – income, costs, risks and goals – creates transparency. Documenting assumptions and sensitivities helps avoid decisions based on isolated figures or emotional pressure. immowap supports this structured decision process.",
     },
     {
-      question: "What is the difference between existing stock and new build?",
+      question: "What is scenario analysis in individual strategy?",
       answer:
-        "Existing stock often has lower entry prices but higher modernisation need and unknown risks. New build offers modern systems, low initial maintenance and tax benefits but higher purchase cost. Choice depends on strategy, risk tolerance and capital.",
+        "Scenario analysis models different outcomes – for example interest rate changes, vacancy, cost increases or delayed sales. It shows how robust a strategy is under stress. This is especially valuable when no standard product fits.",
     },
     {
-      question: "How do you build a multi-family portfolio long term?",
+      question: "When should a portfolio be rebalanced?",
       answer:
-        "Sustainable portfolio building starts with solid single investments generating positive cash flow and building equity. That equity funds further acquisitions. Spread across locations and unit types reduces overall risk.",
+        "Rebalancing may be needed when goals change, objects underperform, financing matures or market conditions shift significantly. Individual strategy includes periodic review – not reactive trading on short-term fluctuations alone.",
     },
     {
-      question: "How does immowap support analysis of a multi-family building?",
+      question: "How does immowap support individual strategy?",
       answer:
-        "immowap produces comprehensive analysis of rent structure, income potential, condition, risk profile and development options. Individual goals, financing and risk appetite are included. The result is a sound basis for an informed investment strategy.",
+        "immowap provides structured analyses aligned with your goals, risk profile, existing portfolio and long-term priorities. Opportunities and risks are presented transparently across strategies – as a basis for individual decision-making without standard templates.",
     },
   ],
 };

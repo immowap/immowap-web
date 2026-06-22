@@ -5,11 +5,11 @@ export const faqPageCopy = {
   de: {
     metaTitle: "Häufige Fragen | immowap",
     metaDescription:
-      "Antworten auf 120 häufige Fragen zu Eigennutzung, Kapitalanlage, Fix & Flip, Sanierung, Mehrfamilienhäusern und Gewerbeimmobilien.",
+      "Antworten auf 120 häufige Fragen zu Eigennutzung, Kapitalanlage, Fix & Flip, Projektentwicklung, Individueller Strategie und Gewerbeimmobilien.",
     heroLabel: "Wissen & Orientierung",
     heroTitle: "Häufige Fragen rund um Immobilienentscheidungen",
     heroSubtitle:
-      "Antworten auf zentrale Fragen zu Eigennutzung, Kapitalanlage, Fix & Flip, Sanierung, Mehrfamilienhäusern und Gewerbeimmobilien. Strukturiert, nachvollziehbar und auf das Wesentliche konzentriert.",
+      "Antworten auf zentrale Fragen zu Eigennutzung, Kapitalanlage, Fix & Flip, Projektentwicklung, Individueller Strategie und Gewerbeimmobilien. Strukturiert, nachvollziehbar und auf das Wesentliche konzentriert.",
     statCategories: "Themenbereiche",
     statQuestions: "Fragen & Antworten",
     hintExpand:
@@ -28,11 +28,11 @@ export const faqPageCopy = {
   en: {
     metaTitle: "FAQ & Answers | immowap",
     metaDescription:
-      "Answers to 120 common questions on owner occupation, investment property, fix & flip, renovation, multi-family properties and commercial real estate.",
+      "Answers to 120 common questions on owner occupation, investment property, fix & flip, project development, individual strategy and commercial real estate.",
     heroLabel: "Knowledge & guidance",
     heroTitle: "Frequently asked questions about property decisions",
     heroSubtitle:
-      "Answers to key questions on owner occupation, investment property, fix & flip, renovation, multi-family properties and commercial real estate. Structured, clear and focused on what matters.",
+      "Answers to key questions on owner occupation, investment property, fix & flip, project development, individual strategy and commercial real estate. Structured, clear and focused on what matters.",
     statCategories: "Topic areas",
     statQuestions: "Questions & answers",
     hintExpand:

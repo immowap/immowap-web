@@ -2,7 +2,7 @@ import { ImmobilienstrategienPage } from "@/components/pages/Immobilienstrategie
 
 const title = "Immobilienstrategien | immowap";
 const description =
-  "Eigennutzung, Kapitalanlage, Fix & Flip, Sanierung, Mehrfamilienhäuser und Gewerbeimmobilien – welche Immobilienstrategie zu Ihren Zielen passt, Chancen und Risiken im Überblick.";
+  "Eigennutzung, Kapitalanlage, Fix & Flip, Projektentwicklung, Individuelle Strategie und Gewerbeimmobilien – welche Immobilienstrategie zu Ihren Zielen passt, Chancen und Risiken im Überblick.";
 
 export const metadata = {
   title,

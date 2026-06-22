@@ -13,284 +13,285 @@ interface MehrfamilienhauserPageProps {
 const copy = {
   de: {
     heroLabel: "Für Ihre Ziele",
-    heroHeadline: "Mehrfamilienhäuser mit Weitblick betrachten.",
+    heroHeadline: "Ihre Strategie. Kein Standard.",
     heroSubheadline:
-      "Mehrfamilienhäuser erfordern eine strukturierte Betrachtung. Neben Lage und Ertrag spielen Entwicklungspotenziale, Risiken und langfristige Perspektiven eine entscheidende Rolle.",
+      "Individuelle Strategie richtet sich an Nutzer, die keine pauschale Lösung suchen – sondern Vermögensaufbau, Portfolioentwicklung und langfristige Ziele im eigenen Tempo verfolgen.",
     heroBtnPrimary: "Analyse starten",
     heroBtnSecondary: "Anfrage senden",
-    section1Headline: "Komplexität schafft Chancen.",
+    section1Headline: "Mehr als ein Objekttyp – ein persönlicher Weg.",
     section1Text:
-      "Mehrfamilienhäuser bieten vielfältige Möglichkeiten, erfordern jedoch eine ganzheitliche Betrachtung. Wirtschaftlichkeit, Zustand, Potenziale und individuelle Ziele sollten gemeinsam bewertet werden.",
+      "Ob Fix & Hold, Kombination verschiedener Ansätze oder Optimierung bestehender Bestände: Entscheidend sind Ihre Ziele, Ihr Risikoprofil und Ihr Zeithorizont – nicht vorgegebene Produktlogiken.",
     section2Label: "Unsere Betrachtung",
     section2Headline: "Was wir berücksichtigen",
     considerationCards: [
       {
-        title: "Mietstruktur",
+        title: "Vermögensaufbau",
         description:
-          "Analyse der bestehenden Mietverhältnisse, Leerstandsquoten und nachhaltiger Ertragsstabilität.",
+          "Langfristige Entwicklung persönlichen Vermögens durch Immobilien – strukturiert und zielgerichtet.",
       },
       {
-        title: "Ertragspotenzial",
+        title: "Finanzielle Unabhängigkeit",
         description:
-          "Einordnung langfristiger Ertragsperspektiven auf Basis von Lage, Nachfrage und Marktentwicklung.",
+          "Einordnung, wie Immobilienentscheidungen Einkommen, Sicherheit und Freiräume über die Zeit beeinflussen.",
       },
       {
-        title: "Zustand der Immobilie",
+        title: "Portfolioaufbau",
         description:
-          "Strukturierte Bestandsaufnahme von Substanz, Modernisierungsbedarf und technischem Zustand.",
+          "Schrittweiser Aufbau und Diversifikation eines Immobilienportfolios entlang individueller Prioritäten.",
       },
       {
-        title: "Entwicklungsmöglichkeiten",
+        title: "Fix & Hold",
         description:
-          "Beurteilung von Aufstockungs-, Umbau- oder Optimierungspotenzialen im jeweiligen Kontext.",
+          "Bewertung langfristiger Haltestrategien mit Fokus auf Stabilität, Cashflow und Werthaltigkeit.",
       },
       {
-        title: "Risiken",
+        title: "Strategiekombination",
         description:
-          "Frühzeitige Identifikation von Markt-, Miet- und Bewirtschaftungsrisiken für eine belastbare Entscheidung.",
+          "Verbindung unterschiedlicher Ansätze – etwa Eigennutzung, Kapitalanlage und gezielte Entwicklung.",
       },
       {
-        title: "Langfristige Perspektiven",
+        title: "Bestandsoptimierung",
         description:
-          "Betrachtung der Immobilie als langfristigen Vermögenswert – über aktuelle Erträge hinaus.",
+          "Analyse und Verbesserung bestehender Immobilien im Hinblick auf Ertrag, Substanz und langfristige Ziele.",
       },
     ],
-    section3Headline: "Strukturierte Analysen für fundierte Entscheidungen",
+    section3Headline: "Individuelle Analyse statt Standardempfehlung",
     section3Text:
-      "Durch datenbasierte Analysen und strukturierte Auswertungen lassen sich Chancen und Risiken besser einordnen. immowap verbindet Erfahrung, Transparenz und nachvollziehbare Entscheidungsgrundlagen.",
+      "Durch strukturierte Auswertungen lassen sich Chancen, Risiken und passende Strategieoptionen transparent darstellen – als Grundlage für fundierte Entscheidungen.",
     section3Btn: "Mehr über unsere Analysen",
     section4Label: "Analyse",
     section4Headline: "Relevante Analysen",
     cardLink: "Mehr erfahren",
     analysisCards: [
       {
-        title: "Renditeanalyse",
-        description: "Langfristige Ertragsperspektiven und Wirtschaftlichkeit.",
-        href: "/de/loesungen",
-      },
-      {
-        title: "Cashflow-Analyse",
-        description: "Übersicht über Einnahmen, Kosten und Liquidität.",
+        title: "Individuelle Immobilienanalyse",
+        description: "Ganzheitliche Betrachtung im Kontext Ihrer persönlichen Ziele.",
         href: "/de/loesungen",
       },
       {
         title: "Risikoanalyse",
-        description: "Frühzeitige Identifikation möglicher Unsicherheiten.",
+        description: "Frühzeitige Identifikation von Unsicherheiten entlang Ihrer Strategie.",
         href: "/de/loesungen",
       },
       {
         title: "Marktvergleich",
-        description: "Einordnung im aktuellen Marktumfeld.",
+        description: "Einordnung von Objekten und Szenarien im aktuellen Marktumfeld.",
+        href: "/de/loesungen",
+      },
+      {
+        title: "Dokumentenanalyse",
+        description: "Strukturierte Auswertung vorhandener Unterlagen und Bestandsinformationen.",
         href: "/de/loesungen",
       },
     ],
-    section5Label: "Investitionsstrategien",
-    section5Headline: "Für unterschiedliche Strategien",
+    section5Label: "Strategische Schwerpunkte",
+    section5Headline: "Typische Ausrichtungen",
     strategyCards: [
       {
-        title: "Langfristige Bestandshaltung",
+        title: "Langfristige Ziele",
         description:
-          "Stabile Erträge und Werterhalt über Generationen – mit strukturierter Bewirtschaftungsstrategie.",
+          "Immobilienentscheidungen entlang persönlicher Lebens- und Vermögensplanung – nicht kurzfristiger Trends.",
         image: "/images/mehrfamilienhaeuser/strategie-1.jpg",
-      },
-      {
-        title: "Wertsteigerung",
-        description:
-          "Gezielte Entwicklungsmaßnahmen zur nachhaltigen Steigerung von Substanz und Ertragskraft.",
-        image: "/images/mehrfamilienhaeuser/strategie-2.jpg",
       },
       {
         title: "Portfolioaufbau",
         description:
-          "Strukturierter Aufbau eines stabilen Immobilienportfolios mit langfristiger Diversifikation.",
+          "Schrittweiser Aufbau eines stabilen Immobilienportfolios mit klarer Struktur und Diversifikation.",
+        image: "/images/mehrfamilienhaeuser/strategie-2.jpg",
+      },
+      {
+        title: "Fix & Hold",
+        description:
+          "Langfristiges Halten mit Fokus auf nachhaltige Erträge, Werthaltigkeit und strategischer Bestandsentwicklung.",
         image: "/images/mehrfamilienhaeuser/strategie-3.jpg",
       },
       {
-        title: "Generationenvermögen",
+        title: "Entscheidungsfindung",
         description:
-          "Mehrfamilienhäuser als Teil einer generationsübergreifenden Vermögensstrategie.",
+          "Individuelle Analyse und transparente Abwägung – wenn keine Standardlösung passt.",
         image: "/images/mehrfamilienhaeuser/strategie-4.jpg",
       },
     ],
     section6Label: "Was uns unterscheidet",
-    section6Headline: "Jedes Mehrfamilienhaus erzählt eine eigene Geschichte.",
+    section6Headline: "Jede Strategie beginnt mit Ihren Zielen.",
     section6Text:
-      "Ob langfristiger Vermögensaufbau, Optimierung bestehender Bestände oder strategische Erweiterungen – immowap betrachtet Immobilien immer im Zusammenhang mit den individuellen Zielen und Prioritäten.",
+      "Ob Vermögensaufbau, finanzielle Unabhängigkeit oder Optimierung bestehender Immobilien – immowap betrachtet Entscheidungen immer im Zusammenhang mit Ihrem individuellen Kontext.",
     section6TextSecondary:
-      "Es gibt keine Standardlösungen. Jede Analyse orientiert sich am individuellen Kontext des Eigentümers und seiner Strategie.",
+      "Es gibt keine Standardlösungen. Jede Analyse orientiert sich an Ihren Prioritäten, Ihrem Risikoprofil und Ihrem langfristigen Horizont.",
     section6ListLabel: "Jede Analyse basiert auf",
     section6Items: [
       "Individuellen Zielen",
-      "Investitionsstrategie",
       "Risikoprofil",
       "Langfristigen Prioritäten",
+      "Bestehendem Portfolio",
     ],
-    section7Headline: "Langfristige Werte entstehen nicht zufällig.",
+    section7Headline: "Klarheit schafft bessere Entscheidungen.",
     principleCards: [
       {
         number: "01",
-        title: "Nachhaltige Erträge",
+        title: "Persönliche Ausrichtung",
         description:
-          "Fokus auf Stabilität und langfristige Perspektiven – jenseits kurzfristiger Optimierung.",
+          "Fokus auf Ihre Ziele statt auf vorgefertigte Produktempfehlungen – nachvollziehbar und individuell.",
       },
       {
         number: "02",
-        title: "Transparente Entscheidungsgrundlagen",
+        title: "Transparente Grundlagen",
         description:
-          "Strukturierte Analysen statt pauschaler Einschätzungen – nachvollziehbar und individuell.",
+          "Strukturierte Analysen und Szenarien statt pauschaler Einschätzungen – als Basis für Entscheidungen.",
       },
       {
         number: "03",
-        title: "Individuelle Betrachtung",
-        description: "Jede Immobilie und jede Strategie werden im jeweiligen Kontext bewertet.",
+        title: "Langfristige Perspektive",
+        description:
+          "Betrachtung über einzelne Objekte hinaus – im Kontext Ihrer gesamten Immobilienstrategie.",
       },
     ],
     ctaLabel: "Nächster Schritt",
-    ctaHeadline: "Substanz verstehen. Perspektiven erkennen.",
+    ctaHeadline: "Strategie verstehen. Entscheidungen treffen.",
     ctaText:
-      "Fundierte Analysen schaffen Transparenz und unterstützen bei langfristigen Entscheidungen.",
+      "Fundierte Analysen schaffen Transparenz über passende Strategieoptionen und unterstützen individuelle Entscheidungsfindung.",
     ctaBtnPrimary: "Analyse starten",
     ctaBtnSecondary: "Kontakt aufnehmen",
   },
   en: {
     heroLabel: "For your goals",
-    heroHeadline: "Viewing multi-family properties with foresight.",
+    heroHeadline: "Your strategy. No standard template.",
     heroSubheadline:
-      "Multi-family properties require structured consideration. Beyond location and yield, development potential, risks and long-term perspectives play a decisive role.",
+      "Individual strategy is for users who are not looking for a one-size-fits-all solution – but want to pursue wealth building, portfolio development and long-term goals at their own pace.",
     heroBtnPrimary: "Start analysis",
     heroBtnSecondary: "Send enquiry",
-    section1Headline: "Complexity creates opportunity.",
+    section1Headline: "More than a property type – a personal path.",
     section1Text:
-      "Multi-family properties offer diverse possibilities but require a holistic assessment. Economic viability, condition, potential and individual goals should be evaluated together.",
+      "Whether fix & hold, combining different approaches or optimising existing stock: what matters are your goals, risk profile and time horizon – not predefined product logic.",
     section2Label: "Our assessment",
     section2Headline: "What we take into account",
     considerationCards: [
       {
-        title: "Rental structure",
+        title: "Wealth building",
         description:
-          "Analysis of existing tenancies, vacancy rates and sustainable income stability.",
+          "Long-term development of personal wealth through property – structured and goal-oriented.",
       },
       {
-        title: "Yield potential",
+        title: "Financial independence",
         description:
-          "Assessment of long-term yield perspectives based on location, demand and market development.",
+          "Assessment of how property decisions affect income, security and flexibility over time.",
       },
       {
-        title: "Property condition",
+        title: "Portfolio building",
         description:
-          "Structured assessment of substance, modernisation needs and technical condition.",
+          "Step-by-step development and diversification of a property portfolio aligned with individual priorities.",
       },
       {
-        title: "Development possibilities",
+        title: "Fix & hold",
         description:
-          "Assessment of extension, conversion or optimisation potential in the respective context.",
+          "Evaluation of long-term retention strategies with a focus on stability, cash flow and value retention.",
       },
       {
-        title: "Risks",
+        title: "Strategy combination",
         description:
-          "Early identification of market, rental and management risks for a robust decision.",
+          "Combining different approaches – such as owner-occupation, investment and targeted development.",
       },
       {
-        title: "Long-term perspectives",
+        title: "Stock optimisation",
         description:
-          "Consideration of the property as a long-term asset — beyond current returns.",
+          "Analysis and improvement of existing properties with regard to income, substance and long-term goals.",
       },
     ],
-    section3Headline: "Structured analyses for well-founded decisions",
+    section3Headline: "Individual analysis instead of standard recommendations",
     section3Text:
-      "Through data-based analyses and structured evaluations, opportunities and risks can be better assessed. immowap combines experience, transparency and traceable decision-making foundations.",
+      "Structured evaluations make opportunities, risks and suitable strategy options transparent – as a basis for well-founded decisions.",
     section3Btn: "Learn more about our analyses",
     section4Label: "Analysis",
     section4Headline: "Relevant analyses",
     cardLink: "Learn more",
     analysisCards: [
       {
-        title: "Return analysis",
-        description: "Long-term yield perspectives and economic viability.",
-        href: "/en/solutions",
-      },
-      {
-        title: "Cashflow analysis",
-        description: "Overview of income, costs and liquidity.",
+        title: "Individual property analysis",
+        description: "Holistic assessment in the context of your personal goals.",
         href: "/en/solutions",
       },
       {
         title: "Risk analysis",
-        description: "Early identification of possible uncertainties.",
+        description: "Early identification of uncertainties along your strategy.",
         href: "/en/solutions",
       },
       {
         title: "Market comparison",
-        description: "Assessment in the current market environment.",
+        description: "Assessment of properties and scenarios in the current market environment.",
+        href: "/en/solutions",
+      },
+      {
+        title: "Document analysis",
+        description: "Structured evaluation of available documents and portfolio information.",
         href: "/en/solutions",
       },
     ],
-    section5Label: "Investment strategies",
-    section5Headline: "For different strategies",
+    section5Label: "Strategic focus areas",
+    section5Headline: "Typical orientations",
     strategyCards: [
       {
-        title: "Long-term portfolio retention",
+        title: "Long-term goals",
         description:
-          "Stable returns and value preservation across generations — with a structured management strategy.",
+          "Property decisions aligned with personal life and wealth planning – not short-term trends.",
         image: "/images/mehrfamilienhaeuser/strategie-1.jpg",
-      },
-      {
-        title: "Value appreciation",
-        description:
-          "Targeted development measures for sustainable enhancement of substance and earning power.",
-        image: "/images/mehrfamilienhaeuser/strategie-2.jpg",
       },
       {
         title: "Portfolio building",
         description:
-          "Structured development of a stable property portfolio with long-term diversification.",
+          "Step-by-step development of a stable property portfolio with clear structure and diversification.",
+        image: "/images/mehrfamilienhaeuser/strategie-2.jpg",
+      },
+      {
+        title: "Fix & hold",
+        description:
+          "Long-term retention with a focus on sustainable income, value retention and strategic stock development.",
         image: "/images/mehrfamilienhaeuser/strategie-3.jpg",
       },
       {
-        title: "Generational wealth",
+        title: "Decision-making",
         description:
-          "Multi-family properties as part of a cross-generational wealth strategy.",
+          "Individual analysis and transparent weighing of options – when no standard solution fits.",
         image: "/images/mehrfamilienhaeuser/strategie-4.jpg",
       },
     ],
     section6Label: "What sets us apart",
-    section6Headline: "Every multi-family property tells its own story.",
+    section6Headline: "Every strategy starts with your goals.",
     section6Text:
-      "Whether long-term wealth accumulation, optimisation of existing stock or strategic expansion — immowap always considers properties in relation to individual goals and priorities.",
+      "Whether wealth building, financial independence or optimising existing properties – immowap always considers decisions in relation to your individual context.",
     section6TextSecondary:
-      "There are no standard solutions. Every analysis is based on the individual context of the owner and their strategy.",
+      "There are no standard solutions. Every analysis is based on your priorities, risk profile and long-term horizon.",
     section6ListLabel: "Every analysis is based on",
     section6Items: [
       "Individual goals",
-      "Investment strategy",
       "Risk profile",
       "Long-term priorities",
+      "Existing portfolio",
     ],
-    section7Headline: "Long-term value does not arise by chance.",
+    section7Headline: "Clarity leads to better decisions.",
     principleCards: [
       {
         number: "01",
-        title: "Sustainable returns",
+        title: "Personal orientation",
         description:
-          "Focus on stability and long-term perspectives — beyond short-term optimisation.",
+          "Focus on your goals instead of off-the-shelf product recommendations – traceable and individual.",
       },
       {
         number: "02",
-        title: "Transparent decision foundations",
+        title: "Transparent foundations",
         description:
-          "Structured analyses instead of blanket assessments — traceable and individual.",
+          "Structured analyses and scenarios instead of blanket assessments – as a basis for decisions.",
       },
       {
         number: "03",
-        title: "Individual assessment",
+        title: "Long-term perspective",
         description:
-          "Every property and every strategy is evaluated in its respective context.",
+          "View beyond individual properties – in the context of your overall property strategy.",
       },
     ],
     ctaLabel: "Next step",
-    ctaHeadline: "Understanding substance. Recognising perspectives.",
+    ctaHeadline: "Understand strategy. Make decisions.",
     ctaText:
-      "Well-founded analyses create transparency and support long-term decisions.",
+      "Well-founded analyses create transparency on suitable strategy options and support individual decision-making.",
     ctaBtnPrimary: "Start analysis",
     ctaBtnSecondary: "Get in touch",
   },
@@ -312,7 +313,7 @@ export function MehrfamilienhauserPage({ locale }: MehrfamilienhauserPageProps) 
         secondaryHref={contactHref}
         secondaryLabel={c.heroBtnSecondary}
         imageSrc="/images/mehrfamilienhaeuser/hero.jpg"
-        imageAlt="Elegant European multi-family building — timeless architecture"
+        imageAlt="Individual property strategy — long-term planning and personal goals"
         imageOverlayClassName="from-[#0F3D2E]/8"
       >
         <p className="mt-8 text-lg leading-[1.8] text-muted">{c.heroSubheadline}</p>

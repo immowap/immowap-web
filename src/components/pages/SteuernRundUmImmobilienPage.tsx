@@ -134,7 +134,7 @@ const copy = {
         title: "Warum steuerliche Planung bei Immobilien wichtig ist",
         paragraphs: [
           "Steuerliche Fragen begleiten Immobilien während ihres gesamten Lebenszyklus – vom Kauf über die Vermietung bis hin zur Vererbung oder zum Verkauf. Viele Entscheidungen, die zunächst rein wirtschaftlich erscheinen, haben gleichzeitig erhebliche steuerliche Auswirkungen.",
-          "Eine frühzeitige Analyse kann helfen, Risiken zu vermeiden und Gestaltungsmöglichkeiten besser auszuschöpfen. Gerade bei Kapitalanlagen, Mehrfamilienhäusern, Fix-&-Flip-Projekten oder umfangreichen Sanierungen lohnt sich eine individuelle Betrachtung, da die optimale Lösung von den persönlichen Zielen und der jeweiligen Situation abhängt.",
+          "Eine frühzeitige Analyse kann helfen, Risiken zu vermeiden und Gestaltungsmöglichkeiten besser auszuschöpfen. Gerade bei Kapitalanlagen, individuellen Strategien, Fix-&-Flip-Projekten oder Projektentwicklungen lohnt sich eine individuelle Betrachtung, da die optimale Lösung von den persönlichen Zielen und der jeweiligen Situation abhängt.",
           "Wer Immobilien langfristig erfolgreich aufbauen und verwalten möchte, sollte steuerliche Aspekte daher nicht isoliert betrachten, sondern als festen Bestandteil jeder Investitionsentscheidung verstehen.",
         ],
       },

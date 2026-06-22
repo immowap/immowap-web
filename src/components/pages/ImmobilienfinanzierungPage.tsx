@@ -196,7 +196,7 @@ const copy = {
           paragraphs: [
             "Eine Immobilienfinanzierung sollte nicht isoliert betrachtet werden. Der Kaufpreis allein sagt wenig darüber aus, ob ein Vorhaben wirklich tragfähig ist.",
             "Entscheidend ist das Zusammenspiel aus Eigenkapital, monatlicher Belastung, Tilgung, Zinsbindung, Restschuld und persönlicher Lebenssituation. Bei Kapitalanlagen kommen zusätzlich Mietrendite, Cashflow, Leerstandsrisiko und steuerliche Aspekte hinzu.",
-            "immowap kann dabei unterstützen, diese Punkte strukturiert einzuordnen. Je nach Zielsetzung lassen sich unterschiedliche Szenarien betrachten, etwa bei Eigennutzung, Kapitalanlage, Sanierung oder Mehrfamilienhäusern.",
+            "immowap kann dabei unterstützen, diese Punkte strukturiert einzuordnen. Je nach Zielsetzung lassen sich unterschiedliche Szenarien betrachten, etwa bei Eigennutzung, Kapitalanlage, Projektentwicklung oder individueller Strategie.",
           ],
         },
         {

@@ -4,9 +4,9 @@ import { getPropertyKnowledgeArticle } from "@/lib/i18n/property-knowledge";
 const article = getPropertyKnowledgeArticle("sanierung-modernisierung");
 
 export const metadata = {
-  title: `${article.en.title} | Renovate or refurbish? | immowap`,
+  title: `${article.en.title} | Land, new build & exit | immowap`,
   description:
-    "Understand the differences between renovation, modernisation and refurbishment. Information on roof, windows, heating, insulation, electrical systems, funding programmes and value increase through modernisation.",
+    "Understand project development: land, new build, subdivision, conversion, densification, developer projects, viability and exit strategies – sale or retention.",
 };
 
 export default function EnRenovationModernizationPage() {

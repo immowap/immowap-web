@@ -2,112 +2,109 @@ import type { FAQCategory } from "../faq-types";
 
 export const sanierungCategoryEn: FAQCategory = {
   id: "sanierung-modernisierung",
-  title: "Renovation & Modernization",
+  title: "Project Development",
   description:
-    "Questions on planning, costs, grants, energy efficiency and legal framework for modernisation projects.",
+    "Questions on land, new build, subdivision, conversion, densification, developer projects, viability and exit strategies.",
   items: [
     {
-      question: "What is the difference between renovation and modernisation?",
+      question: "What is project development in real estate?",
       answer:
-        "Renovation restores the original condition by remedying damage or defects. Modernisation aims at qualitative improvements beyond the original state, for example energy upgrades or contemporary fittings. In practice the two often overlap.",
+        "Project development covers the structured development of land and existing stock – from new build and conversion through subdivision and densification to developer projects. The focus is on economic viability, planning status and a clear exit strategy.",
     },
     {
-      question: "Which measures increase property value most?",
+      question: "How do you assess land for development?",
       answer:
-        "Among the highest-impact measures are energy upgrades such as insulation and heating replacement, bathroom and kitchen modernisation and façade improvement. Adding a lift or outdoor space can also add significant value. Measures must fit the property and local rent levels.",
+        "Key factors are location, zoning, infrastructure, plot size, building rights and market demand. A realistic assessment also considers acquisition costs, development costs and achievable sales or rental income. immowap helps classify land potential in the relevant market context.",
     },
     {
-      question: "How do you create a realistic cost plan for renovation?",
+      question: "When is new build economically viable?",
       answer:
-        "A realistic plan is based on concrete quotes from specialist firms and covers all trades plus a risk reserve of at least 15 to 20 percent. Lump-sum estimates are often too low because hidden defects and changes add cost. Professional cost planning protects against unpleasant surprises.",
+        "New build pays when projected sales or rental income plus residual land value exceed total project costs including a risk reserve. Decisive factors are construction costs, timeline, financing and marketability. Sensitivity analyses protect against overly optimistic assumptions.",
     },
     {
-      question: "What is an energy-efficient renovation?",
+      question: "What is subdivision and when does it make sense?",
       answer:
-        "An energy-efficient renovation improves thermal insulation and efficiency – for example façade insulation, new windows, roof insulation or heating replacement. The goal is lower energy use and CO₂ emissions. State programmes such as BEG in Germany can provide substantial grants or low-interest loans.",
+        "Subdivision splits an existing building into separate units – for example as condominiums. It can increase total value if demand for individual units is strong and legal and structural requirements are met. Planning status and the division declaration are central.",
     },
     {
-      question: "What grants exist for renovation in Germany?",
+      question: "What does densification mean?",
       answer:
-        "Key programmes include KfW schemes under the Federal Funding for Efficient Buildings (BEG) and BAFA grants for individual measures. Insulation, heating, windows and ventilation may qualify. Conditions change regularly – current advice from an energy consultant is recommended.",
+        "Densification creates additional space on existing plots – through roof extensions, annexes or change of use. It requires building permission, structural feasibility and economic justification. In urban areas, densification is often a key lever for project development.",
     },
     {
-      question: "What is an energy certificate and when is it mandatory?",
+      question: "What are developer projects?",
       answer:
-        "The energy certificate documents a building's energy performance in kWh per square metre per year. It is legally required on sale or new letting and must be provided to buyers or tenants without being asked. There are demand-based and consumption-based certificate types.",
+        "Developer projects involve planning, building and marketing new or converted units – often on a speculative basis before sale. Risk is higher than with simple stock purchases because costs, timeline and sales success must be coordinated. Solid project calculation is essential.",
     },
     {
-      question: "How does the energy rating affect market value?",
+      question: "What exit strategies exist in project development?",
       answer:
-        "Energy rating increasingly affects market value directly. Poor ratings often require price discounts because future owners face investment or higher running costs. Good energy performance can achieve premiums over market average.",
+        "Common options are immediate sale after completion, partial sale, long-term retention in portfolio or refinancing after value creation. The right exit depends on capital needs, tax situation and personal strategy. Early clarification avoids costly course corrections.",
     },
     {
-      question:
-        "What is the difference between full and partial renovation?",
+      question: "Sale or retention – how do you decide?",
       answer:
-        "Full renovation renews nearly all major building elements up to the load-bearing structure. Partial renovation is limited to selected areas such as bathroom, kitchen or individual systems. Depending on goals and budget, partial work may be more economical than costly full renovation.",
+        "Sale realises profit and frees capital but ends ongoing income. Retention can generate cash flow and long-term appreciation but ties up capital and management effort. The decision should be based on return targets, liquidity needs and risk profile.",
     },
     {
-      question: "Which permits are needed for conversion work?",
+      question: "How is viability calculated for a development project?",
       answer:
-        "Minor work such as painting or flooring is usually permit-free. Larger changes such as layout alterations, extensions or façade changes often require building permission under state building law. Listed buildings additionally need heritage authority approval.",
+        "A viability calculation includes land or acquisition cost, all development and construction costs, financing, sales or letting costs and projected income or sale proceeds. A risk reserve and realistic timeline are important. immowap structures these items transparently.",
     },
     {
-      question:
-        "How do you plan modernisation without disrupting ongoing use?",
+      question: "Which permits are needed for development projects?",
       answer:
-        "For let properties, modernisation must be announced in writing with at least three months' notice. Work should be phased where possible or scheduled outside core living hours. Clear communication and realistic timing reduce conflict and voids.",
+        "Depending on the project, building permits, subdivision approval, heritage authority consent or environmental assessments may be required. Zoning and development plans define what is possible on a plot. Early clarification with authorities reduces delay risk.",
     },
     {
-      question: "What is heritage protection and how does it affect renovation?",
+      question: "How do you finance project development?",
       answer:
-        "Listed buildings face special legal requirements that restrict changes to protected fabric. All planned work must be agreed and approved with the heritage authority. Heritage status can offer tax benefits through enhanced depreciation under German income tax law (§ 7i EStG).",
+        "Financing often combines equity, bank loans, promotional loans and sometimes mezzanine or investor capital. Banks assess viability, experience and security. For larger projects, phased financing aligned with construction progress is common.",
     },
     {
-      question: "What role do technical surveys play in renovation planning?",
+      question: "What are typical risks in project development?",
       answer:
-        "Technical surveys provide a sound assessment of major components such as roof, structure, building services and possible contaminants. They underpin realistic cost planning and prevent surprises after purchase. For older stock, a survey by an experienced expert is strongly recommended.",
+        "Typical risks include cost overruns, delays, planning changes, weak sales or letting, financing gaps and unexpected structural issues. Good risk management includes reserves, fixed-price contracts where possible and realistic market assumptions.",
     },
     {
-      question: "How do you assess the technical condition of a property?",
+      question: "How important is market analysis for a project?",
       answer:
-        "Condition is assessed across key elements: roof, façade, windows, basement, heating, electrics and plumbing. For each, age, remaining life and replacement cost are estimated. This yields an overall picture of modernisation need and required investment.",
+        "Market analysis shows whether planned units, sizes and price levels match local demand. Without solid market data, even technically sound projects can fail economically. Location, competition and demographic trends should be considered together.",
     },
     {
-      question: "What is a modernisation levy and how is it calculated?",
+      question: "Developer project or self-development – what is the difference?",
       answer:
-        "In Germany, landlords may pass on up to eight percent of modernisation costs annually to rent, capped at three euros per square metre in rent-controlled areas. It must be correctly announced and calculated; only costs attributable to the unit count. Tenants may object in hardship cases under certain conditions.",
+        "With a developer project, an experienced developer often handles planning, construction and sales. Self-development gives more control but requires expertise, time and higher personal risk. The choice depends on experience, capital and risk appetite.",
     },
     {
-      question: "When is renovation economically worthwhile?",
+      question: "What tax aspects matter in project development?",
       answer:
-        "Renovation pays when costs are covered by value increase, higher rent or lower running costs. As a rule of thumb, total renovation cost should not exceed value added. immowap helps weigh cost and benefit in the relevant market context.",
+        "Tax treatment depends on whether activity is private or commercial, holding period and type of exit. Trade tax, VAT on new build and speculation period can be relevant. Individual tax advice is recommended before starting a project.",
     },
     {
-      question: "How do you choose the right architect for renovation?",
+      question: "When is the right time to exit a project?",
       answer:
-        "A good renovation architect should have proven experience with existing buildings, building law knowledge and authority liaison. Reference projects and personal recommendations are more reliable than price alone. Experienced planning often saves more than the fee costs.",
+        "The right time depends on market conditions, project completion, financing maturity and personal goals. Selling in a strong market can maximise proceeds; holding may make sense when income and appreciation prospects are favourable. Scenario planning supports the decision.",
     },
     {
-      question: "What is a building defect and what are the legal consequences?",
+      question: "How do you analyse development potential on existing stock?",
       answer:
-        "A defect exists when work does not meet agreed quality standards. The client may claim rectification, price reduction or damages. For hidden defects, the limitation period generally starts when the defect is discovered.",
+        "Potential may lie in conversion, extension, subdivision, rent increases or change of use. Building condition, zoning, plot size and market demand are assessed together. immowap evaluates whether measures are structurally, legally and economically feasible.",
     },
     {
-      question: "How should renovation be documented?",
+      question: "What is due diligence in project development?",
       answer:
-        "Complete documentation includes photos before, during and after, all invoices, material proof and acceptance protocols. This matters for tax depreciation, future sales and insurance. Digital systems help organise records.",
+        "Due diligence is a structured review of land, planning documents, contracts, costs, risks and market assumptions before commitment. It covers legal, technical and economic aspects. Thorough due diligence reduces surprises during implementation.",
     },
     {
-      question: "What are typical pitfalls in major modernisation?",
+      question: "What are typical pitfalls in project development?",
       answer:
-        "Common problems are unrealistic time and cost planning, poor trade coordination and insufficient quality control. Hidden issues such as mould behind cladding or hazardous materials can drive costs up sharply. An experienced project manager or site supervisor reduces these risks.",
+        "Common pitfalls are underestimating costs and timeline, weak market analysis, insufficient reserves, poor contractor coordination and unclear exit planning. Experienced project management and realistic calculation reduce these risks significantly.",
     },
     {
-      question:
-        "How does immowap support assessment of renovation and modernisation projects?",
+      question: "How does immowap support project development decisions?",
       answer:
-        "immowap analyses current condition, modernisation potential and economic impact of planned measures in the relevant market. Technical and financial aspects are considered together for a sound decision basis. The aim is a clear view of whether and to what extent modernisation makes economic sense.",
+        "immowap analyses land and stock potential, viability, risks and exit options in the relevant market context. Technical, legal and financial aspects are considered together for a traceable decision basis. The aim is clarity before capital is committed.",
     },
   ],
 };

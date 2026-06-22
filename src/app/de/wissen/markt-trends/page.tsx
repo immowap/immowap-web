@@ -1,4 +1,4 @@
-import { PlaceholderPage } from "@/components/ui/PlaceholderPage";
+import { MarktTrendsPage } from "@/components/pages/MarktTrendsPage";
 
 export const metadata = {
   title: "Markt & Trends | immowap",
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function DeMarktTrendsPage() {
-  return <PlaceholderPage locale="de" title="Markt & Trends" />;
+  return <MarktTrendsPage locale="de" />;
 }
