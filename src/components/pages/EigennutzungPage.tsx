@@ -11,12 +11,9 @@ interface EigennutzungPageProps {
   locale: Locale;
 }
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85";
-const SECTION1_IMAGE =
-  "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=85";
-const SECTION3_IMAGE =
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85";
+const HERO_IMAGE = "/images/wissen/kaufprozess/section.jpg";
+const SECTION1_IMAGE = "/images/wissen/finanzierung/intro.jpg";
+const SECTION3_IMAGE = "/images/wissen/eigentumswohnung-weg/hero.jpg";
 
 const eigennutzungFAQ = [
   {
@@ -206,22 +203,22 @@ const copy = {
       {
         title: "Erstimmobilie",
         description: "Der Schritt in die erste eigene Immobilie – strukturiert und fundiert begleitet.",
-        image: "/images/eigennutzung/erstimmobilie.jpg",
+        image: "/images/wissen/steuern/erbschaftsteuer.jpg",
       },
       {
         title: "Familien mit Kindern",
         description: "Mehr Raum, sichere Lage, langfristige Stabilität – Prioritäten, die wirklich zählen.",
-        image: "/images/eigennutzung/familien.jpg",
+        image: "/images/wissen/steuern/schenkungsteuer.jpg",
       },
       {
         title: "Altersgerechtes Wohnen",
         description: "Komfort, Barrierefreiheit und die richtigen Rahmenbedingungen für die nächste Lebensphase.",
-        image: "/images/eigennutzung/altersgerecht.jpg",
+        image: "/images/wissen/steuern/spekulationssteuer.jpg",
       },
       {
         title: "Langfristige Wohnplanung",
         description: "Immobilienentscheidungen, die heute passen und morgen Bestand haben.",
-        image: "/images/eigennutzung/langfristig.jpg",
+        image: "/images/wissen/steuern/vermietung.jpg",
       },
     ],
     section6Label: "Was uns unterscheidet",
@@ -328,22 +325,22 @@ const copy = {
       {
         title: "First home buyers",
         description: "The step into your first property — structured and well-founded.",
-        image: "/images/eigennutzung/erstimmobilie.jpg",
+        image: "/images/wissen/steuern/erbschaftsteuer.jpg",
       },
       {
         title: "Families with children",
         description: "More space, a safe location, long-term stability — priorities that truly matter.",
-        image: "/images/eigennutzung/familien.jpg",
+        image: "/images/wissen/steuern/schenkungsteuer.jpg",
       },
       {
         title: "Age-appropriate living",
         description: "Comfort, accessibility and the right conditions for the next phase of life.",
-        image: "/images/eigennutzung/altersgerecht.jpg",
+        image: "/images/wissen/steuern/spekulationssteuer.jpg",
       },
       {
         title: "Long-term residential planning",
         description: "Property decisions that fit today and stand the test of time.",
-        image: "/images/eigennutzung/langfristig.jpg",
+        image: "/images/wissen/steuern/vermietung.jpg",
       },
     ],
     section6Label: "What sets us apart",

@@ -19,7 +19,7 @@ import {
 } from "@/lib/i18n/property-knowledge";
 
 const HERO_IMAGE = "/images/knowledge/finanzierung.jpg";
-const INTRO_IMAGE = "/images/knowledge/finanzierung-intro.jpg";
+const INTRO_IMAGE = "/images/wissen/immobilienstrategien/hero.jpg";
 const READ_MINUTES = 8;
 
 const copy = {

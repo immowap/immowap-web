@@ -4,6 +4,7 @@ import { Section, SectionHeader } from "@/components/ui/Section";
 import { CTASection } from "@/components/ui/CTASection";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
+import { getToolRoute } from "@/lib/tools/routes";
 
 interface LoesungenPageProps {
   locale: Locale;
@@ -323,95 +324,95 @@ function getAnalysesEN(dashboardHref: string): AnalysisCard[] {
   ];
 }
 
-function getToolsDE(dashboardHref: string, solutionsHref: string): ToolCard[] {
+function getToolsDE(): ToolCard[] {
   return [
     {
       title: "Dashboard",
       description: "Zentrale Übersicht Ihrer Projekte, Analysen und Entscheidungsgrundlagen.",
-      href: dashboardHref,
+      href: getToolRoute("de", "dashboard"),
       icon: "dashboard",
     },
     {
       title: "KI-Assistent",
       description: "Digitale Unterstützung bei Fragen, Auswertungen und Immobilienentscheidungen.",
-      href: solutionsHref,
+      href: getToolRoute("de", "ki-assistent"),
       icon: "assistant",
     },
     {
       title: "PDF-Berichte",
       description: "Strukturierte Berichte für Transparenz, Dokumentation und Entscheidungen.",
-      href: solutionsHref,
+      href: getToolRoute("de", "pdf-berichte"),
       icon: "pdf",
     },
     {
       title: "Dokumenten-Upload",
       description: "Unterlagen zentral erfassen und für Analysen nutzbar machen.",
-      href: solutionsHref,
+      href: getToolRoute("de", "dokumenten-upload"),
       icon: "upload",
     },
     {
       title: "Vergleichsanalysen",
       description: "Objekte, Szenarien und Kennzahlen strukturiert nebeneinander betrachten.",
-      href: solutionsHref,
+      href: getToolRoute("de", "vergleichsanalysen"),
       icon: "compare",
     },
     {
       title: "Projektmanagement",
       description: "Immobilienprojekte und Analyseprozesse übersichtlich begleiten.",
-      href: solutionsHref,
+      href: getToolRoute("de", "projektmanagement"),
       icon: "project",
     },
     {
       title: "Portfolioübersicht",
       description: "Bestand, Entwicklung und Perspektiven Ihrer Immobilien im Überblick.",
-      href: solutionsHref,
+      href: getToolRoute("de", "portfoliouebersicht"),
       icon: "portfolio",
     },
   ];
 }
 
-function getToolsEN(dashboardHref: string, solutionsHref: string): ToolCard[] {
+function getToolsEN(): ToolCard[] {
   return [
     {
       title: "Dashboard",
       description: "Central overview of your projects, analyses and decision support.",
-      href: dashboardHref,
+      href: getToolRoute("en", "dashboard"),
       icon: "dashboard",
     },
     {
       title: "AI assistant",
       description: "Digital support for questions, evaluations and property decisions.",
-      href: solutionsHref,
+      href: getToolRoute("en", "ki-assistent"),
       icon: "assistant",
     },
     {
       title: "PDF reports",
       description: "Structured reports for transparency, documentation and decisions.",
-      href: solutionsHref,
+      href: getToolRoute("en", "pdf-berichte"),
       icon: "pdf",
     },
     {
       title: "Document upload",
       description: "Capture documents centrally and prepare them for analysis.",
-      href: solutionsHref,
+      href: getToolRoute("en", "dokumenten-upload"),
       icon: "upload",
     },
     {
       title: "Comparison analyses",
       description: "Compare properties, scenarios and key figures in a structured way.",
-      href: solutionsHref,
+      href: getToolRoute("en", "vergleichsanalysen"),
       icon: "compare",
     },
     {
       title: "Project management",
       description: "Manage property projects and analysis workflows with clarity.",
-      href: solutionsHref,
+      href: getToolRoute("en", "projektmanagement"),
       icon: "project",
     },
     {
       title: "Portfolio overview",
       description: "Overview of holdings, development and perspectives across your portfolio.",
-      href: solutionsHref,
+      href: getToolRoute("en", "portfoliouebersicht"),
       icon: "portfolio",
     },
   ];
@@ -481,10 +482,7 @@ export function LoesungenPage({ locale }: LoesungenPageProps) {
   const dashboardHref = getRoute(locale, "dashboard");
   const solutionsHref = getRoute(locale, "solutions");
   const analyses = locale === "de" ? getAnalysesDE(dashboardHref) : getAnalysesEN(dashboardHref);
-  const tools =
-    locale === "de"
-      ? getToolsDE(dashboardHref, solutionsHref)
-      : getToolsEN(dashboardHref, solutionsHref);
+  const tools = locale === "de" ? getToolsDE() : getToolsEN();
 
   return (
     <>
