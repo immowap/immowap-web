@@ -10,6 +10,7 @@ import { animationClasses } from "@/lib/design-system/tokens/animation";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute, isActiveRoute } from "@/lib/i18n/config";
 import type { Translations } from "@/lib/i18n";
+import { getAppAnalysisHref } from "@/lib/app/config";
 import { getKnowledgeMenu, getSolutionsMenu } from "@/lib/navigation/menus";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MegaMenu, KnowledgeDropdown, NavLink } from "./MegaMenu";
@@ -152,7 +153,7 @@ export function Header({ locale, t }: HeaderProps) {
               {t.nav.packages}
             </Link>
             <Button
-              href={getRoute(locale, "dashboard")}
+              href={getAppAnalysisHref(locale)}
               size="compact"
             >
               {t.nav.startAnalysis}

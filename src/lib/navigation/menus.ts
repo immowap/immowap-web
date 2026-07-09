@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
+import { getAppDashboardHref } from "@/lib/app/config";
 import { getTranslations } from "@/lib/i18n";
 
 export interface MenuLink {
@@ -13,6 +14,7 @@ export interface MenuColumn {
 
 export function getSolutionsMenu(locale: Locale): MenuColumn[] {
   const t = getTranslations(locale);
+  const dashboardHref = getAppDashboardHref(locale);
 
   return [
     t.solutionsMenu.goals,
@@ -20,7 +22,10 @@ export function getSolutionsMenu(locale: Locale): MenuColumn[] {
     t.solutionsMenu.tools,
   ].map((column) => ({
     title: column.title,
-    items: column.items.map((item) => ({ label: item.label, href: item.href })),
+    items: column.items.map((item) => ({
+      label: item.label,
+      href: item.href.startsWith("/dashboard") ? dashboardHref : item.href,
+    })),
   }));
 }
 
