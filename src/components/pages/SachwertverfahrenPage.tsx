@@ -1,8 +1,11 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { SolutionHeroSection } from "@/components/ui/SolutionHeroSection";
-import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
+import { ProductVisual } from "@/components/illustrations/ProductVisual";
+import { SolutionBreadcrumb } from "@/components/solutions/SolutionBreadcrumb";
+import { SolutionPageHero } from "@/components/solutions/SolutionPageHero";
+import { SolutionProcessSteps } from "@/components/solutions/SolutionProcessSteps";
+import { RelatedSolutionsSection } from "@/components/solutions/RelatedSolutionsSection";
+import { Card, CardTitle } from "@/components/ui/Card";
+import { InformationCard } from "@/components/ui/cards";
+import { PageBottomSpacer } from "@/components/ui/PageBottomSpacer";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
@@ -11,20 +14,8 @@ interface SachwertverfahrenPageProps {
   locale: Locale;
 }
 
-const HERO_IMAGE = "/images/analysen/sachwertverfahren-hero.jpg";
-const INTRO_IMAGE = "/images/analysen/sachwertverfahren-intro.jpg";
-
-const cardTitleClass =
-  "text-xl md:text-[22px] lg:text-[26px] font-semibold leading-[1.3] text-brand-800 break-words [overflow-wrap:anywhere] hyphens-auto";
-const cardTextClass =
-  "text-[15px] md:text-base leading-[1.4] text-muted break-words [overflow-wrap:anywhere] hyphens-auto";
-const cardShellClass =
-  "card-premium flex min-h-0 flex-col gap-4 overflow-visible p-6 md:p-8 lg:p-10";
-
 const copy = {
   de: {
-    breadcrumbSolutions: "Lösungen",
-    breadcrumbAnalyses: "Analysen",
     breadcrumbCurrent: "Sachwertverfahren",
     heroLabel: "Analysen",
     heroHeadline: "Sachwertverfahren",
@@ -178,8 +169,6 @@ const copy = {
     ctaBtnSecondary: "Kontakt aufnehmen",
   },
   en: {
-    breadcrumbSolutions: "Solutions",
-    breadcrumbAnalyses: "Analyses",
     breadcrumbCurrent: "Cost approach",
     heroLabel: "Analyses",
     heroHeadline: "Cost Approach",
@@ -380,55 +369,29 @@ function UseCaseIcon({ name }: { name: UseCaseIcon }) {
 export function SachwertverfahrenPage({ locale }: SachwertverfahrenPageProps) {
   const c = copy[locale];
   const contactHref = getRoute(locale, "contact");
-  const dashboardHref = getRoute(locale, "dashboard");
-  const solutionsHref = getRoute(locale, "solutions");
 
   return (
     <>
-      <nav
-        aria-label={locale === "de" ? "Brotkrumen-Navigation" : "Breadcrumb"}
-        className="border-b border-warm-gray/30 bg-[#F7F5EF]"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-4 md:px-8">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-muted">
-            <li>
-              <Link href={solutionsHref} className="transition-colors hover:text-brand-600">
-                {c.breadcrumbSolutions}
-              </Link>
-            </li>
-            <li aria-hidden="true" className="text-warm-gray">
-              /
-            </li>
-            <li className="text-muted">{c.breadcrumbAnalyses}</li>
-            <li aria-hidden="true" className="text-warm-gray">
-              /
-            </li>
-            <li className="font-medium text-brand-800" aria-current="page">
-              {c.breadcrumbCurrent}
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <SolutionBreadcrumb
+        locale={locale}
+        category="analyses"
+        currentTitle={c.breadcrumbCurrent}
+      />
 
-      <SolutionHeroSection
-        backgroundClassName="bg-[#F7F5EF]"
+      <SolutionPageHero
         label={c.heroLabel}
         headline={c.heroHeadline}
         primaryHref={contactHref}
         primaryLabel={c.heroBtn}
-        imageSrc={HERO_IMAGE}
-        imageAlt={
-          locale === "de"
-            ? "Modernes Einfamilienhaus mit hochwertiger Architektur"
-            : "Modern detached house with high-quality architecture"
-        }
+        visual="valuation"
+        backgroundClassName="bg-surface"
       >
         <p className="mt-8 text-xl font-medium leading-[1.6] text-brand-800">{c.heroSubheadline}</p>
         <p className="mt-6 text-lg leading-[1.8] text-muted">{c.heroText}</p>
-      </SolutionHeroSection>
+      </SolutionPageHero>
 
       {/* ─── INTRODUCTION ─────────────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
             {c.introParagraphs.map((paragraph) => (
@@ -440,24 +403,14 @@ export function SachwertverfahrenPage({ locale }: SachwertverfahrenPageProps) {
               </p>
             ))}
           </div>
-          <div className="relative h-[380px] overflow-hidden rounded-3xl sm:h-[480px]">
-            <Image
-              src={INTRO_IMAGE}
-              alt={
-                locale === "de"
-                  ? "Europäische Wohnimmobilie in ruhiger Umgebung"
-                  : "European residential property in a quiet setting"
-              }
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+          <div className="flex justify-center lg:justify-end">
+            <ProductVisual variant="valuation" className="max-w-full" />
           </div>
         </div>
       </Section>
 
       {/* ─── USE CASES ────────────────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.sectionUseLabel} headline={c.sectionUseHeadline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {c.useCases.map((item) => (
@@ -472,47 +425,32 @@ export function SachwertverfahrenPage({ locale }: SachwertverfahrenPageProps) {
       </Section>
 
       {/* ─── COMPONENTS ───────────────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <SectionHeader
           label={c.sectionComponentsLabel}
           headline={c.sectionComponentsHeadline}
         />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {c.components.map((item, index) => (
-            <article key={item.title} className={`${cardShellClass} h-full`}>
-              <span className="text-label text-gold-600">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className={cardTitleClass}>{item.title}</h3>
-              <p className={cardTextClass}>{item.description}</p>
-            </article>
+          {c.components.map((item) => (
+            <InformationCard
+              key={item.title}
+              title={item.title}
+              description={item.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── PROCESS ──────────────────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
-        <SectionHeader label={c.sectionProcessLabel} headline={c.sectionProcessHeadline} />
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {c.processSteps.map((step, index) => (
-            <div key={step.title} className="relative">
-              <span className="text-label mb-4 block text-gold-600">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="text-h3 text-brand-800">{step.title}</h3>
-              {index < c.processSteps.length - 1 && (
-                <div
-                  className="absolute right-0 top-8 hidden h-px w-8 bg-warm-gray/60 lg:block"
-                  aria-hidden="true"
-                />
-              )}
-            </div>
-          ))}
-        </div>
-      </Section>
+      <SolutionProcessSteps
+        label={c.sectionProcessLabel}
+        headline={c.sectionProcessHeadline}
+        steps={c.processSteps}
+      />
 
       {/* ─── FACTORS ──────────────────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <SectionHeader headline={c.sectionFactorsHeadline} />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {c.factors.map((factor) => (
@@ -537,72 +475,56 @@ export function SachwertverfahrenPage({ locale }: SachwertverfahrenPageProps) {
       </section>
 
       {/* ─── SUITABLE PROPERTIES ──────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader
           label={c.sectionSuitableLabel}
           headline={c.sectionSuitableHeadline}
         />
         <div className="grid gap-6 lg:grid-cols-3">
           {c.suitableCards.map((card) => (
-            <Card key={card.title} as="article" className="h-full p-2 md:p-4">
-              <CardTitle className="text-h3">{card.title}</CardTitle>
-              <CardDescription className="mt-4 text-base leading-[1.8]">
-                {card.description}
-              </CardDescription>
-            </Card>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── WHY IMMOWAP ──────────────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <SectionHeader label={c.sectionWhyLabel} headline={c.sectionWhyHeadline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {c.whyCards.map((card) => (
-            <article key={card.title} className={`${cardShellClass} h-full`}>
-              <h3 className={cardTitleClass}>{card.title}</h3>
-              <p className={cardTextClass}>{card.description}</p>
-            </article>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── FAQ (cards, no accordion) ────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.sectionFaqLabel} headline={c.sectionFaqHeadline} />
         <div className="grid gap-6 md:grid-cols-2">
           {c.faqItems.map((item) => (
-            <Card key={item.question} as="article" className="h-full">
-              <CardTitle className="text-xl">{item.question}</CardTitle>
-              <CardDescription className="mt-4 text-base leading-[1.8]">
-                {item.answer}
-              </CardDescription>
-            </Card>
+            <InformationCard
+              key={item.question}
+              title={item.question}
+              description={item.answer}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
-      {/* ─── CTA ──────────────────────────────────────────────────────────── */}
-      <section className="bg-brand-800 px-6 pt-[140px] pb-[140px] text-white md:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-h2 text-white">{c.ctaHeadline}</h2>
-          <div className="gold-rule mx-auto mt-8" aria-hidden="true" />
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.8] text-white/85">{c.ctaText}</p>
-          <div className="mt-12 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
-            <Button href={dashboardHref} className="sm:w-auto">
-              {c.ctaBtnPrimary}
-            </Button>
-            <Button
-              href={contactHref}
-              variant="white"
-              className="border-white/35 !text-brand-800 hover:!text-brand-800 sm:w-auto"
-            >
-              {c.ctaBtnSecondary}
-            </Button>
-          </div>
-        </div>
-      </section>
-      <div className="min-h-[100px] bg-[#F7F5EF]" aria-hidden="true" />
+      <RelatedSolutionsSection locale={locale} pageKey="sachwertverfahren" />
+
+      <PageBottomSpacer />
     </>
   );
 }

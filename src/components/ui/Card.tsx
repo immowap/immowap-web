@@ -1,14 +1,22 @@
 import { cn } from "@/lib/utils";
+import {
+  cardBase,
+  cardDescription,
+  cardInteractive,
+  cardSubtitle,
+  cardTitle,
+} from "@/lib/design-system/classes/cards";
 
 interface CardProps {
   children: React.ReactNode;
   className?: string;
   as?: "div" | "article";
+  interactive?: boolean;
 }
 
-export function Card({ children, className, as: Tag = "div" }: CardProps) {
+export function Card({ children, className, as: Tag = "div", interactive = false }: CardProps) {
   return (
-    <Tag className={cn("card-premium flex flex-col gap-4", className)}>
+    <Tag className={cn(interactive ? cardInteractive : cardBase, className)}>
       {children}
     </Tag>
   );
@@ -20,7 +28,16 @@ interface CardTitleProps {
 }
 
 export function CardTitle({ children, className }: CardTitleProps) {
-  return <h3 className={cn("text-h3 text-brand-800", className)}>{children}</h3>;
+  return <h3 className={cn(cardTitle, className)}>{children}</h3>;
+}
+
+interface CardSubtitleProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function CardSubtitle({ children, className }: CardSubtitleProps) {
+  return <p className={cn(cardSubtitle, className)}>{children}</p>;
 }
 
 interface CardDescriptionProps {
@@ -29,9 +46,5 @@ interface CardDescriptionProps {
 }
 
 export function CardDescription({ children, className }: CardDescriptionProps) {
-  return (
-    <p className={cn("text-base leading-[1.8] text-muted", className)}>
-      {children}
-    </p>
-  );
+  return <p className={cn(cardDescription, className)}>{children}</p>;
 }

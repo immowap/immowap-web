@@ -41,13 +41,13 @@ export const en = {
     tools: {
       title: "Tools & Reports",
       items: [
-        { label: "Dashboard", href: "/en/solutions/tools/dashboard" },
-        { label: "AI assistant", href: "/en/solutions/tools/ai-assistant" },
-        { label: "PDF reports", href: "/en/solutions/tools/pdf-reports" },
-        { label: "Document upload", href: "/en/solutions/tools/document-upload" },
+        { label: "Dashboard", href: "/dashboard?lang=en" },
+        { label: "AI assistant", href: "/dashboard?lang=en" },
+        { label: "PDF reports", href: "/dashboard?lang=en" },
+        { label: "Document upload", href: "/dashboard?lang=en" },
         { label: "Comparison analyses", href: "/en/solutions/tools/comparison-analyses" },
-        { label: "Project management", href: "/en/solutions/tools/project-management" },
-        { label: "Portfolio overview", href: "/en/solutions/tools/portfolio-overview" },
+        { label: "Project management", href: "/dashboard?lang=en" },
+        { label: "Portfolio overview", href: "/dashboard?lang=en" },
       ],
     },
   },
@@ -92,7 +92,7 @@ export const en = {
       items: [
         { label: "About us", href: "/en/about-us" },
         { label: "Contact", href: "/en/contact" },
-        { label: "Dashboard", href: "/en/dashboard" },
+        { label: "Dashboard", href: "/dashboard?lang=en" },
         { label: "Packages", href: "/en/packages" },
       ],
     },
@@ -290,23 +290,44 @@ export const en = {
       optional: "optional",
       selectPlaceholder: "Please select",
       submit: "Send enquiry",
-      successTitle: "Thank you for your enquiry.",
+      submitting: "Sending…",
+      successTitle: "Thank you for contacting immowap.",
       successText:
-        "We have received your details and will respond in a structured and targeted manner.",
+        "Your enquiry has been received successfully. We will review your message and respond as soon as possible.",
+      errorTitle: "We couldn't send your message",
+      errorText:
+        "Please try again or contact us directly by email at",
+      rateLimitText:
+        "You recently submitted an enquiry. Please wait a moment before trying again.",
       fields: {
         name: "First and last name",
         email: "Email address",
+        subject: "Subject",
         phone: "Phone number",
         goal: "Purpose of enquiry",
         projectType: "Project type",
         location: "Property location",
-        message: "Message / project description",
+        message: "Message",
         upload: "Upload documents",
-        uploadHint: "PDF, images or exposé",
+        uploadHint: "PDF, images or exposé — upload support coming soon.",
         uploadAction: "Choose file",
         consent:
-          "I agree to the processing of my details for the purpose of contact.",
+          "I agree to the processing of my details for contact in accordance with the",
       },
+      validation: {
+        name: "Please enter your name.",
+        email: "Please enter your email address.",
+        emailFormat: "Please enter a valid email address.",
+        subject: "Please enter a subject.",
+        message: "Please enter a message.",
+        consent: "Please agree to data processing.",
+        tooLong: "This field is too long.",
+      },
+      errors: {
+        email: "Please enter a valid email address.",
+        consent: "Please agree to data processing.",
+      },
+      privacyLink: "Privacy Policy",
       goalOptions: [
         "Own use",
         "Investment",
@@ -376,6 +397,16 @@ export const en = {
         "Analysis or next step",
       ],
     },
+    handling: {
+      headline: "How we handle enquiries",
+      description:
+        "Every message is reviewed personally. We respond clearly, with structure and in reference to your request.",
+      items: [
+        "Confirmation after successful submission",
+        "Review within two business days",
+        "Reply by email with sensible next steps",
+      ],
+    },
     cta: {
       headline: "Ready for a structured property decision?",
       text: "Every situation is different. That is why the exchange begins with a clear and individual enquiry.",
@@ -386,9 +417,13 @@ export const en = {
     hero: {
       headline: "Packages & memberships",
       subheadline:
-        "Every property and every project is different. Scope and analyses are therefore aligned with your goals and requirements.",
-      ctaPrimary: "Start analysis",
+        "Clear service models for different projects — pricing will be communicated at public launch.",
+      ctaPrimary: "Register interest",
       ctaSecondary: "Get in touch",
+    },
+    availability: {
+      launch: "Available at public launch",
+      enterprise: "Custom enterprise solution",
     },
     single: {
       headline: "Single project",
@@ -396,37 +431,45 @@ export const en = {
       cards: [
         {
           title: "Basic",
-          label: "Free or with minimal effort",
-          description: "For initial orientation and fundamental assessments.",
+          availability: "launch",
+          audience: "For initial orientation and preliminary review of individual properties.",
+          label: "",
+          description:
+            "Fundamental assessment and basic analysis — ideal before going deeper.",
           features: [
-            "Initial assessment",
-            "Basic analysis",
+            "Initial structured assessment",
+            "Basic analysis in decision context",
             "Suitable for preliminary review",
           ],
-          cta: "Learn more",
+          cta: "Register interest",
           highlighted: false,
         },
         {
           title: "Premium",
+          availability: "launch",
+          audience: "For more demanding projects requiring a solid decision foundation.",
           label: "",
-          description: "For more demanding projects and well-founded decisions.",
+          description:
+            "Extended analysis with opportunity, risk and scenario assessment plus PDF report.",
           features: [
             "Extended analysis",
             "Opportunity and risk analysis",
             "Scenarios and comparison options",
             "Structured PDF report",
           ],
-          cta: "Learn more",
+          cta: "Register interest",
           highlighted: true,
         },
       ],
     },
     membership: {
       headline: "Monthly membership",
-      text: "For active investors and recurring projects.",
+      text: "For active investors and recurring analysis projects.",
       card: {
         title: "Professional",
-        subtitle: "For regular analyses and long-term decisions.",
+        availability: "launch",
+        audience: "For regular analyses, dashboard access and ongoing project overview.",
+        subtitle: "Recurring analyses with structured documentation.",
         features: [
           "Up to 10 extended analyses per month",
           "Dashboard access",
@@ -435,23 +478,24 @@ export const en = {
           "Structured documentation",
           "Ongoing overview",
         ],
-        cta: "Discover membership",
+        cta: "Register interest",
       },
     },
     custom: {
       headline: "Individual solutions",
-      text: "For special projects and individual requirements.",
+      text: "For special projects, portfolios and complex requirements.",
+      availability: "enterprise",
       pricing:
-        "Price and scope of services are agreed jointly and tailored to your needs.",
+        "Scope and terms are defined jointly — transparent and tailored to your needs.",
       suitableLabel: "Suitable for:",
       suitable: [
-        "Individual Strategy",
+        "Individual strategy",
         "Commercial properties",
         "Project developments",
         "New build and conversion projects",
         "Individual enquiries",
       ],
-      cta: "Get in touch",
+      cta: "Request consultation",
     },
     models: {
       headline: "Which model suits you?",
@@ -464,9 +508,9 @@ export const en = {
     },
     cta: {
       headline: "Let us discuss your plans.",
-      text: "Not every property suits every person. That is why every well-founded decision begins with an individual assessment.",
-      ctaPrimary: "Start analysis",
-      ctaSecondary: "Get in touch",
+      text: "We will communicate pricing and availability at public launch — and advise you today on suitable service models.",
+      ctaPrimary: "Register interest",
+      ctaSecondary: "Start analysis",
     },
   },
   placeholder: {

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getAlternatePath } from "@/lib/i18n/config";
 import type { Locale } from "@/lib/i18n/config";
+import { animationClasses } from "@/lib/design-system/tokens/animation";
 import { cn } from "@/lib/utils";
 
 interface LanguageSwitcherProps {
@@ -16,29 +17,30 @@ export function LanguageSwitcher({ locale, className }: LanguageSwitcherProps) {
   const dePath = locale === "de" ? pathname : getAlternatePath(pathname);
   const enPath = locale === "en" ? pathname : getAlternatePath(pathname);
 
+  const linkClass = (active: boolean) =>
+    cn(
+      "rounded-full px-3 py-1.5 transition-colors",
+      animationClasses.focusRing,
+      active
+        ? "bg-gold-500/20 text-brand-800"
+        : "text-brand-800/70 hover:text-brand-800",
+    );
+
   return (
-    <div className={cn("flex items-center gap-1 text-sm font-medium", className)}>
+    <div className={cn("flex items-center gap-1 text-body-sm font-medium", className)}>
       <Link
         href={dePath}
-        className={cn(
-          "rounded-full px-3 py-1.5 transition-colors",
-          locale === "de"
-            ? "bg-[#B9965B]/20 text-[#0F3D2E]"
-            : "text-[#0F3D2E]/70 hover:text-[#0F3D2E]",
-        )}
+        className={linkClass(locale === "de")}
         aria-current={locale === "de" ? "true" : undefined}
       >
         DE
       </Link>
-      <span className="text-[#0F3D2E]/30">|</span>
+      <span className="text-brand-800/30" aria-hidden="true">
+        |
+      </span>
       <Link
         href={enPath}
-        className={cn(
-          "rounded-full px-3 py-1.5 transition-colors",
-          locale === "en"
-            ? "bg-[#B9965B]/20 text-[#0F3D2E]"
-            : "text-[#0F3D2E]/70 hover:text-[#0F3D2E]",
-        )}
+        className={linkClass(locale === "en")}
         aria-current={locale === "en" ? "true" : undefined}
       >
         EN

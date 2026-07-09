@@ -41,13 +41,13 @@ export const de = {
     tools: {
       title: "Tools & Reports",
       items: [
-        { label: "Dashboard", href: "/de/loesungen/tools/dashboard" },
-        { label: "KI-Assistent", href: "/de/loesungen/tools/ki-assistent" },
-        { label: "PDF-Berichte", href: "/de/loesungen/tools/pdf-berichte" },
-        { label: "Dokumenten-Upload", href: "/de/loesungen/tools/dokumenten-upload" },
+        { label: "Dashboard", href: "/dashboard" },
+        { label: "KI-Assistent", href: "/dashboard" },
+        { label: "PDF-Berichte", href: "/dashboard" },
+        { label: "Dokumenten-Upload", href: "/dashboard" },
         { label: "Vergleichsanalysen", href: "/de/loesungen/tools/vergleichsanalysen" },
-        { label: "Projektmanagement", href: "/de/loesungen/tools/projektmanagement" },
-        { label: "Portfolioübersicht", href: "/de/loesungen/tools/portfoliouebersicht" },
+        { label: "Projektmanagement", href: "/dashboard" },
+        { label: "Portfolioübersicht", href: "/dashboard" },
       ],
     },
   },
@@ -92,7 +92,7 @@ export const de = {
       items: [
         { label: "Über uns", href: "/de/ueber-uns" },
         { label: "Kontakt", href: "/de/kontakt" },
-        { label: "Dashboard", href: "/de/dashboard" },
+        { label: "Dashboard", href: "/dashboard" },
         { label: "Pakete", href: "/de/pakete" },
       ],
     },
@@ -293,23 +293,44 @@ export const de = {
       optional: "optional",
       selectPlaceholder: "Bitte auswählen",
       submit: "Anfrage senden",
-      successTitle: "Vielen Dank für Ihre Anfrage.",
+      submitting: "Wird gesendet…",
+      successTitle: "Vielen Dank für Ihre Nachricht.",
       successText:
-        "Wir haben Ihre Angaben erhalten und melden uns strukturiert und zielgerichtet bei Ihnen zurück.",
+        "Ihre Anfrage wurde erfolgreich übermittelt. Wir prüfen Ihre Nachricht und melden uns so schnell wie möglich bei Ihnen.",
+      errorTitle: "Nachricht konnte nicht gesendet werden",
+      errorText:
+        "Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail unter",
+      rateLimitText:
+        "Sie haben kürzlich bereits eine Anfrage gesendet. Bitte warten Sie einen Moment und versuchen Sie es erneut.",
       fields: {
         name: "Vorname und Nachname",
         email: "E-Mail-Adresse",
+        subject: "Betreff",
         phone: "Telefonnummer",
         goal: "Ziel der Anfrage",
         projectType: "Projekttyp",
         location: "Ort der Immobilie",
-        message: "Nachricht / Projektbeschreibung",
+        message: "Nachricht",
         upload: "Unterlagen hochladen",
-        uploadHint: "PDF, Bilder oder Exposé",
+        uploadHint: "PDF, Bilder oder Exposé — derzeit nur zur Vorbereitung, Upload folgt.",
         uploadAction: "Datei auswählen",
         consent:
-          "Ich stimme der Verarbeitung meiner Angaben zur Kontaktaufnahme zu.",
+          "Ich stimme der Verarbeitung meiner Angaben zur Kontaktaufnahme gemäß der",
       },
+      validation: {
+        name: "Bitte geben Sie Ihren Namen an.",
+        email: "Bitte geben Sie Ihre E-Mail-Adresse an.",
+        emailFormat: "Bitte geben Sie eine gültige E-Mail-Adresse an.",
+        subject: "Bitte geben Sie einen Betreff an.",
+        message: "Bitte geben Sie eine Nachricht ein.",
+        consent: "Bitte stimmen Sie der Datenverarbeitung zu.",
+        tooLong: "Dieses Feld ist zu lang.",
+      },
+      errors: {
+        email: "Bitte geben Sie eine gültige E-Mail-Adresse an.",
+        consent: "Bitte stimmen Sie der Datenverarbeitung zu.",
+      },
+      privacyLink: "Datenschutzerklärung",
       goalOptions: [
         "Eigennutzung",
         "Kapitalanlage",
@@ -379,6 +400,16 @@ export const de = {
         "Analyse oder nächster Schritt",
       ],
     },
+    handling: {
+      headline: "Wie wir Anfragen bearbeiten",
+      description:
+        "Jede Nachricht wird persönlich geprüft. Wir antworten sachlich, strukturiert und mit Bezug auf Ihr Anliegen.",
+      items: [
+        "Eingangsbestätigung nach erfolgreicher Übermittlung",
+        "Prüfung innerhalb von zwei Werktagen",
+        "Rückmeldung per E-Mail mit den nächsten sinnvollen Schritten",
+      ],
+    },
     cta: {
       headline: "Bereit für eine strukturierte Immobilienentscheidung?",
       text: "Jede Situation ist unterschiedlich. Deshalb beginnt der Austausch mit einer klaren und individuellen Anfrage.",
@@ -389,9 +420,13 @@ export const de = {
     hero: {
       headline: "Pakete & Mitgliedschaften",
       subheadline:
-        "Jede Immobilie und jedes Vorhaben ist unterschiedlich. Deshalb orientieren sich Leistungsumfang und Analysen an Ihren Zielen und Anforderungen.",
-      ctaPrimary: "Analyse starten",
+        "Klare Leistungsmodelle für unterschiedliche Vorhaben — Preise werden zum Public Launch kommuniziert.",
+      ctaPrimary: "Interesse bekunden",
       ctaSecondary: "Kontakt aufnehmen",
+    },
+    availability: {
+      launch: "Verfügbar zum Public Launch",
+      enterprise: "Individuelle Enterprise-Lösung",
     },
     single: {
       headline: "Einzelprojekt",
@@ -399,39 +434,45 @@ export const de = {
       cards: [
         {
           title: "Basic",
-          label: "Kostenfrei oder mit geringem Aufwand",
+          availability: "launch",
+          audience: "Für eine erste Orientierung und Vorprüfung einzelner Objekte.",
+          label: "",
           description:
-            "Für eine erste Orientierung und grundlegende Einschätzungen.",
+            "Grundlegende Einschätzung und Basisanalyse — ideal, bevor Sie tiefer einsteigen.",
           features: [
-            "Erste Einschätzung",
-            "Basisanalyse",
+            "Erste strukturierte Einschätzung",
+            "Basisanalyse im Entscheidungskontext",
             "Geeignet für die Vorprüfung",
           ],
-          cta: "Mehr erfahren",
+          cta: "Interesse bekunden",
           highlighted: false,
         },
         {
           title: "Premium",
+          availability: "launch",
+          audience: "Für anspruchsvollere Projekte mit fundierter Entscheidungsgrundlage.",
           label: "",
           description:
-            "Für anspruchsvollere Projekte und fundierte Entscheidungen.",
+            "Erweiterte Analyse mit Chancen-, Risiko- und Szenarioeinordnung sowie PDF-Bericht.",
           features: [
             "Erweiterte Analyse",
             "Chancen- und Risikoanalyse",
             "Szenarien und Vergleichsmöglichkeiten",
             "Strukturierter PDF-Bericht",
           ],
-          cta: "Mehr erfahren",
+          cta: "Interesse bekunden",
           highlighted: true,
         },
       ],
     },
     membership: {
       headline: "Monatliche Mitgliedschaft",
-      text: "Für aktive Investoren und wiederkehrende Projekte.",
+      text: "Für aktive Investoren und wiederkehrende Analyseprojekte.",
       card: {
         title: "Professional",
-        subtitle: "Für regelmäßige Analysen und langfristige Entscheidungen.",
+        availability: "launch",
+        audience: "Für regelmäßige Analysen, Dashboard-Nutzung und laufende Projektübersicht.",
+        subtitle: "Wiederkehrende Analysen mit strukturierter Dokumentation.",
         features: [
           "Bis zu 10 erweiterte Analysen pro Monat",
           "Dashboard-Zugang",
@@ -440,14 +481,15 @@ export const de = {
           "Strukturierte Dokumentation",
           "Laufende Übersicht",
         ],
-        cta: "Mitgliedschaft entdecken",
+        cta: "Interesse bekunden",
       },
     },
     custom: {
       headline: "Individuelle Lösungen",
-      text: "Für besondere Projekte und individuelle Anforderungen.",
+      text: "Für besondere Projekte, Portfolios und komplexe Anforderungen.",
+      availability: "enterprise",
       pricing:
-        "Preis und Leistungsumfang werden gemeinsam und bedarfsgerecht abgestimmt.",
+        "Leistungsumfang und Konditionen werden gemeinsam definiert — transparent und bedarfsgerecht.",
       suitableLabel: "Geeignet für:",
       suitable: [
         "Individuelle Strategie",
@@ -456,7 +498,7 @@ export const de = {
         "Neubau- und Umbauvorhaben",
         "Individuelle Fragestellungen",
       ],
-      cta: "Kontakt aufnehmen",
+      cta: "Beratungsgespräch anfragen",
     },
     models: {
       headline: "Welches Modell passt zu Ihnen?",
@@ -469,9 +511,9 @@ export const de = {
     },
     cta: {
       headline: "Lassen Sie uns über Ihr Vorhaben sprechen.",
-      text: "Nicht jede Immobilie passt zu jedem Menschen. Deshalb beginnt jede fundierte Entscheidung mit einer individuellen Betrachtung.",
-      ctaPrimary: "Analyse starten",
-      ctaSecondary: "Kontakt aufnehmen",
+      text: "Wir informieren Sie zum Public Launch über Preise und Verfügbarkeit — und beraten Sie bereits heute zu passenden Leistungsmodellen.",
+      ctaPrimary: "Interesse bekunden",
+      ctaSecondary: "Analyse starten",
     },
   },
   placeholder: {

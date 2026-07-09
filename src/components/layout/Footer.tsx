@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
 import { getTranslations } from "@/lib/i18n";
@@ -8,8 +9,7 @@ interface FooterProps {
   locale: Locale;
 }
 
-const headingClassName =
-  "text-label mb-6 block min-h-[2rem] text-[#B9965B]";
+const headingClassName = "text-label mb-6 block min-h-[2rem] text-gold-600";
 
 interface FooterColumnProps {
   title: string;
@@ -42,7 +42,7 @@ function FooterColumn({ title, items }: FooterColumnProps) {
 
 function ContactIcon({ children }: { children: React.ReactNode }) {
   return (
-    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#B9965B]/35 bg-[#B9965B]/10 text-[#B9965B]">
+    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold-500/35 bg-gold-500/10 text-gold-600">
       {children}
     </span>
   );
@@ -132,7 +132,7 @@ export function Footer({ locale }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-[#0F3D2E] text-white">
+    <footer className="mt-auto bg-brand-800 text-white">
       <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-24 lg:py-28">
         <div className="grid grid-cols-1 items-start gap-x-12 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[minmax(0,1.1fr)_repeat(4,minmax(0,1fr))_minmax(0,1.35fr)] xl:gap-x-14">
           {/* Column 1 — Logo & tagline */}
@@ -141,8 +141,8 @@ export function Footer({ locale }: FooterProps) {
             <p className="mt-8 max-w-[240px] whitespace-pre-line text-[15px] leading-[1.8] text-white/70">
               {t.meta.tagline}
             </p>
+            <SocialLinks locale={locale} variant="onDark" className="mt-8" />
           </div>
-
           {/* Columns 2–5 — Navigation */}
           {navColumns.map((column) => (
             <FooterColumn key={column.title} title={column.title} items={column.items} />

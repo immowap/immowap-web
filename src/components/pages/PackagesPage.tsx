@@ -1,8 +1,11 @@
-import { Button } from "@/components/ui/Button";
-import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
+import { ProductVisual } from "@/components/illustrations/ProductVisual";
+import { SecondaryButton } from "@/components/ui/buttons";
+import { Card, CardTitle } from "@/components/ui/Card";
+import { PricingCard } from "@/components/ui/cards";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { CTASection } from "@/components/ui/CTASection";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { cn } from "@/lib/utils";
+import { PricingComparisonTable } from "@/components/trust";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
 import { getTranslations } from "@/lib/i18n";
@@ -11,100 +14,55 @@ interface PackagesPageProps {
   locale: Locale;
 }
 
-function FeatureList({ items }: { items: string[] }) {
-  return (
-    <ul className="mt-8 space-y-3.5">
-      {items.map((item) => (
-        <li key={item} className="flex items-start gap-3 text-[15px] leading-relaxed text-muted">
-          <span className="mt-0.5 shrink-0 text-[#B9965B]" aria-hidden="true">
-            ✓
-          </span>
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-interface PackageCardProps {
-  title: string;
-  label?: string;
-  description: string;
-  features: string[];
-  cta: string;
-  href: string;
-  highlighted?: boolean;
-}
-
-function PackageCard({
-  title,
-  label,
-  description,
-  features,
-  cta,
-  href,
-  highlighted = false,
-}: PackageCardProps) {
-  return (
-    <Card
-      className={cn(
-        "flex h-full flex-col",
-        highlighted &&
-          "border-[#B9965B]/35 shadow-[0_12px_40px_rgba(185,150,91,0.12)] ring-1 ring-[#B9965B]/15",
-      )}
-    >
-      <CardTitle className="text-2xl">{title}</CardTitle>
-      {label && (
-        <p className="mt-3 text-sm font-medium tracking-wide text-[#B9965B]">
-          {label}
-        </p>
-      )}
-      <CardDescription className="mt-4 text-base">{description}</CardDescription>
-      <FeatureList items={features} />
-      <div className="mt-auto pt-10">
-        <Button
-          href={href}
-          variant={highlighted ? "primary" : "secondary"}
-          className="w-full sm:w-auto"
-        >
-          {cta}
-        </Button>
-      </div>
-    </Card>
-  );
-}
+const comparisonCopy = {
+  de: {
+    label: "Vergleich",
+    headline: "Leistungen im Überblick",
+    description: "Transparente Einordnung der wichtigsten Unterschiede zwischen den Modellen.",
+    caption: "Vergleich der immowap Pakete",
+    headers: ["Leistung", "Basic", "Premium", "Professional"] as const,
+    rows: [
+      { feature: "Erste Einschätzung", basic: "✓", premium: "✓", professional: "✓" },
+      { feature: "Erweiterte Analyse", basic: "—", premium: "✓", professional: "✓" },
+      { feature: "PDF-Berichte", basic: "—", premium: "✓", professional: "✓" },
+      { feature: "Dashboard-Zugang", basic: "—", premium: "—", professional: "✓" },
+      { feature: "Projektübersicht", basic: "—", premium: "—", professional: "✓" },
+    ],
+  },
+  en: {
+    label: "Comparison",
+    headline: "Features at a glance",
+    description: "A transparent overview of the key differences between plans.",
+    caption: "Comparison of immowap packages",
+    headers: ["Feature", "Basic", "Premium", "Professional"] as const,
+    rows: [
+      { feature: "Initial assessment", basic: "✓", premium: "✓", professional: "✓" },
+      { feature: "Extended analysis", basic: "—", premium: "✓", professional: "✓" },
+      { feature: "PDF reports", basic: "—", premium: "✓", professional: "✓" },
+      { feature: "Dashboard access", basic: "—", premium: "—", professional: "✓" },
+      { feature: "Project overview", basic: "—", premium: "—", professional: "✓" },
+    ],
+  },
+} as const;
 
 export function PackagesPage({ locale }: PackagesPageProps) {
   const t = getTranslations(locale);
+  const comparison = comparisonCopy[locale];
+  const contactHref = getRoute(locale, "contact");
+  const availability = t.packages.availability;
 
   return (
     <>
-      {/* Hero */}
-      <section className="border-b border-black/[0.04] bg-cream px-6 py-20 md:px-8 md:py-28 lg:py-32">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="text-h1 text-brand-800">{t.packages.hero.headline}</h1>
-          <p className="mt-8 text-lg leading-[1.8] text-muted">
-            {t.packages.hero.subheadline}
-          </p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Button
-              href={getRoute(locale, "dashboard")}
-              className="w-full border-transparent bg-brand-800 text-white hover:bg-brand-900 sm:w-auto"
-            >
-              {t.packages.hero.ctaPrimary}
-            </Button>
-            <Button
-              href={getRoute(locale, "contact")}
-              variant="secondary"
-              className="w-full sm:w-auto"
-            >
-              {t.packages.hero.ctaSecondary}
-            </Button>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        layout="split"
+        label={t.pages.packages}
+        headline={t.packages.hero.headline}
+        subheadline={t.packages.hero.subheadline}
+        visual={<ProductVisual variant="chart" locale={locale} className="max-w-full" />}
+        secondaryHref={contactHref}
+        secondaryLabel={t.packages.hero.ctaSecondary}
+      />
 
-      {/* Single project */}
       <Section variant="muted">
         <SectionHeader
           headline={t.packages.single.headline}
@@ -112,53 +70,67 @@ export function PackagesPage({ locale }: PackagesPageProps) {
         />
         <div className="grid gap-8 lg:grid-cols-2">
           {t.packages.single.cards.map((card) => (
-            <PackageCard
+            <PricingCard
               key={card.title}
               title={card.title}
+              availability={availability[card.availability as keyof typeof availability]}
+              audience={card.audience}
               label={card.label || undefined}
               description={card.description}
               features={card.features}
               cta={card.cta}
-              href={getRoute(locale, "dashboard")}
+              href={contactHref}
               highlighted={card.highlighted}
             />
           ))}
         </div>
       </Section>
 
-      {/* Membership */}
       <Section>
         <SectionHeader
           headline={t.packages.membership.headline}
           description={t.packages.membership.text}
         />
         <div className="mx-auto max-w-2xl">
-          <PackageCard
+          <PricingCard
             title={t.packages.membership.card.title}
+            availability={availability[t.packages.membership.card.availability as keyof typeof availability]}
+            audience={t.packages.membership.card.audience}
             description={t.packages.membership.card.subtitle}
             features={t.packages.membership.card.features}
             cta={t.packages.membership.card.cta}
-            href={getRoute(locale, "dashboard")}
+            href={contactHref}
+            highlighted
           />
         </div>
       </Section>
 
-      {/* Custom solutions */}
       <Section variant="muted">
+        <SectionHeader
+          label={comparison.label}
+          headline={comparison.headline}
+          description={comparison.description}
+        />
+        <PricingComparisonTable
+          caption={comparison.caption}
+          headers={comparison.headers}
+          rows={comparison.rows}
+        />
+      </Section>
+
+      <Section>
         <SectionHeader headline={t.packages.custom.headline} />
         <Card className="mx-auto max-w-4xl">
-          <p className="text-lg leading-[1.8] text-muted">{t.packages.custom.text}</p>
-          <p className="mt-6 text-lg leading-[1.8] text-brand-800">
-            {t.packages.custom.pricing}
+          <p className="text-label text-gold-600">
+            {availability[t.packages.custom.availability as keyof typeof availability]}
           </p>
+          <p className="mt-6 text-body-lg text-muted">{t.packages.custom.text}</p>
+          <p className="mt-6 text-body-lg text-brand-800">{t.packages.custom.pricing}</p>
           <p className="text-label mt-10 text-gold-600">{t.packages.custom.suitableLabel}</p>
           <ul className="mt-6 space-y-3">
             {t.packages.custom.suitable.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 text-[15px] leading-relaxed text-muted"
-              >
-                <span className="mt-0.5 shrink-0 text-[#B9965B]" aria-hidden="true">
+              <li key={item} className="flex items-start gap-3 text-body-sm text-muted">
+                <span className="mt-0.5 shrink-0 text-gold-600" aria-hidden="true">
                   ✓
                 </span>
                 <span>{item}</span>
@@ -166,33 +138,31 @@ export function PackagesPage({ locale }: PackagesPageProps) {
             ))}
           </ul>
           <div className="mt-10">
-            <Button href={getRoute(locale, "contact")} className="w-full sm:w-auto">
+            <SecondaryButton href={contactHref} className="w-full sm:w-auto">
               {t.packages.custom.cta}
-            </Button>
+            </SecondaryButton>
           </div>
         </Card>
       </Section>
 
-      {/* Models */}
-      <Section>
+      <Section variant="muted">
         <SectionHeader headline={t.packages.models.headline} />
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {t.packages.models.cards.map((title) => (
             <Card key={title} className="justify-center text-center">
-              <CardTitle className="text-xl">{title}</CardTitle>
+              <CardTitle className="text-h4">{title}</CardTitle>
             </Card>
           ))}
         </div>
       </Section>
 
-      {/* Final CTA */}
       <CTASection
         headline={t.packages.cta.headline}
         text={t.packages.cta.text}
         primaryLabel={t.packages.cta.ctaPrimary}
-        primaryHref={getRoute(locale, "dashboard")}
+        primaryHref={contactHref}
         secondaryLabel={t.packages.cta.ctaSecondary}
-        secondaryHref={getRoute(locale, "contact")}
+        secondaryHref={getRoute(locale, "dashboard")}
       />
     </>
   );

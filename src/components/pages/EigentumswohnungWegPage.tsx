@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
+import { ArticleLayout } from "@/components/editorial/ArticleLayout";
 import type { Locale } from "@/lib/i18n/config";
 import {
   propertyKnowledgeOverview,
@@ -9,16 +9,8 @@ import {
 import {
   ArticleH2,
   ArticleH3,
-  ArticleMetaRow,
   ArticleP,
-  CategoryBadge,
-  PropertyKnowledgeBackLink,
-  PropertyKnowledgeBreadcrumb,
-  PropertyKnowledgePageButtons,
 } from "@/components/property-knowledge/ArticleUi";
-
-const IMAGE_BASE = "/images/wissen/eigentumswohnung-weg";
-const HERO_IMAGE = "/images/knowledge/eigentumswohnung-weg.jpg";
 
 const copy = {
   de: {
@@ -335,7 +327,7 @@ const copy = {
 } as const;
 
 function InsightIcon({ name }: { name: string }) {
-  const className = "h-5 w-5 text-[#B9965B]";
+  const className = "h-5 w-5 text-gold-600";
 
   if (name === "document") {
     return (
@@ -375,203 +367,128 @@ interface EigentumswohnungWegPageProps {
 export function EigentumswohnungWegPage({ locale }: EigentumswohnungWegPageProps) {
   const t = copy[locale];
   const ui = propertyKnowledgeUi[locale];
-  const overviewHref = propertyKnowledgeOverview[locale].href;
   const sec = t.article.sections;
 
   return (
-    <>
-      <section className="relative min-h-[calc(100svh-5rem)] w-full overflow-hidden">
-        <div className="absolute inset-0 z-0 h-full w-full">
-          <Image
-            src={HERO_IMAGE}
-            alt={t.hero.imageAlt}
-            width={2400}
-            height={1350}
-            priority
-            className="h-full w-full object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        <div
-          className="absolute inset-0 z-[1] bg-gradient-to-r from-[#0F3D2E]/90 from-0% via-[#0F3D2E]/60 via-[50%] to-[#0F3D2E]/40 to-[100%] max-md:via-[#0F3D2E]/70"
-          aria-hidden="true"
-        />
-        <div className="relative z-[2] mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-7xl items-center px-6 pb-20 pt-16 md:px-8 md:pb-24 md:pt-20">
-          <div className="max-w-3xl">
-            <p className="text-label mb-6 block text-[#B9965B]">{ui.categoryShort}</p>
-            <h1 className="text-h1 text-white">{t.hero.title}</h1>
-            <p className="mt-8 max-w-2xl text-lg leading-[1.8] text-white/90">{t.hero.intro}</p>
-            <PropertyKnowledgePageButtons locale={locale} onDark className="mt-10" />
-          </div>
-        </div>
-      </section>
-
-      <Section variant="muted" className="py-24 md:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <p className="text-label mb-6 block text-gold-600">{t.introSection.label}</p>
-            <h2 className="text-h2 text-brand-800">{t.introSection.heading}</h2>
-            <div className="gold-rule mt-8" aria-hidden="true" />
-            <p className="mt-8 text-lg leading-[1.8] text-muted">{t.introSection.p1}</p>
-            <p className="mt-6 text-lg leading-[1.8] text-muted">{t.introSection.p2}</p>
-          </div>
-          <div className="overflow-hidden rounded-3xl border border-[#D7D2C8]/60 shadow-[0_8px_40px_rgba(15,61,46,0.06)]">
-            <Image
-              src={`${IMAGE_BASE}/intro.jpg`}
-              alt={t.introSection.imageAlt}
-              width={1400}
-              height={1050}
-              className="h-auto w-full object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-        </div>
-      </Section>
-
-      <div className="bg-[#F7F5EF] py-16 md:py-20">
-        <div className="mx-auto max-w-[850px] px-6 md:px-8">
-          <PropertyKnowledgeBreadcrumb locale={locale} currentTitle={t.breadcrumbTitle} />
-
-          <header className="mb-10">
-            <CategoryBadge locale={locale} />
-            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-[#0F3D2E] md:text-[2.125rem]">
-              {t.article.headerTitle}
-            </h2>
-            <p className="mt-4 text-lg leading-[1.8] text-[#1D1D1B]/60">
-              {t.article.headerSubtitle}
-            </p>
-            <div
-              aria-hidden="true"
-              className="mt-7 h-px w-16 rounded-full bg-[#B9965B]/55"
-            />
-            <ArticleMetaRow locale={locale} readMinutes={t.readMinutes} />
-          </header>
-
-          <article>
-            <ArticleP>{t.article.p1}</ArticleP>
-            <ArticleP>{t.article.p2}</ArticleP>
-
-            <ArticleH2 id="weg">{sec.weg.heading}</ArticleH2>
-            <ArticleP>{sec.weg.p1}</ArticleP>
-            <ArticleP>{sec.weg.p2}</ArticleP>
-
-            <ArticleH2 id="hausgeld">{sec.hausgeld.heading}</ArticleH2>
-            <ArticleP>{sec.hausgeld.p1}</ArticleP>
-            <ArticleP>{sec.hausgeld.p2}</ArticleP>
-            <ArticleP>{sec.hausgeld.p3}</ArticleP>
-
-            <ArticleH2 id="ruecklage">{sec.ruecklage.heading}</ArticleH2>
-            <ArticleP>{sec.ruecklage.p1}</ArticleP>
-            <ArticleP>{sec.ruecklage.p2}</ArticleP>
-
-            <ArticleH2 id="sonderumlagen">{sec.sonderumlagen.heading}</ArticleH2>
-            <ArticleP>{sec.sonderumlagen.p1}</ArticleP>
-            <ArticleP>{sec.sonderumlagen.p2}</ArticleP>
-
-            <ArticleH2 id="eigentum">{sec.eigentum.heading}</ArticleH2>
-            <ArticleP>{sec.eigentum.p1}</ArticleP>
-
-            <ArticleH3>{sec.eigentum.gemeinschaftHeading}</ArticleH3>
-            <ArticleP>{sec.eigentum.gemeinschaftP}</ArticleP>
-
-            <ArticleH3>{sec.eigentum.sondereigentumHeading}</ArticleH3>
-            <ArticleP>{sec.eigentum.sondereigentumP}</ArticleP>
-            <ArticleP>{sec.eigentum.p2}</ArticleP>
-
-            <ArticleH2 id="hausverwaltung">{sec.hausverwaltung.heading}</ArticleH2>
-            <ArticleP>{sec.hausverwaltung.p1}</ArticleP>
-            <ArticleP>{sec.hausverwaltung.p2}</ArticleP>
-
-            <ArticleH2 id="beschluesse">{sec.beschluesse.heading}</ArticleH2>
-            <ArticleP>{sec.beschluesse.p1}</ArticleP>
-            <ArticleP>{sec.beschluesse.p2}</ArticleP>
-
-            <ArticleH2 id="unterlagen">{sec.unterlagen.heading}</ArticleH2>
-            <ArticleP>{sec.unterlagen.p1}</ArticleP>
-            <ArticleP>{sec.unterlagen.p2}</ArticleP>
-
-            <ArticleH2 id="fazit">{sec.fazit.heading}</ArticleH2>
-            <ArticleP>{sec.fazit.p1}</ArticleP>
-            <ArticleP>{sec.fazit.p2}</ArticleP>
-            <ArticleP>{sec.fazit.p3}</ArticleP>
-          </article>
-
-          <PropertyKnowledgeBackLink locale={locale} overviewHref={overviewHref} />
-        </div>
-      </div>
-
-      <Section className="bg-[#F7F5EF] py-16 md:py-24">
-        <div className="mx-auto max-w-[850px]">
-          <p className="text-label mb-4 block text-gold-600">{t.topicCards.label}</p>
-          <h2 className="text-h2 text-brand-800">{t.topicCards.heading}</h2>
+    <ArticleLayout
+      locale={locale}
+      breadcrumbTitle={t.breadcrumbTitle}
+      heroLabel={ui.categoryShort}
+      heroHeadline={t.hero.title}
+      heroSubheadline={t.hero.intro}
+      articleTitle={t.article.headerTitle}
+      articleSubtitle={t.article.headerSubtitle}
+      readMinutes={t.readMinutes}
+      introduction={
+        <>
+          <p className="text-label mb-4 block text-gold-600">{t.introSection.label}</p>
+          <h2 className="text-h2 text-brand-800">{t.introSection.heading}</h2>
           <div className="gold-rule mt-6" aria-hidden="true" />
-          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {t.topicCards.cards.map((card) => (
-              <Card
-                key={card.title}
-                className="h-full border-[#D7D2C8]/80 bg-white shadow-[0_4px_20px_rgba(15,61,46,0.05)]"
-              >
-                <CardTitle className="text-lg">{card.title}</CardTitle>
-                <CardDescription>{card.description}</CardDescription>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
+          <ArticleP>{t.introSection.p1}</ArticleP>
+          <ArticleP>{t.introSection.p2}</ArticleP>
+        </>
+      }
+      backLinkHref={propertyKnowledgeOverview[locale].href}
+      relatedExcludeId="eigentumswohnung-weg"
+      afterArticle={
+        <>
+          <Section className="py-16 md:py-24">
+            <div className="mx-auto max-w-[850px]">
+              <p className="text-label mb-4 block text-gold-600">{t.topicCards.label}</p>
+              <h2 className="text-h2 text-brand-800">{t.topicCards.heading}</h2>
+              <div className="gold-rule mt-6" aria-hidden="true" />
+              <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {t.topicCards.cards.map((card) => (
+                  <Card key={card.title} className="h-full bg-white">
+                    <CardTitle className="text-lg">{card.title}</CardTitle>
+                    <CardDescription>{card.description}</CardDescription>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </Section>
 
-      <Section variant="muted" className="py-24 md:py-32">
-        <div className="mx-auto max-w-[850px]">
-          <p className="text-label mb-4 block text-gold-600">{t.insightCards.label}</p>
-          <h2 className="text-h2 text-brand-800">{t.insightCards.heading}</h2>
-          <div className="gold-rule mt-6" aria-hidden="true" />
-          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
-            {t.insightCards.cards.map((card) => (
-              <Card
-                key={card.title}
-                className="h-full border-[#D7D2C8]/80 bg-white shadow-[0_4px_20px_rgba(15,61,46,0.05)]"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#B9965B]/10">
-                  <InsightIcon name={card.icon} />
-                </div>
-                <CardTitle className="text-lg">{card.title}</CardTitle>
-                <CardDescription>{card.description}</CardDescription>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
+          <Section variant="muted" className="py-24 md:py-32">
+            <div className="mx-auto max-w-[850px]">
+              <p className="text-label mb-4 block text-gold-600">{t.insightCards.label}</p>
+              <h2 className="text-h2 text-brand-800">{t.insightCards.heading}</h2>
+              <div className="gold-rule mt-6" aria-hidden="true" />
+              <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {t.insightCards.cards.map((card) => (
+                  <Card key={card.title} className="h-full bg-white">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold-600/10">
+                      <InsightIcon name={card.icon} />
+                    </div>
+                    <CardTitle className="text-lg">{card.title}</CardTitle>
+                    <CardDescription>{card.description}</CardDescription>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </Section>
 
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
-        <div className="mx-auto max-w-[850px] text-center">
-          <p className="text-label mb-4 block text-gold-600">{t.immowapSection.label}</p>
-          <h2 className="text-h2 text-brand-800">{t.immowapSection.heading}</h2>
-          <div className="gold-rule mx-auto mt-6" aria-hidden="true" />
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.8] text-muted">
-            {t.immowapSection.p1}
-          </p>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-[1.8] text-muted">
-            {t.immowapSection.p2}
-          </p>
-          <PropertyKnowledgePageButtons locale={locale} className="mt-10 justify-center" />
-        </div>
-      </Section>
+          <Section className="py-24 md:py-32">
+            <div className="mx-auto max-w-[850px] text-center">
+              <p className="text-label mb-4 block text-gold-600">{t.immowapSection.label}</p>
+              <h2 className="text-h2 text-brand-800">{t.immowapSection.heading}</h2>
+              <div className="gold-rule mx-auto mt-6" aria-hidden="true" />
+              <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.8] text-muted">
+                {t.immowapSection.p1}
+              </p>
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-[1.8] text-muted">
+                {t.immowapSection.p2}
+              </p>
+            </div>
+          </Section>
+        </>
+      }
+    >
+      <ArticleP>{t.article.p1}</ArticleP>
+      <ArticleP>{t.article.p2}</ArticleP>
 
-      <section className="bg-[#0F3D2E] py-24 md:py-32">
-        <div className="mx-auto max-w-[850px] px-6 text-center md:px-8">
-          <p className="text-label mb-6 block text-[#B9965B]">{t.bottomCta.label}</p>
-          <h2 className="text-h2 text-white">{t.bottomCta.heading}</h2>
-          <div
-            aria-hidden="true"
-            className="mx-auto mt-8 h-px w-10 rounded-full bg-[#B9965B]/60"
-          />
-          <p className="mx-auto mt-8 max-w-xl text-lg leading-[1.8] text-white/75">
-            {t.bottomCta.text}
-          </p>
-          <PropertyKnowledgePageButtons locale={locale} onDark className="mt-12 justify-center" />
-        </div>
-      </section>
+      <ArticleH2 id="weg">{sec.weg.heading}</ArticleH2>
+      <ArticleP>{sec.weg.p1}</ArticleP>
+      <ArticleP>{sec.weg.p2}</ArticleP>
 
-      <div className="h-20 bg-cream md:h-[100px]" aria-hidden="true" />
-    </>
+      <ArticleH2 id="hausgeld">{sec.hausgeld.heading}</ArticleH2>
+      <ArticleP>{sec.hausgeld.p1}</ArticleP>
+      <ArticleP>{sec.hausgeld.p2}</ArticleP>
+      <ArticleP>{sec.hausgeld.p3}</ArticleP>
+
+      <ArticleH2 id="ruecklage">{sec.ruecklage.heading}</ArticleH2>
+      <ArticleP>{sec.ruecklage.p1}</ArticleP>
+      <ArticleP>{sec.ruecklage.p2}</ArticleP>
+
+      <ArticleH2 id="sonderumlagen">{sec.sonderumlagen.heading}</ArticleH2>
+      <ArticleP>{sec.sonderumlagen.p1}</ArticleP>
+      <ArticleP>{sec.sonderumlagen.p2}</ArticleP>
+
+      <ArticleH2 id="eigentum">{sec.eigentum.heading}</ArticleH2>
+      <ArticleP>{sec.eigentum.p1}</ArticleP>
+
+      <ArticleH3>{sec.eigentum.gemeinschaftHeading}</ArticleH3>
+      <ArticleP>{sec.eigentum.gemeinschaftP}</ArticleP>
+
+      <ArticleH3>{sec.eigentum.sondereigentumHeading}</ArticleH3>
+      <ArticleP>{sec.eigentum.sondereigentumP}</ArticleP>
+      <ArticleP>{sec.eigentum.p2}</ArticleP>
+
+      <ArticleH2 id="hausverwaltung">{sec.hausverwaltung.heading}</ArticleH2>
+      <ArticleP>{sec.hausverwaltung.p1}</ArticleP>
+      <ArticleP>{sec.hausverwaltung.p2}</ArticleP>
+
+      <ArticleH2 id="beschluesse">{sec.beschluesse.heading}</ArticleH2>
+      <ArticleP>{sec.beschluesse.p1}</ArticleP>
+      <ArticleP>{sec.beschluesse.p2}</ArticleP>
+
+      <ArticleH2 id="unterlagen">{sec.unterlagen.heading}</ArticleH2>
+      <ArticleP>{sec.unterlagen.p1}</ArticleP>
+      <ArticleP>{sec.unterlagen.p2}</ArticleP>
+
+      <ArticleH2 id="fazit">{sec.fazit.heading}</ArticleH2>
+      <ArticleP>{sec.fazit.p1}</ArticleP>
+      <ArticleP>{sec.fazit.p2}</ArticleP>
+      <ArticleP>{sec.fazit.p3}</ArticleP>
+    </ArticleLayout>
   );
 }

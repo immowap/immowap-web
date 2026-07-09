@@ -1,3 +1,4 @@
+import { getAppDashboardHref } from "@/lib/app/config";
 import type { Locale } from "@/lib/i18n/config";
 
 export type ToolPageKey =
@@ -29,8 +30,26 @@ const toolPathsEn: Record<ToolPageKey, string> = {
   portfoliouebersicht: "/en/solutions/tools/portfolio-overview",
 };
 
+/** Tool pages that currently route to the interim app entry at `/dashboard`. */
+const APP_ENTRY_TOOLS: ToolPageKey[] = [
+  "dashboard",
+  "ki-assistent",
+  "pdf-berichte",
+  "dokumenten-upload",
+  "projektmanagement",
+  "portfoliouebersicht",
+];
+
 export function getToolRoute(locale: Locale, key: ToolPageKey): string {
   return locale === "de" ? toolPathsDe[key] : toolPathsEn[key];
+}
+
+/** Marketing tool page or interim app entry, depending on the tool. */
+export function getToolHref(locale: Locale, key: ToolPageKey): string {
+  if (APP_ENTRY_TOOLS.includes(key)) {
+    return getAppDashboardHref(locale);
+  }
+  return getToolRoute(locale, key);
 }
 
 export const toolPathMapDeToEn: Record<string, string> = {

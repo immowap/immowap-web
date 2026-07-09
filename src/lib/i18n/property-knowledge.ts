@@ -357,12 +357,32 @@ export function getPropertyKnowledgeBreadcrumb(
   ];
 }
 
-export function getRelatedArticles(locale: Locale, excludeId?: PropertyKnowledgeArticleId) {
-  return propertyKnowledgeArticles
-    .filter((a) => a.id !== excludeId)
-    .map((a) => ({
-      title: a[locale].title,
-      description: a[locale].description,
-      href: a[locale].href,
-    }));
+export function getRelatedArticles(
+  locale: Locale,
+  excludeId?: PropertyKnowledgeArticleId,
+  limit = 4,
+) {
+  const relatedMap: Record<PropertyKnowledgeArticleId, PropertyKnowledgeArticleId[]> = {
+    kaufprozess: ["immobilienbewertung", "finanzierung", "dokumente-verstehen", "eigentumswohnung-weg"],
+    immobilienbewertung: ["kaufprozess", "finanzierung", "immobilienstrategien", "dokumente-verstehen"],
+    finanzierung: ["kaufprozess", "immobilienbewertung", "steuern", "vermietung"],
+    "dokumente-verstehen": ["kaufprozess", "immobilienbewertung", "finanzierung", "eigentumswohnung-weg"],
+    "eigentumswohnung-weg": ["kaufprozess", "vermietung", "steuern", "dokumente-verstehen"],
+    vermietung: ["finanzierung", "steuern", "immobilienstrategien", "eigentumswohnung-weg"],
+    "sanierung-modernisierung": ["immobilienbewertung", "kaufprozess", "immobilienstrategien", "finanzierung"],
+    steuern: ["vermietung", "finanzierung", "eigentumswohnung-weg", "immobilienstrategien"],
+    immobilienstrategien: ["immobilienbewertung", "finanzierung", "vermietung", "kaufprozess"],
+    immobilienlexikon: ["kaufprozess", "immobilienbewertung", "finanzierung", "dokumente-verstehen"],
+  };
+
+  const ids = excludeId ? relatedMap[excludeId] ?? [] : [];
+  const articles = propertyKnowledgeArticles.filter(
+    (a) => ids.includes(a.id) && a.id !== excludeId,
+  );
+
+  return articles.slice(0, limit).map((a) => ({
+    title: a[locale].title,
+    description: a[locale].description,
+    href: a[locale].href,
+  }));
 }

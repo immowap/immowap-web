@@ -1,3 +1,5 @@
+import { getAppDashboardHref } from "@/lib/app/config";
+
 export type Locale = "de" | "en";
 
 export const locales: Locale[] = ["de", "en"];
@@ -19,7 +21,7 @@ export const routes: Record<Locale, Record<RouteKey, string>> = {
     knowledge: "/de/wissen",
     about: "/de/ueber-uns",
     contact: "/de/kontakt",
-    dashboard: "/de/dashboard",
+    dashboard: "/dashboard",
     packages: "/de/pakete",
   },
   en: {
@@ -28,12 +30,15 @@ export const routes: Record<Locale, Record<RouteKey, string>> = {
     knowledge: "/en/knowledge",
     about: "/en/about-us",
     contact: "/en/contact",
-    dashboard: "/en/dashboard",
+    dashboard: "/dashboard",
     packages: "/en/packages",
   },
 };
 
 export function getRoute(locale: Locale, key: RouteKey): string {
+  if (key === "dashboard") {
+    return getAppDashboardHref(locale);
+  }
   return routes[locale][key];
 }
 

@@ -1,10 +1,11 @@
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Section, SectionHeader } from "@/components/ui/Section";
+import { FeatureCard } from "@/components/ui/cards";
 import { CTASection } from "@/components/ui/CTASection";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { Section, SectionHeader } from "@/components/ui/Section";
+import type { IconName } from "@/components/ui/icons/Icon";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
-import { getToolRoute } from "@/lib/tools/routes";
+import { getToolHref } from "@/lib/tools/routes";
 
 interface LoesungenPageProps {
   locale: Locale;
@@ -26,94 +27,7 @@ interface ToolCard {
   title: string;
   description: string;
   href: string;
-  icon: ToolIconName;
-}
-
-type ToolIconName =
-  | "dashboard"
-  | "assistant"
-  | "pdf"
-  | "upload"
-  | "compare"
-  | "project"
-  | "portfolio";
-
-const TOOL_ICON_PATHS: Record<ToolIconName, string> = {
-  dashboard:
-    "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z",
-  assistant:
-    "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z",
-  pdf: "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z",
-  upload:
-    "M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5",
-  compare:
-    "M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5",
-  project:
-    "M3.75 12h16.5m-16.5 3.75H16.5A2.25 2.25 0 0020.625 13.5v-6.75A2.25 2.25 0 0018.375 4.5H3.75m9 9v6.75m-3-3h6",
-  portfolio:
-    "M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z",
-};
-
-const cardTitleClass =
-  "text-h3 text-brand-800 break-words [overflow-wrap:anywhere] hyphens-auto transition-colors duration-300 group-hover:text-brand-600";
-const cardTextClass =
-  "text-base leading-[1.8] text-muted break-words [overflow-wrap:anywhere] hyphens-auto";
-
-function ToolIcon({ name }: { name: ToolIconName }) {
-  return (
-    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-800/[0.06] transition-colors duration-300 group-hover:bg-brand-800/[0.1]">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-5 w-5 text-brand-700"
-        aria-hidden="true"
-      >
-        <path d={TOOL_ICON_PATHS[name]} />
-      </svg>
-    </div>
-  );
-}
-
-function OverviewLinkCard({
-  title,
-  description,
-  href,
-  linkLabel,
-  premium = false,
-  icon,
-}: {
-  title: string;
-  description: string;
-  href: string;
-  linkLabel: string;
-  premium?: boolean;
-  icon?: ToolIconName;
-}) {
-  return (
-    <Link href={href} className="group block h-full no-underline">
-      <div
-        className={cn(
-          "card-premium flex h-full min-h-[220px] flex-col gap-4 p-6 transition-all duration-300 hover:border-gold-500/25 md:p-8",
-          premium &&
-            "border-[#B9965B]/30 shadow-[0_12px_40px_rgba(185,150,91,0.10)] ring-1 ring-[#B9965B]/15",
-        )}
-      >
-        <div className="flex items-start gap-4">
-          {icon ? <ToolIcon name={icon} /> : null}
-          <h2 className={cn(cardTitleClass, icon ? "flex-1" : undefined)}>{title}</h2>
-        </div>
-        <p className={cn(cardTextClass, "flex-1")}>{description}</p>
-        <span className="text-label mt-auto inline-flex items-center gap-2 text-gold-600 transition-all duration-300 group-hover:gap-3">
-          {linkLabel}
-          <span aria-hidden="true">→</span>
-        </span>
-      </div>
-    </Link>
-  );
+  icon: IconName;
 }
 
 const goalsDE: GoalCard[] = [
@@ -194,7 +108,7 @@ const goalsEN: GoalCard[] = [
   },
 ];
 
-function getAnalysesDE(dashboardHref: string): AnalysisCard[] {
+function getAnalysesDE(): AnalysisCard[] {
   return [
     {
       title: "Marktwertanalyse",
@@ -224,13 +138,13 @@ function getAnalysesDE(dashboardHref: string): AnalysisCard[] {
       title: "Renditeanalyse",
       description:
         "Renditepotenzial im Verhältnis zu Risiko, Finanzierung und individuellen Zielen bewerten.",
-      href: dashboardHref,
+      href: "/de/loesungen/analysen/ertragswertverfahren",
     },
     {
       title: "Cashflow-Analyse",
       description:
         "Laufende Einnahmen und Belastungen strukturiert gegenüberstellen und einordnen.",
-      href: dashboardHref,
+      href: "/de/loesungen/analysen/ertragswertverfahren",
     },
     {
       title: "Risikoanalyse",
@@ -259,7 +173,7 @@ function getAnalysesDE(dashboardHref: string): AnalysisCard[] {
   ];
 }
 
-function getAnalysesEN(dashboardHref: string): AnalysisCard[] {
+function getAnalysesEN(): AnalysisCard[] {
   return [
     {
       title: "Market value analysis",
@@ -289,13 +203,13 @@ function getAnalysesEN(dashboardHref: string): AnalysisCard[] {
       title: "Return analysis",
       description:
         "Assess return potential in relation to risk, financing and individual objectives.",
-      href: dashboardHref,
+      href: "/en/solutions/analyses/income-approach",
     },
     {
       title: "Cashflow analysis",
       description:
         "Compare and evaluate ongoing income and expenses in a structured way.",
-      href: dashboardHref,
+      href: "/en/solutions/analyses/income-approach",
     },
     {
       title: "Risk analysis",
@@ -329,44 +243,44 @@ function getToolsDE(): ToolCard[] {
     {
       title: "Dashboard",
       description: "Zentrale Übersicht Ihrer Projekte, Analysen und Entscheidungsgrundlagen.",
-      href: getToolRoute("de", "dashboard"),
-      icon: "dashboard",
+      href: getToolHref("de", "dashboard"),
+      icon: "chart",
     },
     {
       title: "KI-Assistent",
       description: "Digitale Unterstützung bei Fragen, Auswertungen und Immobilienentscheidungen.",
-      href: getToolRoute("de", "ki-assistent"),
-      icon: "assistant",
+      href: getToolHref("de", "ki-assistent"),
+      icon: "ai-analysis",
     },
     {
       title: "PDF-Berichte",
       description: "Strukturierte Berichte für Transparenz, Dokumentation und Entscheidungen.",
-      href: getToolRoute("de", "pdf-berichte"),
-      icon: "pdf",
+      href: getToolHref("de", "pdf-berichte"),
+      icon: "reports",
     },
     {
       title: "Dokumenten-Upload",
       description: "Unterlagen zentral erfassen und für Analysen nutzbar machen.",
-      href: getToolRoute("de", "dokumenten-upload"),
-      icon: "upload",
+      href: getToolHref("de", "dokumenten-upload"),
+      icon: "documents",
     },
     {
       title: "Vergleichsanalysen",
       description: "Objekte, Szenarien und Kennzahlen strukturiert nebeneinander betrachten.",
-      href: getToolRoute("de", "vergleichsanalysen"),
-      icon: "compare",
+      href: getToolHref("de", "vergleichsanalysen"),
+      icon: "chart",
     },
     {
       title: "Projektmanagement",
       description: "Immobilienprojekte und Analyseprozesse übersichtlich begleiten.",
-      href: getToolRoute("de", "projektmanagement"),
-      icon: "project",
+      href: getToolHref("de", "projektmanagement"),
+      icon: "strategy",
     },
     {
       title: "Portfolioübersicht",
       description: "Bestand, Entwicklung und Perspektiven Ihrer Immobilien im Überblick.",
-      href: getToolRoute("de", "portfoliouebersicht"),
-      icon: "portfolio",
+      href: getToolHref("de", "portfoliouebersicht"),
+      icon: "investment",
     },
   ];
 }
@@ -376,44 +290,44 @@ function getToolsEN(): ToolCard[] {
     {
       title: "Dashboard",
       description: "Central overview of your projects, analyses and decision support.",
-      href: getToolRoute("en", "dashboard"),
-      icon: "dashboard",
+      href: getToolHref("en", "dashboard"),
+      icon: "chart",
     },
     {
       title: "AI assistant",
       description: "Digital support for questions, evaluations and property decisions.",
-      href: getToolRoute("en", "ki-assistent"),
-      icon: "assistant",
+      href: getToolHref("en", "ki-assistent"),
+      icon: "ai-analysis",
     },
     {
       title: "PDF reports",
       description: "Structured reports for transparency, documentation and decisions.",
-      href: getToolRoute("en", "pdf-berichte"),
-      icon: "pdf",
+      href: getToolHref("en", "pdf-berichte"),
+      icon: "reports",
     },
     {
       title: "Document upload",
       description: "Capture documents centrally and prepare them for analysis.",
-      href: getToolRoute("en", "dokumenten-upload"),
-      icon: "upload",
+      href: getToolHref("en", "dokumenten-upload"),
+      icon: "documents",
     },
     {
       title: "Comparison analyses",
       description: "Compare properties, scenarios and key figures in a structured way.",
-      href: getToolRoute("en", "vergleichsanalysen"),
-      icon: "compare",
+      href: getToolHref("en", "vergleichsanalysen"),
+      icon: "chart",
     },
     {
       title: "Project management",
       description: "Manage property projects and analysis workflows with clarity.",
-      href: getToolRoute("en", "projektmanagement"),
-      icon: "project",
+      href: getToolHref("en", "projektmanagement"),
+      icon: "strategy",
     },
     {
       title: "Portfolio overview",
       description: "Overview of holdings, development and perspectives across your portfolio.",
-      href: getToolRoute("en", "portfoliouebersicht"),
-      icon: "portfolio",
+      href: getToolHref("en", "portfoliouebersicht"),
+      icon: "investment",
     },
   ];
 }
@@ -478,24 +392,17 @@ const copy = {
 export function LoesungenPage({ locale }: LoesungenPageProps) {
   const c = copy[locale];
   const goals = locale === "de" ? goalsDE : goalsEN;
-  const contactHref = getRoute(locale, "contact");
-  const dashboardHref = getRoute(locale, "dashboard");
-  const solutionsHref = getRoute(locale, "solutions");
-  const analyses = locale === "de" ? getAnalysesDE(dashboardHref) : getAnalysesEN(dashboardHref);
+  const analyses = locale === "de" ? getAnalysesDE() : getAnalysesEN();
   const tools = locale === "de" ? getToolsDE() : getToolsEN();
 
   return (
     <>
-      <section className="bg-cream py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <div className="max-w-3xl">
-            <p className="text-label mb-6 block text-gold-600">{c.heroLabel}</p>
-            <h1 className="text-h1 text-brand-800">{c.heroHeadline}</h1>
-            <div className="gold-rule mt-8" aria-hidden="true" />
-            <p className="mt-8 max-w-2xl text-lg leading-[1.8] text-muted">{c.heroText}</p>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        layout="text"
+        label={c.heroLabel}
+        headline={c.heroHeadline}
+        subheadline={c.heroText}
+      />
 
       <Section variant="muted" className="py-24 md:py-32">
         <SectionHeader
@@ -505,13 +412,12 @@ export function LoesungenPage({ locale }: LoesungenPageProps) {
         />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {goals.map((goal) => (
-            <OverviewLinkCard
+            <FeatureCard
               key={goal.title}
               title={goal.title}
               description={goal.description}
               href={goal.href}
               linkLabel={c.cardLink}
-              premium
             />
           ))}
         </div>
@@ -525,7 +431,7 @@ export function LoesungenPage({ locale }: LoesungenPageProps) {
         />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {analyses.map((analysis) => (
-            <OverviewLinkCard
+            <FeatureCard
               key={analysis.title}
               title={analysis.title}
               description={analysis.description}
@@ -544,7 +450,7 @@ export function LoesungenPage({ locale }: LoesungenPageProps) {
         />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {tools.map((tool) => (
-            <OverviewLinkCard
+            <FeatureCard
               key={tool.title}
               title={tool.title}
               description={tool.description}
@@ -570,9 +476,9 @@ export function LoesungenPage({ locale }: LoesungenPageProps) {
         headline={c.ctaHeadline}
         text={c.ctaText}
         primaryLabel={c.ctaPrimary}
-        primaryHref={dashboardHref}
+        primaryHref={getRoute(locale, "dashboard")}
         secondaryLabel={c.ctaSecondary}
-        secondaryHref={contactHref}
+        secondaryHref={getRoute(locale, "contact")}
       />
     </>
   );

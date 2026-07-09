@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/Button";
-import { SolutionHeroSection } from "@/components/ui/SolutionHeroSection";
+import { SolutionPageHero } from "@/components/solutions/SolutionPageHero";
+import { RelatedSolutionsSection } from "@/components/solutions/RelatedSolutionsSection";
 import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
-import { CTASection } from "@/components/ui/CTASection";
+import { InformationCard } from "@/components/ui/cards";
+import { PageBottomSpacer } from "@/components/ui/PageBottomSpacer";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { FAQQuestionAccordion } from "@/components/faq/FAQQuestionAccordion";
 import type { Locale } from "@/lib/i18n/config";
@@ -11,8 +11,6 @@ import { getRoute } from "@/lib/i18n/config";
 interface MarktwertanalysePageProps {
   locale: Locale;
 }
-
-const HERO_IMAGE = "/images/marktwertanalyse/hero.jpg";
 
 const marktwertanalyseFAQ = {
   de: [
@@ -458,7 +456,7 @@ function MethodCard({
 
   if (variant === "muted") {
     return (
-      <article className="rounded-3xl border border-warm-gray/40 bg-[#F7F5EF] p-8 md:p-10">
+      <article className="rounded-3xl border border-warm-gray/40 bg-surface p-8 md:p-10">
         <span className="text-label mb-4 block text-gold-600">ImmoWertV</span>
         <h3 className="text-h3 text-brand-800">{title}</h3>
         <p className="mt-4 text-base leading-[1.8] text-muted">{description}</p>
@@ -483,25 +481,20 @@ export function MarktwertanalysePage({ locale }: MarktwertanalysePageProps) {
 
   return (
     <>
-      <SolutionHeroSection
+      <SolutionPageHero
         label={c.heroLabel}
         headline={c.heroHeadline}
         primaryHref={dashboardHref}
         primaryLabel={c.heroBtnPrimary}
         secondaryHref={contactHref}
         secondaryLabel={c.heroBtnSecondary}
-        imageSrc={HERO_IMAGE}
-        imageAlt={
-          locale === "de"
-            ? "Immobilienberatung mit Unterlagen und Marktanalyse am Schreibtisch"
-            : "Property consultation with documents and market analysis at a desk"
-        }
+        visual="valuation"
       >
         <p className="mt-8 text-lg leading-[1.8] text-muted">{c.heroSubheadline}</p>
-      </SolutionHeroSection>
+      </SolutionPageHero>
 
       {/* ─── SECTION 1: Why important ───────────────────────────────────── */}
-      <Section className="py-24 md:py-32">
+      <Section>
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-h2 text-brand-800">{c.section1Headline}</h2>
           <div className="gold-rule mx-auto mt-8" aria-hidden="true" />
@@ -509,16 +502,18 @@ export function MarktwertanalysePage({ locale }: MarktwertanalysePageProps) {
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {c.section1Cards.map((card) => (
-            <Card key={card.title} as="article" className="h-full">
-              <CardTitle>{card.title}</CardTitle>
-              <CardDescription>{card.description}</CardDescription>
-            </Card>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── SECTION 2: Value factors ───────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.section2Label} headline={c.section2Headline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {c.factorCards.map((card) => (
@@ -534,7 +529,7 @@ export function MarktwertanalysePage({ locale }: MarktwertanalysePageProps) {
       </Section>
 
       {/* ─── SECTION 3: ImmoWertV methods ────────────────────────────────── */}
-      <Section className="py-24 md:py-32">
+      <Section>
         <SectionHeader
           label={c.section3Label}
           headline={c.section3Headline}
@@ -553,7 +548,7 @@ export function MarktwertanalysePage({ locale }: MarktwertanalysePageProps) {
       </Section>
 
       {/* ─── SECTION 4: FAQ ───────────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <div className="mx-auto max-w-4xl">
           <SectionHeader
             label={c.section4Label}
@@ -570,36 +565,25 @@ export function MarktwertanalysePage({ locale }: MarktwertanalysePageProps) {
         </div>
       </Section>
 
-      {/* ─── SECTION 5: SEO terms ─────────────────────────────────────────── */}
-      <Section className="py-24 md:py-32">
-        <SectionHeader label={c.section5Label} headline={c.section5Headline} />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {c.seoTerms.map((term) => (
-            <div
-              key={term}
-              className="card-premium flex min-h-[88px] items-center justify-center px-6 py-5 text-center"
-            >
-              <span className="text-base font-medium leading-snug text-brand-800">{term}</span>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <RelatedSolutionsSection locale={locale} pageKey="marktwertanalyse" />
 
-      {/* ─── SECTION 6: Use cases ─────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <PageBottomSpacer />
+      <Section variant="muted">
         <SectionHeader label={c.section6Label} headline={c.section6Headline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {c.useCaseCards.map((card) => (
-            <Card key={card.title} as="article" className="h-full">
-              <CardTitle>{card.title}</CardTitle>
-              <CardDescription>{card.description}</CardDescription>
-            </Card>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── SECTION 7: Process timeline ──────────────────────────────────── */}
-      <Section className="py-24 md:py-32">
+      <Section>
         <SectionHeader label={c.section7Label} headline={c.section7Headline} />
         <div className="relative grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {c.processSteps.map((step, index) => (
@@ -627,15 +611,7 @@ export function MarktwertanalysePage({ locale }: MarktwertanalysePageProps) {
         </div>
       </Section>
 
-      {/* ─── CTA ──────────────────────────────────────────────────────────── */}
-      <CTASection
-        headline={c.ctaHeadline}
-        text={c.ctaText}
-        primaryLabel={c.ctaBtnPrimary}
-        primaryHref={dashboardHref}
-        secondaryLabel={c.ctaBtnSecondary}
-        secondaryHref={contactHref}
-      />
+      <PageBottomSpacer />
     </>
   );
 }

@@ -1,4 +1,7 @@
 import { cn } from "@/lib/utils";
+import { containerClasses } from "@/lib/design-system/tokens/containers";
+import { layoutSpacing } from "@/lib/design-system/tokens/spacing";
+import { typographyClasses } from "@/lib/design-system/tokens/typography";
 
 interface SectionProps {
   children: React.ReactNode;
@@ -10,7 +13,7 @@ interface SectionProps {
 const variantStyles = {
   default: "bg-cream",
   dark: "bg-brand-800 text-white",
-  muted: "bg-white",
+  muted: "bg-surface",
 };
 
 export function Section({
@@ -20,8 +23,11 @@ export function Section({
   variant = "default",
 }: SectionProps) {
   return (
-    <section id={id} className={cn("py-20 md:py-28", variantStyles[variant], className)}>
-      <div className="mx-auto w-full max-w-7xl px-6 md:px-8">{children}</div>
+    <section
+      id={id}
+      className={cn(layoutSpacing.sectionY, variantStyles[variant], className)}
+    >
+      <div className={containerClasses.page}>{children}</div>
     </section>
   );
 }
@@ -42,37 +48,39 @@ export function SectionHeader({
   dark = false,
 }: SectionHeaderProps) {
   return (
-    <div className={cn("mb-12 md:mb-16", className)}>
-      {label && (
+    <div className={cn(layoutSpacing.sectionHeaderMb, className)}>
+      {label ? (
         <p
           className={cn(
-            "text-label mb-4",
+            typographyClasses.label,
+            "mb-4",
             dark ? "text-gold-500" : "text-gold-600",
           )}
         >
           {label}
         </p>
-      )}
-      {headline && (
+      ) : null}
+      {headline ? (
         <h2
           className={cn(
-            "text-h2 max-w-3xl",
+            typographyClasses.h2,
+            "max-w-3xl",
             dark ? "text-white" : "text-brand-800",
           )}
         >
           {headline}
         </h2>
-      )}
-      {description && (
+      ) : null}
+      {description ? (
         <p
           className={cn(
-            "mt-6 max-w-2xl text-lg leading-[1.8]",
+            "mt-6 max-w-2xl text-body-lg",
             dark ? "text-white/80" : "text-muted",
           )}
         >
           {description}
         </p>
-      )}
+      ) : null}
     </div>
   );
 }

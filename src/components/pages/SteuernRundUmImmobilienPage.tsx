@@ -1,19 +1,14 @@
 import Image from "next/image";
+import { ArticleLayout } from "@/components/editorial/ArticleLayout";
 import {
   ArticleH2,
-  ArticleMetaRow,
   ArticleP,
-  CategoryBadge,
   EditorialList,
-  PropertyKnowledgeBackLink,
-  PropertyKnowledgeBreadcrumb,
-  PropertyKnowledgePageButtons,
 } from "@/components/property-knowledge/ArticleUi";
 import { Section } from "@/components/ui/Section";
 import type { Locale } from "@/lib/i18n/config";
 import { propertyKnowledgeOverview, propertyKnowledgeUi } from "@/lib/i18n/property-knowledge";
 
-const HERO_IMAGE = "/images/knowledge/steuern-rund-um-immobilien.jpg";
 const READ_MINUTES = 10;
 
 const SECTION_IMAGES = {
@@ -508,7 +503,7 @@ const topicSectionImages: Record<string, string> = {
 };
 
 function TopicIcon({ name }: { name: string }) {
-  const className = "h-6 w-6 text-[#B9965B]";
+  const className = "h-6 w-6 text-gold-600";
 
   const paths: Record<string, string> = {
     receipt:
@@ -542,7 +537,7 @@ function TopicIcon({ name }: { name: string }) {
 
 function SectionImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#D7D2C8]/60 bg-white shadow-[0_8px_40px_rgba(15,61,46,0.06)]">
+    <div className="overflow-hidden rounded-2xl border border-border/60 bg-white shadow-sm">
       <Image
         src={src}
         alt={alt}
@@ -567,29 +562,29 @@ function TopicSection({
   return (
     <section
       id={section.id}
-      className="scroll-mt-28 border-t border-[#D7D2C8]/50 py-16 md:py-20"
+      className="scroll-mt-28 border-t border-border/50 py-16 md:py-20"
     >
       <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
         <div className={reverse ? "lg:order-2" : undefined}>
-          <div className="rounded-2xl border border-[#0F3D2E]/10 bg-white px-7 py-8 shadow-[0_4px_24px_rgba(15,61,46,0.06)] md:px-9 md:py-10">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#B9965B]/20 bg-[#B9965B]/8">
+          <div className="rounded-2xl border border-brand-800/10 bg-white px-7 py-8 shadow-sm md:px-9 md:py-10">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-gold-600/20 bg-gold-600/8">
               <TopicIcon name={section.icon} />
             </div>
-            <h2 className="mt-6 text-[1.375rem] font-semibold leading-snug text-[#0F3D2E] md:text-2xl">
+            <h2 className="mt-6 text-[1.375rem] font-semibold leading-snug text-brand-800 md:text-2xl">
               {section.title}
             </h2>
-            <p className="mt-4 text-base leading-[1.85] text-[#1D1D1B]/72 md:text-[1.0625rem]">
+            <p className="mt-4 text-base leading-[1.85] text-muted md:text-[1.0625rem]">
               {section.description}
             </p>
             <ul className="mt-6 space-y-2.5">
               {section.topics.map((topic) => (
                 <li
                   key={topic}
-                  className="flex gap-3 text-sm font-medium leading-snug text-[#0F3D2E]/75 md:text-[0.9375rem]"
+                  className="flex gap-3 text-sm font-medium leading-snug text-brand-800/75 md:text-[0.9375rem]"
                 >
                   <span
                     aria-hidden="true"
-                    className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-[#B9965B]/70"
+                    className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-gold-600/70"
                   />
                   {topic}
                 </li>
@@ -614,86 +609,21 @@ export function SteuernRundUmImmobilienPage({
 }: SteuernRundUmImmobilienPageProps) {
   const t = copy[locale];
   const ui = propertyKnowledgeUi[locale];
-  const overviewHref = propertyKnowledgeOverview[locale].href;
 
   return (
-    <>
-      <section className="relative min-h-[calc(100svh-5rem)] w-full overflow-hidden">
-        <div className="absolute inset-0 z-0 h-full w-full">
-          <Image
-            src={HERO_IMAGE}
-            alt={t.heroImageAlt}
-            width={2400}
-            height={1350}
-            priority
-            className="h-full w-full object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        <div
-          className="absolute inset-0 z-[1] bg-gradient-to-r from-[#0F3D2E]/88 from-0% via-[#0F3D2E]/55 via-[50%] to-[#0F3D2E]/35 to-[100%] max-md:via-[#0F3D2E]/65"
-          aria-hidden="true"
-        />
-        <div className="relative z-[2] mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-7xl items-center px-6 pb-20 pt-16 md:px-8 md:pb-24 md:pt-20">
-          <div className="max-w-3xl">
-            <p className="text-label mb-6 block text-[#B9965B]">
-              {ui.categoryShort}
-            </p>
-            <h1 className="text-h1 text-white">{t.heroTitle}</h1>
-            <p className="mt-8 max-w-2xl text-lg leading-[1.8] text-white/90">
-              {t.heroSubtitle}
-            </p>
-            <PropertyKnowledgePageButtons locale={locale} onDark className="mt-10" />
-          </div>
-        </div>
-      </section>
-
-      <div className="bg-[#F7F5EF] py-16 md:py-20">
-        <div className="mx-auto max-w-[850px] px-6 md:px-8">
-          <PropertyKnowledgeBreadcrumb locale={locale} currentTitle={t.articleTitle} />
-
-          <header className="mb-10">
-            <CategoryBadge locale={locale} />
-            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-[#0F3D2E] md:text-[2.125rem]">
-              {t.articleTitle}
-            </h2>
-            <p className="mt-4 text-lg leading-[1.8] text-[#1D1D1B]/60">
-              {t.articleSubtitle}
-            </p>
-            <div
-              aria-hidden="true"
-              className="mt-7 h-px w-16 rounded-full bg-[#B9965B]/55"
-            />
-            <ArticleMetaRow locale={locale} readMinutes={READ_MINUTES} />
-          </header>
-
-          <article>
-            <ArticleP>{t.intro}</ArticleP>
-
-            {t.articleSections.map((section) => (
-              <div key={section.id}>
-                <ArticleH2 id={section.id}>{section.title}</ArticleH2>
-                {section.paragraphs.map((paragraph) => (
-                  <ArticleP key={paragraph.slice(0, 40)}>{paragraph}</ArticleP>
-                ))}
-                {"list" in section && section.list ? (
-                  <EditorialList items={section.list} />
-                ) : null}
-                {"afterList" in section && section.afterList
-                  ? section.afterList.map((paragraph) => (
-                      <ArticleP key={paragraph.slice(0, 40)}>{paragraph}</ArticleP>
-                    ))
-                  : null}
-              </div>
-            ))}
-          </article>
-
-          <PropertyKnowledgeBackLink locale={locale} overviewHref={overviewHref} />
-        </div>
-      </div>
-
-      <Section className="bg-[#F7F5EF] py-8 md:py-12">
-        <div className="mx-auto max-w-7xl px-6 md:px-8">
+    <ArticleLayout
+      locale={locale}
+      breadcrumbTitle={t.articleTitle}
+      heroLabel={ui.categoryShort}
+      heroHeadline={t.heroTitle}
+      heroSubheadline={t.heroSubtitle}
+      articleTitle={t.articleTitle}
+      articleSubtitle={t.articleSubtitle}
+      readMinutes={READ_MINUTES}
+      backLinkHref={propertyKnowledgeOverview[locale].href}
+      relatedExcludeId="steuern"
+      afterArticle={
+        <Section className="py-8 md:py-12">
           <div className="mx-auto max-w-[850px] lg:max-w-none">
             <div className="mb-4 text-center lg:mb-8">
               <p className="text-label mb-4 block text-gold-600">
@@ -711,30 +641,28 @@ export function SteuernRundUmImmobilienPage({
               />
             ))}
           </div>
-        </div>
-      </Section>
+        </Section>
+      }
+    >
+      <ArticleP>{t.intro}</ArticleP>
 
-      <section className="bg-[#0F3D2E] py-24 md:py-32">
-        <div className="mx-auto max-w-[850px] px-6 text-center md:px-8">
-          <p className="text-label mb-6 block text-[#B9965B]">{t.ctaLabel}</p>
-          <h2 className="text-h2 text-white">{t.ctaHeadline}</h2>
-          <div
-            aria-hidden="true"
-            className="mx-auto mt-8 h-px w-10 rounded-full bg-[#B9965B]/60"
-          />
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.8] text-white/75">
-            {t.ctaText}
-          </p>
-          <PropertyKnowledgePageButtons
-            locale={locale}
-            onDark
-            className="mt-12 justify-center"
-          />
+      {t.articleSections.map((section) => (
+        <div key={section.id}>
+          <ArticleH2 id={section.id}>{section.title}</ArticleH2>
+          {section.paragraphs.map((paragraph) => (
+            <ArticleP key={paragraph.slice(0, 40)}>{paragraph}</ArticleP>
+          ))}
+          {"list" in section && section.list ? (
+            <EditorialList items={section.list} />
+          ) : null}
+          {"afterList" in section && section.afterList
+            ? section.afterList.map((paragraph) => (
+                <ArticleP key={paragraph.slice(0, 40)}>{paragraph}</ArticleP>
+              ))
+            : null}
         </div>
-      </section>
-
-      <div className="h-20 bg-cream md:h-[100px]" aria-hidden="true" />
-    </>
+      ))}
+    </ArticleLayout>
   );
 }
 

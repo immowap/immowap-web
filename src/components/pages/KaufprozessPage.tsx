@@ -1,31 +1,18 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/Button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
+import { ArticleLayout } from "@/components/editorial/ArticleLayout";
 import {
   ArticleH2,
   ArticleH3,
-  ArticleMetaRow,
   ArticleP,
-  CategoryBadge,
   EditorialList,
-  PropertyKnowledgeBackLink,
-  PropertyKnowledgeBreadcrumb,
-  PropertyKnowledgePageButtons,
 } from "@/components/property-knowledge/ArticleUi";
 import type { Locale } from "@/lib/i18n/config";
-import { getRoute } from "@/lib/i18n/config";
-import { propertyKnowledgeOverview, propertyKnowledgeUi } from "@/lib/i18n/property-knowledge";
+import { propertyKnowledgeOverview } from "@/lib/i18n/property-knowledge";
 
 interface KaufprozessPageProps {
   locale: Locale;
 }
-
-const HERO_IMAGE = "/images/knowledge/kaufprozess.jpg";
-const SECTION_IMAGE = "/images/knowledge/kaufprozess-section.jpg";
-
-const secondaryButtonClass =
-  "w-full border-white/30 text-white hover:border-gold-500/60 hover:bg-white/10 hover:text-white sm:w-auto";
 
 export const kaufprozessCopy = {
   de: {
@@ -356,203 +343,49 @@ export const kaufprozessCopy = {
   },
 } as const;
 
-function TableOfContents({
-  locale,
-}: {
-  locale: Locale;
-}) {
-  const c = kaufprozessCopy[locale];
-
-  return (
-    <nav
-      aria-label={c.tocLabel}
-      className="mb-12 rounded-2xl border border-[#D7D2C8]/80 bg-white px-6 py-7 md:px-8 md:py-8"
-    >
-      <p className="text-label mb-5 block text-gold-600">{c.tocLabel}</p>
-      <ol className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-        {c.tocItems.map((item, index) => (
-          <li key={item.id}>
-            <a
-              href={`#${item.id}`}
-              className="group flex items-baseline gap-3 text-sm leading-snug text-[#1D1D1B]/65 transition-colors duration-200 hover:text-[#0F3D2E] md:text-[0.9375rem]"
-            >
-              <span className="text-label shrink-0 text-[#B9965B]/70">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
-}
-
 export function KaufprozessPage({ locale }: KaufprozessPageProps) {
   const c = kaufprozessCopy[locale];
-  const ui = propertyKnowledgeUi[locale];
-  const overviewHref = propertyKnowledgeOverview[locale].href;
-  const dashboardHref = getRoute(locale, "dashboard");
-  const contactHref = getRoute(locale, "contact");
 
   return (
-    <>
-      <section className="relative min-h-[calc(100svh-5rem)] w-full overflow-hidden">
-        <div className="absolute inset-0 z-0 h-full w-full">
-          <Image
-            src={HERO_IMAGE}
-            alt={c.heroImageAlt}
-            width={2400}
-            height={1350}
-            priority
-            className="h-full w-full object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        <div
-          className="absolute inset-0 z-[1] bg-gradient-to-r from-[#0F3D2E]/88 from-0% via-[#0F3D2E]/55 via-[50%] to-[#0F3D2E]/35 to-[100%] max-md:via-[#0F3D2E]/65"
-          aria-hidden="true"
-        />
-        <div className="relative z-[2] mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-7xl items-center px-6 pb-20 pt-16 md:px-8 md:pb-24 md:pt-20">
-          <div className="max-w-3xl">
-            <p className="text-label mb-6 block text-[#B9965B]">{c.heroLabel}</p>
-            <h1 className="text-h1 text-white">{c.heroHeadline}</h1>
-            <p className="mt-8 max-w-2xl text-lg leading-[1.8] text-white/90">
-              {c.heroSubheadline}
-            </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Button href={dashboardHref} className="w-full sm:w-auto">
-                {ui.analyseStarten}
-              </Button>
-              <Button
-                href={contactHref}
-                variant="secondary"
-                className={secondaryButtonClass}
-              >
-                {ui.anfrageSenden}
-              </Button>
+    <ArticleLayout
+      locale={locale}
+      breadcrumbTitle={c.breadcrumbTitle}
+      heroLabel={c.heroLabel}
+      heroHeadline={c.heroHeadline}
+      heroSubheadline={c.heroSubheadline}
+      articleTitle={c.articleTitle}
+      articleSubtitle={c.articleSubtitle}
+      readMinutes={c.readMinutes}
+      tocLabel={c.tocLabel}
+      tocItems={c.tocItems}
+      introduction={
+        <>
+          <ArticleP>{c.introP1}</ArticleP>
+          <ArticleP>{c.introP2}</ArticleP>
+        </>
+      }
+      backLinkHref={propertyKnowledgeOverview[locale].href}
+      relatedExcludeId="kaufprozess"
+      afterArticle={
+        <>
+          <Section className="py-16 md:py-24">
+            <div className="mx-auto max-w-[800px]">
+              <p className="text-label mb-4 block text-gold-600">{c.underestimateLabel}</p>
+              <h2 className="text-h2 text-brand-800">{c.underestimateHeadline}</h2>
+              <div className="gold-rule mt-6" aria-hidden="true" />
+              <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+                {c.underestimateCards.map((card) => (
+                  <Card key={card.title} className="h-full bg-white shadow-none">
+                    <CardTitle className="text-lg">{card.title}</CardTitle>
+                    <CardDescription>{card.description}</CardDescription>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </Section>
 
-      <div className="bg-[#F7F5EF] py-16 md:py-20">
-        <div className="mx-auto max-w-[800px] px-6 md:px-8">
-          <PropertyKnowledgeBreadcrumb locale={locale} currentTitle={c.breadcrumbTitle} />
-
-          <header className="mb-10">
-            <CategoryBadge locale={locale} />
-            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-[#0F3D2E] md:text-[2.125rem]">
-              {c.articleTitle}
-            </h2>
-            <p className="mt-4 text-lg leading-[1.8] text-[#1D1D1B]/60">
-              {c.articleSubtitle}
-            </p>
-            <div
-              aria-hidden="true"
-              className="mt-7 h-px w-16 rounded-full bg-[#B9965B]/55"
-            />
-            <ArticleMetaRow locale={locale} readMinutes={c.readMinutes} />
-          </header>
-
-          <TableOfContents locale={locale} />
-
-          <article>
-            <ArticleP>{c.introP1}</ArticleP>
-            <ArticleP>{c.introP2}</ArticleP>
-
-            <ArticleH2 id="immobiliensuche">{c.sectionImmobiliensuche}</ArticleH2>
-            <ArticleP>{c.sectionImmobiliensucheP1}</ArticleP>
-            <ArticleP>{c.sectionImmobiliensucheP2}</ArticleP>
-
-            <ArticleH2 id="besichtigung">{c.sectionBesichtigung}</ArticleH2>
-            <ArticleP>{c.sectionBesichtigungP1}</ArticleP>
-            <ArticleP>{c.sectionBesichtigungP2}</ArticleP>
-            <EditorialList items={c.besichtigungList} />
-            <ArticleP>{c.sectionBesichtigungP3}</ArticleP>
-
-            <ArticleH2 id="preisverhandlung">{c.sectionPreisverhandlung}</ArticleH2>
-            <ArticleP>{c.sectionPreisverhandlungP1}</ArticleP>
-            <ArticleP>{c.sectionPreisverhandlungP2}</ArticleP>
-
-            <ArticleH2 id="finanzierung">{c.sectionFinanzierung}</ArticleH2>
-            <ArticleP>{c.sectionFinanzierungP1}</ArticleP>
-            <EditorialList items={c.finanzierungList} />
-            <ArticleP>{c.sectionFinanzierungP2}</ArticleP>
-            <ArticleP>{c.sectionFinanzierungP3}</ArticleP>
-
-            <ArticleH2 id="kaufvertrag">{c.sectionKaufvertrag}</ArticleH2>
-            <ArticleP>{c.sectionKaufvertragP1}</ArticleP>
-            <ArticleP>{c.sectionKaufvertragP2}</ArticleP>
-            <EditorialList items={c.kaufvertragList} />
-            <ArticleP>{c.sectionKaufvertragP3}</ArticleP>
-
-            <ArticleH2 id="notartermin">{c.sectionNotartermin}</ArticleH2>
-            <ArticleP>{c.sectionNotarterminP1}</ArticleP>
-            <ArticleP>{c.sectionNotarterminP2}</ArticleP>
-            <ArticleP>{c.sectionNotarterminP3}</ArticleP>
-
-            <ArticleH2 id="grundbuch">{c.sectionGrundbuch}</ArticleH2>
-            <ArticleP>{c.sectionGrundbuchP1}</ArticleP>
-            <ArticleP>{c.sectionGrundbuchP2}</ArticleP>
-
-            <ArticleH2 id="uebergabe">{c.sectionUebergabe}</ArticleH2>
-            <ArticleP>{c.sectionUebergabeP1}</ArticleP>
-            <ArticleP>{c.sectionUebergabeP2}</ArticleP>
-            <EditorialList items={c.uebergabeList} />
-            <ArticleP>{c.sectionUebergabeP3}</ArticleP>
-
-            <ArticleH2 id="haeufige-fehler">{c.sectionFehler}</ArticleH2>
-            <ArticleP>{c.sectionFehlerP1}</ArticleP>
-
-            <ArticleH3>{c.fehlerEigenkapital}</ArticleH3>
-            <ArticleP>{c.fehlerEigenkapitalP}</ArticleP>
-
-            <ArticleH3>{c.fehlerKaufpreis}</ArticleH3>
-            <ArticleP>{c.fehlerKaufpreisP}</ArticleP>
-
-            <ArticleH3>{c.fehlerUnterlagen}</ArticleH3>
-            <ArticleP>{c.fehlerUnterlagenP}</ArticleP>
-
-            <ArticleH3>{c.fehlerEmotion}</ArticleH3>
-            <ArticleP>{c.fehlerEmotionP}</ArticleP>
-
-            <ArticleH3>{c.fehlerRisiken}</ArticleH3>
-            <ArticleP>{c.fehlerRisikenP}</ArticleP>
-
-            <ArticleH2 id="fazit">{c.fazitTitle}</ArticleH2>
-            <ArticleP>{c.fazitP1}</ArticleP>
-            <ArticleP>{c.fazitP2}</ArticleP>
-            <ArticleP>{c.fazitP3}</ArticleP>
-          </article>
-
-          <PropertyKnowledgeBackLink locale={locale} overviewHref={overviewHref} />
-        </div>
-      </div>
-
-      <Section className="bg-[#F7F5EF] py-16 md:py-24">
-        <div className="mx-auto max-w-[800px] px-6 md:px-8">
-          <p className="text-label mb-4 block text-gold-600">{c.underestimateLabel}</p>
-          <h2 className="text-h2 text-brand-800">{c.underestimateHeadline}</h2>
-          <div className="gold-rule mt-6" aria-hidden="true" />
-          <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
-            {c.underestimateCards.map((card) => (
-              <Card
-                key={card.title}
-                className="h-full border-[#D7D2C8]/80 bg-white shadow-none"
-              >
-                <CardTitle className="text-lg">{card.title}</CardTitle>
-                <CardDescription>{card.description}</CardDescription>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section variant="muted" className="py-24 md:py-32">
-        <div className="mx-auto max-w-7xl px-6 md:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
+          <Section variant="muted" className="py-24 md:py-32">
+            <div className="mx-auto max-w-[850px]">
               <p className="text-label mb-6 block text-gold-600">{c.perspectiveLabel}</p>
               <h2 className="text-h2 text-brand-800">{c.perspectiveHeadline}</h2>
               <div className="gold-rule mt-8" aria-hidden="true" />
@@ -561,39 +394,73 @@ export function KaufprozessPage({ locale }: KaufprozessPageProps) {
               </h3>
               <p className="mt-6 text-lg leading-[1.8] text-muted">{c.perspectiveText}</p>
             </div>
-            <div className="relative h-[360px] overflow-hidden rounded-3xl sm:h-[440px] lg:h-[520px]">
-              <Image
-                src={SECTION_IMAGE}
-                alt={c.sectionImageAlt}
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0F3D2E]/10 to-transparent"
-                aria-hidden="true"
-              />
-            </div>
-          </div>
-        </div>
-      </Section>
+          </Section>
+        </>
+      }
+    >
+      <ArticleH2 id="immobiliensuche">{c.sectionImmobiliensuche}</ArticleH2>
+      <ArticleP>{c.sectionImmobiliensucheP1}</ArticleP>
+      <ArticleP>{c.sectionImmobiliensucheP2}</ArticleP>
 
-      <section className="bg-[#0F3D2E] py-24 md:py-32">
-        <div className="mx-auto max-w-[800px] px-6 text-center md:px-8">
-          <p className="text-label mb-6 block text-[#B9965B]">{c.ctaLabel}</p>
-          <h2 className="text-h2 text-white">{c.ctaHeadline}</h2>
-          <div
-            aria-hidden="true"
-            className="mx-auto mt-8 h-px w-10 rounded-full bg-[#B9965B]/60"
-          />
-          <p className="mx-auto mt-8 max-w-xl text-lg leading-[1.8] text-white/75">
-            {c.ctaText}
-          </p>
-          <PropertyKnowledgePageButtons locale={locale} className="mt-12" />
-        </div>
-      </section>
+      <ArticleH2 id="besichtigung">{c.sectionBesichtigung}</ArticleH2>
+      <ArticleP>{c.sectionBesichtigungP1}</ArticleP>
+      <ArticleP>{c.sectionBesichtigungP2}</ArticleP>
+      <EditorialList items={c.besichtigungList} />
+      <ArticleP>{c.sectionBesichtigungP3}</ArticleP>
 
-      <div className="h-20 bg-cream md:h-[100px]" aria-hidden="true" />
-    </>
+      <ArticleH2 id="preisverhandlung">{c.sectionPreisverhandlung}</ArticleH2>
+      <ArticleP>{c.sectionPreisverhandlungP1}</ArticleP>
+      <ArticleP>{c.sectionPreisverhandlungP2}</ArticleP>
+
+      <ArticleH2 id="finanzierung">{c.sectionFinanzierung}</ArticleH2>
+      <ArticleP>{c.sectionFinanzierungP1}</ArticleP>
+      <EditorialList items={c.finanzierungList} />
+      <ArticleP>{c.sectionFinanzierungP2}</ArticleP>
+      <ArticleP>{c.sectionFinanzierungP3}</ArticleP>
+
+      <ArticleH2 id="kaufvertrag">{c.sectionKaufvertrag}</ArticleH2>
+      <ArticleP>{c.sectionKaufvertragP1}</ArticleP>
+      <ArticleP>{c.sectionKaufvertragP2}</ArticleP>
+      <EditorialList items={c.kaufvertragList} />
+      <ArticleP>{c.sectionKaufvertragP3}</ArticleP>
+
+      <ArticleH2 id="notartermin">{c.sectionNotartermin}</ArticleH2>
+      <ArticleP>{c.sectionNotarterminP1}</ArticleP>
+      <ArticleP>{c.sectionNotarterminP2}</ArticleP>
+      <ArticleP>{c.sectionNotarterminP3}</ArticleP>
+
+      <ArticleH2 id="grundbuch">{c.sectionGrundbuch}</ArticleH2>
+      <ArticleP>{c.sectionGrundbuchP1}</ArticleP>
+      <ArticleP>{c.sectionGrundbuchP2}</ArticleP>
+
+      <ArticleH2 id="uebergabe">{c.sectionUebergabe}</ArticleH2>
+      <ArticleP>{c.sectionUebergabeP1}</ArticleP>
+      <ArticleP>{c.sectionUebergabeP2}</ArticleP>
+      <EditorialList items={c.uebergabeList} />
+      <ArticleP>{c.sectionUebergabeP3}</ArticleP>
+
+      <ArticleH2 id="haeufige-fehler">{c.sectionFehler}</ArticleH2>
+      <ArticleP>{c.sectionFehlerP1}</ArticleP>
+
+      <ArticleH3>{c.fehlerEigenkapital}</ArticleH3>
+      <ArticleP>{c.fehlerEigenkapitalP}</ArticleP>
+
+      <ArticleH3>{c.fehlerKaufpreis}</ArticleH3>
+      <ArticleP>{c.fehlerKaufpreisP}</ArticleP>
+
+      <ArticleH3>{c.fehlerUnterlagen}</ArticleH3>
+      <ArticleP>{c.fehlerUnterlagenP}</ArticleP>
+
+      <ArticleH3>{c.fehlerEmotion}</ArticleH3>
+      <ArticleP>{c.fehlerEmotionP}</ArticleP>
+
+      <ArticleH3>{c.fehlerRisiken}</ArticleH3>
+      <ArticleP>{c.fehlerRisikenP}</ArticleP>
+
+      <ArticleH2 id="fazit">{c.fazitTitle}</ArticleH2>
+      <ArticleP>{c.fazitP1}</ArticleP>
+      <ArticleP>{c.fazitP2}</ArticleP>
+      <ArticleP>{c.fazitP3}</ArticleP>
+    </ArticleLayout>
   );
 }

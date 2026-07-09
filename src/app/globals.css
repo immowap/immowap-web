@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
+/* ============================================================
+   immowap Design System — CSS Custom Properties (source of truth)
+   ============================================================ */
+
 :root {
+  /* Brand palette */
   --background: #f7f5ef;
   --surface: #ffffff;
   --foreground: #1d1d1b;
-
   --brand-primary: #0f3d2e;
   --brand-secondary: #1f7a4d;
   --gold: #b9965b;
   --cream: #f7f5ef;
   --warm-gray: #d7d2c8;
-
   --brand-50: #eef3f0;
   --brand-100: #d6e3dc;
   --brand-600: #1f7a4d;
   --brand-800: #0f3d2e;
   --brand-900: #0b2c21;
-
   --gold-500: #b9965b;
   --gold-600: #a3834f;
-
   --muted: #6b6a65;
+
+  /* Semantic colors */
+  --color-success: #1f7a4d;
+  --color-warning: #b9965b;
+  --color-info: #0f3d2e;
+  --color-error: #8c4a42;
+  --color-disabled: #6b6a65;
+  --color-border: #d7d2c8;
+  --color-hover: #1f7a4d;
+  --color-focus: #b9965b;
+
+  /* Spacing scale (px) */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Layout */
+  --section-y: 5rem;
+  --section-y-md: 7rem;
+  --container-max: 80rem;
+  --container-content: 48rem;
+  --container-article: 50rem;
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+  --radius-card: var(--radius-xl);
+  --radius-hero: var(--radius-2xl);
+  --radius-button: var(--radius-full);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(29, 29, 27, 0.04);
+  --shadow-md: 0 4px 24px rgba(29, 29, 27, 0.04);
+  --shadow-lg: 0 12px 32px rgba(15, 61, 46, 0.06);
+  --shadow-xl: 0 20px 48px rgba(15, 61, 46, 0.08);
+  --shadow-hero: 0 24px 64px rgba(15, 61, 46, 0.14);
+  --shadow-float: 0 16px 40px rgba(15, 61, 46, 0.1);
+  --shadow-hover: 0 20px 48px rgba(15, 61, 46, 0.08);
+  --shadow-card: var(--shadow-md);
+  --shadow-card-hover: var(--shadow-hover);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-default: 300ms;
+  --duration-slow: 500ms;
+  --easing-default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-default: var(--duration-default) var(--easing-default);
+  --transition-slow: var(--duration-slow) var(--easing-default);
+
+  /* Opacity */
+  --opacity-disabled: 0.45;
+  --opacity-muted: 0.65;
+
+  /* Z-index */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-header: 30;
+  --z-overlay: 40;
+  --z-modal: 50;
 }
 
 @theme inline {
@@ -32,28 +106,59 @@
   --color-brand-primary: var(--brand-primary);
   --color-brand-secondary: var(--brand-secondary);
   --color-gold: var(--gold);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
   --color-brand-600: var(--brand-600);
   --color-brand-800: var(--brand-800);
   --color-brand-900: var(--brand-900);
   --color-gold-500: var(--gold-500);
   --color-gold-600: var(--gold-600);
   --color-muted: var(--muted);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-info: var(--color-info);
+  --color-error: var(--color-error);
+  --color-disabled: var(--color-disabled);
+  --color-border: var(--color-border);
+  --color-hover: var(--color-hover);
+  --color-focus: var(--color-focus);
   --font-sans: var(--font-inter);
 }
 
+/* ============================================================
+   Base
+   ============================================================ */
+
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Prevent grid children from forcing horizontal overflow */
+.grid > * {
+  min-width: 0;
+}
+
+/* ============================================================
+   Typography scale
+   ============================================================ */
+
+.text-display {
+  font-size: clamp(2.75rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 
 .text-h1 {
@@ -61,6 +166,8 @@ body {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .text-h2 {
@@ -68,6 +175,8 @@ body {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .text-h3 {
@@ -75,31 +184,106 @@ body {
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.015em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.text-h4 {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.text-body-lg {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.text-body {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.text-body-sm {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.text-caption {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.text-button {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .text-label {
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
+/* ============================================================
+   Components (utility classes)
+   ============================================================ */
+
 .card-premium {
   background: var(--surface);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 28px;
-  box-shadow: 0 4px 24px rgba(29, 29, 27, 0.04);
-  padding: 40px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-10);
   transition:
-    box-shadow 0.35s ease,
-    border-color 0.35s ease,
-    transform 0.35s ease;
+    box-shadow var(--transition-default),
+    border-color var(--transition-default),
+    transform var(--transition-default);
 }
 
-.card-premium:hover {
-  box-shadow: 0 20px 48px rgba(15, 61, 46, 0.08);
+.card-premium--interactive {
+  cursor: pointer;
+}
+
+.card-premium--interactive:hover {
+  box-shadow: var(--shadow-card-hover);
   border-color: rgba(185, 150, 91, 0.25);
+}
+
+.container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-max);
+  padding-inline: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: var(--space-8);
+  }
+}
+
+.page-bottom-spacer {
+  min-height: var(--space-16);
+}
+
+@media (min-width: 768px) {
+  .page-bottom-spacer {
+    min-height: var(--space-24);
+  }
 }
 
 .gold-rule {
@@ -107,6 +291,28 @@ body {
   height: 2px;
   background: var(--gold-500);
 }
+
+.hover-lift {
+  transition:
+    transform var(--transition-default),
+    box-shadow var(--transition-default);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px rgba(185, 150, 91, 0.45);
+}
+
+/* ============================================================
+   Scrollbar
+   ============================================================ */
 
 * {
   scrollbar-width: thin;
@@ -121,4 +327,27 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--warm-gray);
   border-radius: 3px;
+}
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
 }

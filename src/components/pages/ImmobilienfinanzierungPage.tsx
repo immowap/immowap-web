@@ -1,25 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ArticleLayout } from "@/components/editorial/ArticleLayout";
 import {
   ArticleH2,
-  ArticleMetaRow,
   ArticleP,
-  PropertyKnowledgeBackLink,
-  PropertyKnowledgeBreadcrumb,
-  PropertyKnowledgePageButtons,
 } from "@/components/property-knowledge/ArticleUi";
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import type { Locale } from "@/lib/i18n/config";
-import {
-  getRelatedArticles,
-  propertyKnowledgeArticles,
-  propertyKnowledgeOverview,
-  propertyKnowledgeUi,
-} from "@/lib/i18n/property-knowledge";
+import { propertyKnowledgeOverview } from "@/lib/i18n/property-knowledge";
 
-const HERO_IMAGE = "/images/knowledge/finanzierung.jpg";
-const INTRO_IMAGE = "/images/wissen/immobilienstrategien/hero.jpg";
 const READ_MINUTES = 8;
 
 const copy = {
@@ -433,11 +422,11 @@ function TopicCard({
 }) {
   return (
     <Link href={href} className="group block no-underline">
-      <article className="flex h-full flex-col gap-3 rounded-2xl border border-[#D7D2C8]/80 bg-white px-6 py-5 transition-colors duration-300 hover:border-[#B9965B]/35">
-        <h3 className="text-lg font-semibold text-[#0F3D2E] transition-colors duration-300 group-hover:text-brand-600">
+      <article className="flex h-full flex-col gap-3 rounded-2xl border border-border/80 bg-white px-6 py-5 transition-colors duration-300 hover:border-gold-600/35">
+        <h3 className="text-lg font-semibold text-brand-800 transition-colors duration-300 group-hover:text-brand-600">
           {title}
         </h3>
-        <p className="flex-1 text-sm leading-[1.75] text-[#1D1D1B]/60">
+        <p className="flex-1 text-sm leading-[1.75] text-muted">
           {description}
         </p>
         <span className="text-label inline-flex items-center gap-2 text-gold-600 transition-all duration-300 group-hover:gap-3">
@@ -445,34 +434,6 @@ function TopicCard({
           <span aria-hidden="true">→</span>
         </span>
       </article>
-    </Link>
-  );
-}
-
-function RelatedArticleCard({
-  locale,
-  title,
-  description,
-  href,
-}: {
-  locale: Locale;
-  title: string;
-  description: string;
-  href: string;
-}) {
-  const ui = propertyKnowledgeUi[locale];
-
-  return (
-    <Link href={href} className="group block no-underline">
-      <Card className="h-full border-[#D7D2C8]/80 bg-white shadow-none transition-colors duration-300 hover:border-[#B9965B]/35">
-        <p className="text-label text-gold-600">{ui.relatedLabel}</p>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-        <span className="text-label mt-auto inline-flex items-center gap-2 text-gold-600 transition-all duration-300 group-hover:gap-3">
-          {ui.mehrErfahren}
-          <span aria-hidden="true">→</span>
-        </span>
-      </Card>
     </Link>
   );
 }
@@ -485,168 +446,76 @@ export function ImmobilienfinanzierungPage({
   locale,
 }: ImmobilienfinanzierungPageProps) {
   const t = copy[locale];
-  const overviewHref = propertyKnowledgeOverview[locale].href;
-
-  const relatedArticles = getRelatedArticles(locale, "finanzierung").map(
-    ({ title, href }) => {
-      const article = propertyKnowledgeArticles.find(
-        (a) => a[locale].href === href,
-      )!;
-      return {
-        title,
-        href,
-        description: article[locale].description,
-      };
-    },
-  );
 
   return (
-    <>
-      <section className="relative min-h-[calc(100svh-5rem)] w-full overflow-hidden">
-        <div className="absolute inset-0 z-0 h-full w-full">
-          <Image
-            src={HERO_IMAGE}
-            alt={t.heroImageAlt}
-            width={2400}
-            height={1350}
-            priority
-            className="h-full w-full object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        <div
-          className="absolute inset-0 z-[1] bg-gradient-to-r from-[#0F3D2E]/88 from-0% via-[#0F3D2E]/55 via-[50%] to-[#0F3D2E]/35 to-[100%] max-md:via-[#0F3D2E]/65"
-          aria-hidden="true"
-        />
-        <div className="relative z-[2] mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-7xl items-center px-6 pb-20 pt-16 md:px-8 md:pb-24 md:pt-20">
-          <div className="max-w-3xl">
-            <p className="text-label mb-6 block text-[#B9965B]">{t.heroLabel}</p>
-            <h1 className="text-h1 text-white">{t.heroTitle}</h1>
-            <p className="mt-8 max-w-2xl text-lg leading-[1.8] text-white/90">
-              {t.heroSubtitle}
-            </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <PropertyKnowledgePageButtons locale={locale} onDark />
+    <ArticleLayout
+      locale={locale}
+      breadcrumbTitle={t.articleTitle}
+      heroLabel={t.heroLabel}
+      heroHeadline={t.heroTitle}
+      heroSubheadline={t.heroSubtitle}
+      articleTitle={t.articleTitle}
+      readMinutes={READ_MINUTES}
+      showCategory={false}
+      introduction={
+        <>
+          <p className="text-label mb-4 block text-gold-600">{t.introLabel}</p>
+          <h2 className="text-h2 text-brand-800">{t.introHeadline}</h2>
+          <div className="gold-rule mt-6" aria-hidden="true" />
+          <ArticleP>{t.introP1}</ArticleP>
+          <ArticleP>{t.introP2}</ArticleP>
+        </>
+      }
+      backLinkHref={propertyKnowledgeOverview[locale].href}
+      relatedExcludeId="finanzierung"
+      afterArticle={
+        <>
+          <Section className="py-24 md:py-32">
+            <SectionHeader
+              label={t.topicsLabel}
+              headline={t.topicsHeadline}
+              description={t.topicsDescription}
+            />
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {t.topics.map((topic) => (
+                <TopicCard
+                  key={topic.id}
+                  title={topic.title}
+                  description={topic.description}
+                  href={`#${topic.id}`}
+                  linkLabel={t.topicLink}
+                />
+              ))}
             </div>
-          </div>
-        </div>
-      </section>
+          </Section>
 
-      <Section variant="muted" className="py-24 md:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <p className="text-label mb-6 block text-gold-600">{t.introLabel}</p>
-            <h2 className="text-h2 text-brand-800">{t.introHeadline}</h2>
-            <div className="gold-rule mt-8" aria-hidden="true" />
-            <p className="mt-8 text-lg leading-[1.8] text-muted">{t.introP1}</p>
-            <p className="mt-6 text-lg leading-[1.8] text-muted">{t.introP2}</p>
-          </div>
+          <Section variant="muted" className="py-24 md:py-32">
+            <div className="mx-auto max-w-[850px]">
+              <Card className="bg-white px-8 py-10 shadow-sm md:px-12 md:py-12">
+                <p className="text-label mb-4 block text-gold-600">{t.infoBoxLabel}</p>
+                <CardTitle className="text-h2 text-brand-800">{t.infoBoxTitle}</CardTitle>
+                <div className="gold-rule mt-6" aria-hidden="true" />
+                <CardDescription className="mt-6 text-lg">{t.infoBoxP1}</CardDescription>
+                <CardDescription className="mt-4 text-lg">{t.infoBoxP2}</CardDescription>
+              </Card>
+            </div>
+          </Section>
+        </>
+      }
+    >
+      {t.article.intro.map((paragraph) => (
+        <ArticleP key={paragraph.slice(0, 40)}>{paragraph}</ArticleP>
+      ))}
 
-          <div className="relative h-[360px] overflow-hidden rounded-3xl sm:h-[440px] lg:h-[520px]">
-            <Image
-              src={INTRO_IMAGE}
-              alt={t.introImageAlt}
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0F3D2E]/15 to-transparent"
-              aria-hidden="true"
-            />
-          </div>
-        </div>
-      </Section>
-
-      <Section className="py-24 md:py-32">
-        <SectionHeader
-          label={t.topicsLabel}
-          headline={t.topicsHeadline}
-          description={t.topicsDescription}
-        />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {t.topics.map((topic) => (
-            <TopicCard
-              key={topic.id}
-              title={topic.title}
-              description={topic.description}
-              href={`#${topic.id}`}
-              linkLabel={t.topicLink}
-            />
+      {t.article.sections.map((section) => (
+        <div key={section.id}>
+          <ArticleH2 id={section.id}>{section.title}</ArticleH2>
+          {section.paragraphs.map((paragraph) => (
+            <ArticleP key={paragraph.slice(0, 40)}>{paragraph}</ArticleP>
           ))}
         </div>
-      </Section>
-
-      <Section variant="muted" className="py-24 md:py-32">
-        <div className="mx-auto max-w-[850px]">
-          <PropertyKnowledgeBreadcrumb locale={locale} currentTitle={t.articleTitle} />
-
-          <header className="mb-10">
-            <span className="mb-5 inline-block rounded-full border border-[#B9965B]/30 bg-[#B9965B]/8 px-3.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#B9965B]">
-              {t.badge}
-            </span>
-            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-[#0F3D2E] md:text-[2.125rem]">
-              {t.articleTitle}
-            </h2>
-            <div
-              aria-hidden="true"
-              className="mt-7 h-px w-16 rounded-full bg-[#B9965B]/55"
-            />
-            <ArticleMetaRow locale={locale} readMinutes={READ_MINUTES} />
-          </header>
-
-          <article>
-            {t.article.intro.map((paragraph) => (
-              <ArticleP key={paragraph.slice(0, 40)}>{paragraph}</ArticleP>
-            ))}
-
-            {t.article.sections.map((section) => (
-              <div key={section.id}>
-                <ArticleH2 id={section.id}>{section.title}</ArticleH2>
-                {section.paragraphs.map((paragraph) => (
-                  <ArticleP key={paragraph.slice(0, 40)}>{paragraph}</ArticleP>
-                ))}
-              </div>
-            ))}
-          </article>
-
-          <PropertyKnowledgeBackLink locale={locale} overviewHref={overviewHref} />
-        </div>
-      </Section>
-
-      <Section className="py-24 md:py-32">
-        <div className="mx-auto max-w-[850px]">
-          <Card className="border-[#D7D2C8]/80 bg-white px-8 py-10 shadow-[0_4px_24px_rgba(15,61,46,0.05)] md:px-12 md:py-12">
-            <p className="text-label mb-4 block text-gold-600">{t.infoBoxLabel}</p>
-            <CardTitle className="text-h2 text-brand-800">{t.infoBoxTitle}</CardTitle>
-            <div className="gold-rule mt-6" aria-hidden="true" />
-            <CardDescription className="mt-6 text-lg">{t.infoBoxP1}</CardDescription>
-            <CardDescription className="mt-4 text-lg">{t.infoBoxP2}</CardDescription>
-          </Card>
-        </div>
-      </Section>
-
-      <Section variant="muted" className="py-24 md:py-32">
-        <SectionHeader
-          label={t.relatedLabel}
-          headline={t.relatedHeadline}
-          description={t.relatedDescription}
-        />
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {relatedArticles.map((article) => (
-            <RelatedArticleCard
-              key={article.href}
-              locale={locale}
-              title={article.title}
-              description={article.description}
-              href={article.href}
-            />
-          ))}
-        </div>
-      </Section>
-
-      <div className="min-h-[100px] bg-cream" aria-hidden="true" />
-    </>
+      ))}
+    </ArticleLayout>
   );
 }
 

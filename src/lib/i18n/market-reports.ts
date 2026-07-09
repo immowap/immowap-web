@@ -1,4 +1,3 @@
-import type { Locale } from "./config";
 export {
   getMarketReportsHref,
   getMarketTrendsHref,

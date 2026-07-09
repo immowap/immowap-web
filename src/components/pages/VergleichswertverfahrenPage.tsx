@@ -1,8 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { SolutionHeroSection } from "@/components/ui/SolutionHeroSection";
-import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
+import { SolutionBreadcrumb } from "@/components/solutions/SolutionBreadcrumb";
+import { SolutionPageHero } from "@/components/solutions/SolutionPageHero";
+import { SolutionProcessSteps } from "@/components/solutions/SolutionProcessSteps";
+import { RelatedSolutionsSection } from "@/components/solutions/RelatedSolutionsSection";
+import { ProductSplitSection } from "@/components/ui/ProductSplitSection";
+import { InformationCard } from "@/components/ui/cards";
+import { PageBottomSpacer } from "@/components/ui/PageBottomSpacer";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
@@ -11,13 +14,8 @@ interface VergleichswertverfahrenPageProps {
   locale: Locale;
 }
 
-const HERO_IMAGE = "/images/vergleichswertverfahren/hero.jpg";
-const SECTION3_IMAGE = "/images/vergleichswertverfahren/section3.jpg";
-
 const copy = {
   de: {
-    breadcrumbSolutions: "Lösungen",
-    breadcrumbAnalyses: "Analysen",
     breadcrumbCurrent: "Vergleichswertverfahren",
     heroLabel: "Analysen",
     heroHeadline: "Vergleichswertverfahren verständlich erklärt",
@@ -144,8 +142,6 @@ const copy = {
     immowapBtnSecondary: "Anfrage senden",
   },
   en: {
-    breadcrumbSolutions: "Solutions",
-    breadcrumbAnalyses: "Analyses",
     breadcrumbCurrent: "Sales comparison approach",
     heroLabel: "Analyses",
     heroHeadline: "Sales Comparison Approach",
@@ -277,58 +273,30 @@ export function VergleichswertverfahrenPage({ locale }: VergleichswertverfahrenP
   const c = copy[locale];
   const contactHref = getRoute(locale, "contact");
   const dashboardHref = getRoute(locale, "dashboard");
-  const solutionsHref = getRoute(locale, "solutions");
 
   return (
     <>
-      <nav
-        aria-label={locale === "de" ? "Brotkrumen-Navigation" : "Breadcrumb"}
-        className="border-b border-warm-gray/30 bg-[#F7F5EF]"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-4 md:px-8">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-muted">
-            <li>
-              <Link
-                href={solutionsHref}
-                className="transition-colors hover:text-brand-600"
-              >
-                {c.breadcrumbSolutions}
-              </Link>
-            </li>
-            <li aria-hidden="true" className="text-warm-gray">
-              /
-            </li>
-            <li className="text-muted">{c.breadcrumbAnalyses}</li>
-            <li aria-hidden="true" className="text-warm-gray">
-              /
-            </li>
-            <li className="font-medium text-brand-800" aria-current="page">
-              {c.breadcrumbCurrent}
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <SolutionBreadcrumb
+        locale={locale}
+        category="analyses"
+        currentTitle={c.breadcrumbCurrent}
+      />
 
-      <SolutionHeroSection
-        backgroundClassName="bg-[#F7F5EF]"
+      <SolutionPageHero
         label={c.heroLabel}
         headline={c.heroHeadline}
         primaryHref={dashboardHref}
         primaryLabel={c.heroBtnPrimary}
         secondaryHref={contactHref}
         secondaryLabel={c.heroBtnSecondary}
-        imageSrc={HERO_IMAGE}
-        imageAlt={
-          locale === "de"
-            ? "Mehrfamilienhäuser und Eigentumswohnungen in europäischer Wohnumgebung"
-            : "Multi-family buildings and condominiums in a European residential setting"
-        }
+        visual="valuation"
+        backgroundClassName="bg-surface"
       >
         <p className="mt-8 text-lg leading-[1.8] text-muted">{c.heroSubheadline}</p>
-      </SolutionHeroSection>
+      </SolutionPageHero>
 
       {/* ─── SECTION 1: Introduction ──────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <div className="mx-auto max-w-3xl">
           <h2 className="text-h2 text-brand-800">{c.section1Headline}</h2>
           <div className="gold-rule mt-8" aria-hidden="true" />
@@ -343,25 +311,26 @@ export function VergleichswertverfahrenPage({ locale }: VergleichswertverfahrenP
       </Section>
 
       {/* ─── SECTION 2: Property types ────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.section2Label} headline={c.section2Headline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {c.propertyCards.map((card) => (
-            <Card key={card.title} as="article" className="h-full">
-              <CardTitle>{card.title}</CardTitle>
-              <CardDescription>{card.description}</CardDescription>
-            </Card>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── SECTION 3: Factors + image ───────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <h2 className="text-h2 text-brand-800">{c.section3Headline}</h2>
-            <div className="gold-rule mt-8" aria-hidden="true" />
-            <ul className="mt-10 space-y-4" role="list">
+      <Section>
+        <ProductSplitSection
+          headline={c.section3Headline}
+          text={
+            <ul className="space-y-4" role="list">
               {c.section3Factors.map((factor) => (
                 <li key={factor} className="flex items-baseline gap-4">
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold-500" aria-hidden="true" />
@@ -369,70 +338,50 @@ export function VergleichswertverfahrenPage({ locale }: VergleichswertverfahrenP
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="relative h-[380px] overflow-hidden rounded-3xl sm:h-[480px]">
-            <Image
-              src={SECTION3_IMAGE}
-              alt={
-                locale === "de"
-                  ? "Ruhiger Wohnstraßenzug mit europäischer Architektur"
-                  : "Quiet residential street with European architecture"
-              }
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-        </div>
+          }
+          visual="valuation"
+        />
       </Section>
 
       {/* ─── SECTION 4: Process ───────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
-        <SectionHeader label={c.section4Label} headline={c.section4Headline} />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {c.processCards.map((card, index) => (
-            <article
-              key={card.title}
-              className="card-premium flex h-full flex-col gap-4 p-8"
-            >
-              <span className="text-label text-gold-600">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="text-h3 text-brand-800">{card.title}</h3>
-              <p className="text-base leading-[1.8] text-muted">{card.description}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
+      <SolutionProcessSteps
+        label={c.section4Label}
+        headline={c.section4Headline}
+        steps={c.processCards}
+      />
 
       {/* ─── SECTION 5: Advantages ────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <SectionHeader label={c.section5Label} headline={c.section5Headline} />
         <div className="grid gap-6 md:grid-cols-3">
           {c.advantageCards.map((card) => (
-            <Card key={card.title} as="article" className="h-full">
-              <CardTitle>{card.title}</CardTitle>
-              <CardDescription>{card.description}</CardDescription>
-            </Card>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── SECTION 6: Limitations ───────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.section6Label} headline={c.section6Headline} />
         <div className="grid gap-6 md:grid-cols-3">
           {c.limitationCards.map((card) => (
-            <Card key={card.title} as="article" className="h-full">
-              <CardTitle>{card.title}</CardTitle>
-              <CardDescription>{card.description}</CardDescription>
-            </Card>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── SECTION 7: ImmoWertV editorial ───────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <div className="mx-auto max-w-3xl">
           <p className="text-label mb-4 text-gold-600">{c.section7Label}</p>
           <h2 className="text-h2 text-brand-800">{c.section7Headline}</h2>
@@ -448,7 +397,7 @@ export function VergleichswertverfahrenPage({ locale }: VergleichswertverfahrenP
       </Section>
 
       {/* ─── SECTION 8: Use cases ─────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.section8Label} headline={c.section8Headline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {c.useCaseCards.map((card) =>
@@ -474,30 +423,9 @@ export function VergleichswertverfahrenPage({ locale }: VergleichswertverfahrenP
         </div>
       </Section>
 
-      {/* ─── immowap CTA ──────────────────────────────────────────────────── */}
-      <section className="bg-brand-800 px-6 pt-[140px] pb-[140px] text-white md:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-label mb-6 block text-gold-500">{c.immowapLabel}</p>
-          <h2 className="text-h2 text-white">{c.immowapHeadline}</h2>
-          <div className="gold-rule mx-auto mt-8" aria-hidden="true" />
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.8] text-white/85">
-            {c.immowapText}
-          </p>
-          <div className="mt-12 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
-            <Button href={dashboardHref} className="sm:w-auto">
-              {c.immowapBtnPrimary}
-            </Button>
-            <Button
-              href={contactHref}
-              variant="white"
-              className="border-white/35 !text-brand-800 hover:!text-brand-800 sm:w-auto"
-            >
-              {c.immowapBtnSecondary}
-            </Button>
-          </div>
-        </div>
-      </section>
-      <div className="min-h-[100px] bg-[#F7F5EF]" aria-hidden="true" />
+      <RelatedSolutionsSection locale={locale} pageKey="vergleichswertverfahren" />
+
+      <PageBottomSpacer />
     </>
   );
 }

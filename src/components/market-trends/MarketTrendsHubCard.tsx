@@ -1,35 +1,29 @@
-import Image from "next/image";
 import Link from "next/link";
+import { AnalyticsCardHeader } from "@/components/illustrations/AnalyticsCardHeader";
+import type { IconName } from "@/components/ui/icons/Icon";
 
 interface MarketTrendsHubCardProps {
   href: string;
   title: string;
   description: string;
-  image: string;
-  imageAlt: string;
+  /** @deprecated Replaced by analytics graphics */
+  image?: string;
+  imageAlt?: string;
   linkLabel: string;
+  analyticsIcon?: IconName;
 }
 
 export function MarketTrendsHubCard({
   href,
   title,
   description,
-  image,
-  imageAlt,
   linkLabel,
+  analyticsIcon = "chart",
 }: MarketTrendsHubCardProps) {
   return (
-    <Link href={href} className="group block h-full no-underline">
-      <article className="card-premium flex h-full flex-col overflow-hidden border-[#B9965B]/20 transition-all duration-300 hover:border-gold-500/25 hover:shadow-[0_12px_40px_rgba(185,150,91,0.12)]">
-        <div className="relative h-52 shrink-0 overflow-hidden sm:h-56">
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        </div>
+    <Link href={href} className="group block h-full min-w-0 no-underline">
+      <article className="card-premium card-premium--interactive flex h-full flex-col overflow-hidden border-gold-500/20 p-0 transition-all duration-300">
+        <AnalyticsCardHeader icon={analyticsIcon} className="aspect-[16/9] min-h-[180px]" />
         <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
           <h2 className="text-h3 break-words text-brand-800 transition-colors duration-300 group-hover:text-brand-600 [overflow-wrap:anywhere] hyphens-auto">
             {title}

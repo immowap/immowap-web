@@ -1,22 +1,15 @@
-import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import {
   ArticleH2,
-  ArticleMetaRow,
   ArticleP,
-  CategoryBadge,
-  PropertyKnowledgeBackLink,
-  PropertyKnowledgeBreadcrumb,
-  PropertyKnowledgePageButtons,
 } from "@/components/property-knowledge/ArticleUi";
+import { ArticleLayout } from "@/components/editorial/ArticleLayout";
 import type { Locale } from "@/lib/i18n/config";
 import { propertyKnowledgeOverview } from "@/lib/i18n/property-knowledge";
 
 interface VermietungPageProps {
   locale: Locale;
 }
-
-const HERO_IMAGE = "/images/knowledge/vermietung.jpg";
 
 export const vermietungCopy = {
   de: {
@@ -191,134 +184,76 @@ export const vermietungCopy = {
 
 export function VermietungPage({ locale }: VermietungPageProps) {
   const c = vermietungCopy[locale];
-  const overviewHref = propertyKnowledgeOverview[locale].href;
 
   return (
-    <>
-      <section className="relative min-h-[calc(100svh-5rem)] w-full overflow-hidden">
-        <div className="absolute inset-0 z-0 h-full w-full">
-          <Image
-            src={HERO_IMAGE}
-            alt={c.heroImageAlt}
-            width={2400}
-            height={1350}
-            priority
-            className="h-full w-full object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        <div
-          className="absolute inset-0 z-[1] bg-gradient-to-r from-[#0F3D2E]/88 from-0% via-[#0F3D2E]/55 via-[50%] to-[#0F3D2E]/35 to-[100%] max-md:via-[#0F3D2E]/65"
-          aria-hidden="true"
-        />
-        <div className="relative z-[2] mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-7xl items-center px-6 pb-20 pt-16 md:px-8 md:pb-24 md:pt-20">
-          <div className="max-w-3xl">
-            <p className="text-label mb-6 block text-[#B9965B]">{c.heroLabel}</p>
-            <h1 className="text-h1 text-white">{c.heroHeadline}</h1>
-            <p className="mt-8 max-w-2xl text-lg leading-[1.8] text-white/90">
-              {c.heroSubheadline}
+    <ArticleLayout
+      locale={locale}
+      breadcrumbTitle={c.breadcrumbTitle}
+      heroLabel={c.heroLabel}
+      heroHeadline={c.heroHeadline}
+      heroSubheadline={c.heroSubheadline}
+      articleTitle={c.articleTitle}
+      readMinutes={c.readMinutes}
+      introduction={<ArticleP>{c.introP1}</ArticleP>}
+      backLinkHref={propertyKnowledgeOverview[locale].href}
+      relatedExcludeId="vermietung"
+      afterArticle={
+        <Section variant="muted" className="py-24 md:py-32">
+          <div className="mx-auto max-w-[850px] text-center">
+            <p className="text-label mb-6 block text-gold-600">{c.infoLabel}</p>
+            <h2 className="text-h2 text-brand-800">{c.infoHeadline}</h2>
+            <div className="gold-rule mx-auto mt-8" aria-hidden="true" />
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.8] text-muted">
+              {c.infoP1}
             </p>
-            <PropertyKnowledgePageButtons locale={locale} className="mt-10" />
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-[1.8] text-muted">
+              {c.infoP2}
+            </p>
           </div>
-        </div>
-      </section>
+        </Section>
+      }
+    >
+      <ArticleH2 id="mietvertrag">{c.sectionMietvertrag}</ArticleH2>
+      <ArticleP>{c.sectionMietvertragP1}</ArticleP>
+      <ArticleP>{c.sectionMietvertragP2}</ArticleP>
 
-      <div className="bg-[#F7F5EF] py-16 md:py-20">
-        <div className="mx-auto max-w-[850px] px-6 md:px-8">
-          <PropertyKnowledgeBreadcrumb locale={locale} currentTitle={c.breadcrumbTitle} />
+      <ArticleH2 id="nebenkosten">{c.sectionNebenkosten}</ArticleH2>
+      <ArticleP>{c.sectionNebenkostenP1}</ArticleP>
+      <ArticleP>{c.sectionNebenkostenP2}</ArticleP>
+      <ArticleP>{c.sectionNebenkostenP3}</ArticleP>
 
-          <header className="mb-10">
-            <CategoryBadge locale={locale} />
-            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-[#0F3D2E] md:text-[2.125rem]">
-              {c.articleTitle}
-            </h2>
-            <div
-              aria-hidden="true"
-              className="mt-7 h-px w-16 rounded-full bg-[#B9965B]/55"
-            />
-            <ArticleMetaRow locale={locale} readMinutes={c.readMinutes} />
-          </header>
+      <ArticleH2 id="mietrendite">{c.sectionMietrendite}</ArticleH2>
+      <ArticleP>{c.sectionMietrenditeP1}</ArticleP>
+      <ArticleP>{c.sectionMietrenditeP2}</ArticleP>
+      <ArticleP>{c.sectionMietrenditeP3}</ArticleP>
 
-          <article>
-            <ArticleP>{c.introP1}</ArticleP>
+      <ArticleH2 id="mietpreisbremse">{c.sectionMietpreisbremse}</ArticleH2>
+      <ArticleP>{c.sectionMietpreisbremseP1}</ArticleP>
+      <ArticleP>{c.sectionMietpreisbremseP2}</ArticleP>
+      <ArticleP>{c.sectionMietpreisbremseP3}</ArticleP>
 
-            <ArticleH2 id="mietvertrag">{c.sectionMietvertrag}</ArticleH2>
-            <ArticleP>{c.sectionMietvertragP1}</ArticleP>
-            <ArticleP>{c.sectionMietvertragP2}</ArticleP>
+      <ArticleH2 id="mieterhoehung">{c.sectionMieterhoehung}</ArticleH2>
+      <ArticleP>{c.sectionMieterhoehungP1}</ArticleP>
+      <ArticleP>{c.sectionMieterhoehungP2}</ArticleP>
 
-            <ArticleH2 id="nebenkosten">{c.sectionNebenkosten}</ArticleH2>
-            <ArticleP>{c.sectionNebenkostenP1}</ArticleP>
-            <ArticleP>{c.sectionNebenkostenP2}</ArticleP>
-            <ArticleP>{c.sectionNebenkostenP3}</ArticleP>
+      <ArticleH2 id="leerstand">{c.sectionLeerstand}</ArticleH2>
+      <ArticleP>{c.sectionLeerstandP1}</ArticleP>
+      <ArticleP>{c.sectionLeerstandP2}</ArticleP>
+      <ArticleP>{c.sectionLeerstandP3}</ArticleP>
 
-            <ArticleH2 id="mietrendite">{c.sectionMietrendite}</ArticleH2>
-            <ArticleP>{c.sectionMietrenditeP1}</ArticleP>
-            <ArticleP>{c.sectionMietrenditeP2}</ArticleP>
-            <ArticleP>{c.sectionMietrenditeP3}</ArticleP>
+      <ArticleH2 id="mieterauswahl">{c.sectionMieterauswahl}</ArticleH2>
+      <ArticleP>{c.sectionMieterauswahlP1}</ArticleP>
+      <ArticleP>{c.sectionMieterauswahlP2}</ArticleP>
+      <ArticleP>{c.sectionMieterauswahlP3}</ArticleP>
 
-            <ArticleH2 id="mietpreisbremse">{c.sectionMietpreisbremse}</ArticleH2>
-            <ArticleP>{c.sectionMietpreisbremseP1}</ArticleP>
-            <ArticleP>{c.sectionMietpreisbremseP2}</ArticleP>
-            <ArticleP>{c.sectionMietpreisbremseP3}</ArticleP>
+      <ArticleH2 id="rechte-pflichten">{c.sectionRechtePflichten}</ArticleH2>
+      <ArticleP>{c.sectionRechtePflichtenP1}</ArticleP>
+      <ArticleP>{c.sectionRechtePflichtenP2}</ArticleP>
+      <ArticleP>{c.sectionRechtePflichtenP3}</ArticleP>
 
-            <ArticleH2 id="mieterhoehung">{c.sectionMieterhoehung}</ArticleH2>
-            <ArticleP>{c.sectionMieterhoehungP1}</ArticleP>
-            <ArticleP>{c.sectionMieterhoehungP2}</ArticleP>
-
-            <ArticleH2 id="leerstand">{c.sectionLeerstand}</ArticleH2>
-            <ArticleP>{c.sectionLeerstandP1}</ArticleP>
-            <ArticleP>{c.sectionLeerstandP2}</ArticleP>
-            <ArticleP>{c.sectionLeerstandP3}</ArticleP>
-
-            <ArticleH2 id="mieterauswahl">{c.sectionMieterauswahl}</ArticleH2>
-            <ArticleP>{c.sectionMieterauswahlP1}</ArticleP>
-            <ArticleP>{c.sectionMieterauswahlP2}</ArticleP>
-            <ArticleP>{c.sectionMieterauswahlP3}</ArticleP>
-
-            <ArticleH2 id="rechte-pflichten">{c.sectionRechtePflichten}</ArticleH2>
-            <ArticleP>{c.sectionRechtePflichtenP1}</ArticleP>
-            <ArticleP>{c.sectionRechtePflichtenP2}</ArticleP>
-            <ArticleP>{c.sectionRechtePflichtenP3}</ArticleP>
-
-            <ArticleH2 id="fazit">{c.fazitTitle}</ArticleH2>
-            <ArticleP>{c.fazitP1}</ArticleP>
-            <ArticleP>{c.fazitP2}</ArticleP>
-          </article>
-
-          <PropertyKnowledgeBackLink locale={locale} overviewHref={overviewHref} />
-        </div>
-      </div>
-
-      <Section variant="muted" className="py-24 md:py-32">
-        <div className="mx-auto max-w-[850px] text-center">
-          <p className="text-label mb-6 block text-gold-600">{c.infoLabel}</p>
-          <h2 className="text-h2 text-brand-800">{c.infoHeadline}</h2>
-          <div className="gold-rule mx-auto mt-8" aria-hidden="true" />
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.8] text-muted">
-            {c.infoP1}
-          </p>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-[1.8] text-muted">
-            {c.infoP2}
-          </p>
-        </div>
-      </Section>
-
-      <section className="bg-[#0F3D2E] py-24 md:py-32">
-        <div className="mx-auto max-w-[850px] px-6 text-center md:px-8">
-          <p className="text-label mb-6 block text-[#B9965B]">{c.ctaLabel}</p>
-          <h2 className="text-h2 text-white">{c.ctaHeadline}</h2>
-          <div
-            aria-hidden="true"
-            className="mx-auto mt-8 h-px w-10 rounded-full bg-[#B9965B]/60"
-          />
-          <p className="mx-auto mt-8 max-w-xl text-lg leading-[1.8] text-white/75">
-            {c.ctaText}
-          </p>
-          <PropertyKnowledgePageButtons onDark locale={locale} className="mt-12" />
-        </div>
-      </section>
-
-      <div className="h-20 bg-cream md:h-[100px]" aria-hidden="true" />
-    </>
+      <ArticleH2 id="fazit">{c.fazitTitle}</ArticleH2>
+      <ArticleP>{c.fazitP1}</ArticleP>
+      <ArticleP>{c.fazitP2}</ArticleP>
+    </ArticleLayout>
   );
 }

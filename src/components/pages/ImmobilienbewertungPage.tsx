@@ -1,16 +1,11 @@
-import { Button } from "@/components/ui/Button";
 import {
   ArticleH2,
   ArticleH3,
-  ArticleMetaRow,
   ArticleP,
-  CategoryBadge,
-  PropertyKnowledgeBackLink,
-  PropertyKnowledgeBreadcrumb,
 } from "@/components/property-knowledge/ArticleUi";
+import { ArticleLayout } from "@/components/editorial/ArticleLayout";
 import type { Locale } from "@/lib/i18n/config";
-import { getRoute } from "@/lib/i18n/config";
-import { propertyKnowledgeOverview } from "@/lib/i18n/property-knowledge";
+import { propertyKnowledgeOverview, propertyKnowledgeUi } from "@/lib/i18n/property-knowledge";
 
 interface ImmobilienbewertungPageProps {
   locale: Locale;
@@ -190,121 +185,71 @@ export const immobilienbewertungCopy = {
   },
 } as const;
 
-const investmentPropertyHref: Record<Locale, string> = {
-  de: "/de/loesungen/kapitalanlage",
-  en: "/en/solutions/investment-property",
-};
-
 export function ImmobilienbewertungPage({ locale }: ImmobilienbewertungPageProps) {
   const c = immobilienbewertungCopy[locale];
-  const overviewHref = propertyKnowledgeOverview[locale].href;
-  const contactHref = getRoute(locale, "contact");
+  const ui = propertyKnowledgeUi[locale];
 
   return (
-    <>
-      <div className="bg-[#F7F5EF] py-16 md:py-20">
-        <div className="mx-auto max-w-[850px] px-6 md:px-8">
-          <PropertyKnowledgeBreadcrumb locale={locale} currentTitle={c.breadcrumbTitle} />
+    <ArticleLayout
+      locale={locale}
+      breadcrumbTitle={c.breadcrumbTitle}
+      heroLabel={ui.categoryShort}
+      heroHeadline={c.title}
+      readMinutes={c.readMinutes}
+      backLinkHref={propertyKnowledgeOverview[locale].href}
+      relatedExcludeId="immobilienbewertung"
+    >
+      <ArticleH2>{c.section1Title}</ArticleH2>
+      <ArticleP>{c.section1P1}</ArticleP>
+      <ArticleP>{c.section1P2}</ArticleP>
 
-          <header className="mb-12">
-            <CategoryBadge locale={locale} />
+      <ArticleH2>{c.section2Title}</ArticleH2>
+      <ArticleP>{c.section2P1}</ArticleP>
+      <ArticleP>{c.section2P2}</ArticleP>
+      <ArticleP>{c.section2P3}</ArticleP>
 
-            <h1 className="text-[2rem] font-bold leading-tight tracking-tight text-[#0F3D2E] md:text-[2.5rem]">
-              {c.title}
-            </h1>
+      <ArticleH2>{c.section3Title}</ArticleH2>
+      <ArticleP>{c.section3Intro}</ArticleP>
 
-            <div
-              aria-hidden="true"
-              className="mt-7 h-px w-16 rounded-full bg-[#B9965B]/55"
-            />
+      <ArticleH3>{c.vergleichTitle}</ArticleH3>
+      <ArticleP>{c.vergleichP1}</ArticleP>
+      <ArticleP>{c.vergleichP2}</ArticleP>
+      <ArticleP>{c.vergleichP3}</ArticleP>
 
-            <ArticleMetaRow locale={locale} readMinutes={c.readMinutes} />
-          </header>
+      <ArticleH3>{c.ertragTitle}</ArticleH3>
+      <ArticleP>{c.ertragP1}</ArticleP>
+      <ArticleP>{c.ertragP2}</ArticleP>
+      <ArticleP>{c.ertragP3}</ArticleP>
 
-          <article>
-            <ArticleH2>{c.section1Title}</ArticleH2>
-            <ArticleP>{c.section1P1}</ArticleP>
-            <ArticleP>{c.section1P2}</ArticleP>
+      <ArticleH3>{c.sachTitle}</ArticleH3>
+      <ArticleP>{c.sachP1}</ArticleP>
+      <ArticleP>{c.sachP2}</ArticleP>
+      <ArticleP>{c.sachP3}</ArticleP>
 
-            <ArticleH2>{c.section2Title}</ArticleH2>
-            <ArticleP>{c.section2P1}</ArticleP>
-            <ArticleP>{c.section2P2}</ArticleP>
-            <ArticleP>{c.section2P3}</ArticleP>
+      <ArticleH2>{c.section4Title}</ArticleH2>
+      <ArticleP>{c.section4P1}</ArticleP>
+      <ArticleP>{c.section4P2}</ArticleP>
+      <ArticleP>{c.section4P3}</ArticleP>
 
-            <ArticleH2>{c.section3Title}</ArticleH2>
-            <ArticleP>{c.section3Intro}</ArticleP>
+      <ArticleH2>{c.section5Title}</ArticleH2>
+      <ArticleP>{c.section5P1}</ArticleP>
+      <ArticleP>{c.section5P2}</ArticleP>
+      <ArticleP>{c.section5P3}</ArticleP>
 
-            <ArticleH3>{c.vergleichTitle}</ArticleH3>
-            <ArticleP>{c.vergleichP1}</ArticleP>
-            <ArticleP>{c.vergleichP2}</ArticleP>
-            <ArticleP>{c.vergleichP3}</ArticleP>
+      <ArticleH2>{c.section6Title}</ArticleH2>
+      <ArticleP>{c.section6P1}</ArticleP>
+      <ArticleP>{c.section6P2}</ArticleP>
+      <ArticleP>{c.section6P3}</ArticleP>
+      <ArticleP>{c.section6P4}</ArticleP>
 
-            <ArticleH3>{c.ertragTitle}</ArticleH3>
-            <ArticleP>{c.ertragP1}</ArticleP>
-            <ArticleP>{c.ertragP2}</ArticleP>
-            <ArticleP>{c.ertragP3}</ArticleP>
+      <ArticleH2>{c.section7Title}</ArticleH2>
+      <ArticleP>{c.section7P1}</ArticleP>
+      <ArticleP>{c.section7P2}</ArticleP>
+      <ArticleP>{c.section7P3}</ArticleP>
 
-            <ArticleH3>{c.sachTitle}</ArticleH3>
-            <ArticleP>{c.sachP1}</ArticleP>
-            <ArticleP>{c.sachP2}</ArticleP>
-            <ArticleP>{c.sachP3}</ArticleP>
-
-            <ArticleH2>{c.section4Title}</ArticleH2>
-            <ArticleP>{c.section4P1}</ArticleP>
-            <ArticleP>{c.section4P2}</ArticleP>
-            <ArticleP>{c.section4P3}</ArticleP>
-
-            <ArticleH2>{c.section5Title}</ArticleH2>
-            <ArticleP>{c.section5P1}</ArticleP>
-            <ArticleP>{c.section5P2}</ArticleP>
-            <ArticleP>{c.section5P3}</ArticleP>
-
-            <ArticleH2>{c.section6Title}</ArticleH2>
-            <ArticleP>{c.section6P1}</ArticleP>
-            <ArticleP>{c.section6P2}</ArticleP>
-            <ArticleP>{c.section6P3}</ArticleP>
-            <ArticleP>{c.section6P4}</ArticleP>
-
-            <ArticleH2>{c.section7Title}</ArticleH2>
-            <ArticleP>{c.section7P1}</ArticleP>
-            <ArticleP>{c.section7P2}</ArticleP>
-            <ArticleP>{c.section7P3}</ArticleP>
-
-            <ArticleH2>{c.fazitTitle}</ArticleH2>
-            <ArticleP>{c.fazitP1}</ArticleP>
-            <ArticleP>{c.fazitP2}</ArticleP>
-          </article>
-
-          <PropertyKnowledgeBackLink locale={locale} overviewHref={overviewHref} />
-        </div>
-      </div>
-
-      <section className="bg-[#0F3D2E] py-24 md:py-32">
-        <div className="mx-auto max-w-[850px] px-6 text-center md:px-8">
-          <p className="text-label mb-6 block text-[#B9965B]">{c.ctaLabel}</p>
-          <h2 className="text-h2 text-white">{c.ctaHeadline}</h2>
-          <div
-            aria-hidden="true"
-            className="mx-auto mt-8 h-px w-10 rounded-full bg-[#B9965B]/60"
-          />
-          <p className="mx-auto mt-8 max-w-xl text-lg leading-[1.8] text-white/75">
-            {c.ctaText}
-          </p>
-          <div className="mt-12 flex flex-col items-stretch justify-center gap-5 sm:flex-row sm:items-center sm:gap-6">
-            <Button
-              href={investmentPropertyHref[locale]}
-              className="border-transparent bg-[#C8A45D] text-white shadow-[0_4px_16px_rgba(200,164,93,0.35)] hover:bg-[#B9965B] sm:w-auto"
-            >
-              {c.ctaBtnPrimary}
-            </Button>
-            <Button href={contactHref} variant="white" className="sm:w-auto">
-              {c.ctaBtnSecondary}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <div className="h-20 bg-cream md:h-[100px]" aria-hidden="true" />
-    </>
+      <ArticleH2>{c.fazitTitle}</ArticleH2>
+      <ArticleP>{c.fazitP1}</ArticleP>
+      <ArticleP>{c.fazitP2}</ArticleP>
+    </ArticleLayout>
   );
 }

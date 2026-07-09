@@ -1,9 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { SolutionHeroSection } from "@/components/ui/SolutionHeroSection";
-import { Card, CardTitle, CardDescription } from "@/components/ui/Card";
-import { CTASection } from "@/components/ui/CTASection";
+import { SolutionBreadcrumb } from "@/components/solutions/SolutionBreadcrumb";
+import { SolutionPageHero } from "@/components/solutions/SolutionPageHero";
+import { SolutionProcessSteps } from "@/components/solutions/SolutionProcessSteps";
+import { RelatedSolutionsSection } from "@/components/solutions/RelatedSolutionsSection";
+import { ProductSplitSection } from "@/components/ui/ProductSplitSection";
+import { InformationCard } from "@/components/ui/cards";
+import { PageBottomSpacer } from "@/components/ui/PageBottomSpacer";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
@@ -12,20 +14,13 @@ interface ErtragswertverfahrenPageProps {
   locale: Locale;
 }
 
-const HERO_IMAGE = "/images/analysen/ertragswertverfahren-hero.jpg";
-const SECTION_IMAGE = "/images/analysen/ertragswertverfahren-section.jpg";
-
 const cardTitleClass =
   "text-xl md:text-[22px] lg:text-[26px] font-semibold leading-[1.3] text-brand-800 break-words [overflow-wrap:anywhere] hyphens-auto";
-const cardTextClass =
-  "text-[15px] md:text-base leading-[1.4] text-muted break-words [overflow-wrap:anywhere] hyphens-auto";
 const cardShellClass =
   "card-premium flex min-h-0 flex-col gap-4 overflow-visible p-6 md:p-8 lg:p-10";
 
 const copy = {
   de: {
-    breadcrumbSolutions: "Lösungen",
-    breadcrumbAnalyses: "Analysen",
     breadcrumbCurrent: "Ertragswertverfahren",
     heroLabel: "Analysen",
     heroHeadline: "Ertragswertverfahren",
@@ -141,8 +136,6 @@ const copy = {
     ctaBtnSecondary: "Anfrage senden",
   },
   en: {
-    breadcrumbSolutions: "Solutions",
-    breadcrumbAnalyses: "Analyses",
     breadcrumbCurrent: "Income approach",
     heroLabel: "Analyses",
     heroHeadline: "Income Approach",
@@ -263,56 +256,31 @@ export function ErtragswertverfahrenPage({ locale }: ErtragswertverfahrenPagePro
   const c = copy[locale];
   const contactHref = getRoute(locale, "contact");
   const dashboardHref = getRoute(locale, "dashboard");
-  const solutionsHref = getRoute(locale, "solutions");
 
   return (
     <>
-      <nav
-        aria-label={locale === "de" ? "Brotkrumen-Navigation" : "Breadcrumb"}
-        className="border-b border-warm-gray/30 bg-[#F7F5EF]"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-4 md:px-8">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-muted">
-            <li>
-              <Link href={solutionsHref} className="transition-colors hover:text-brand-600">
-                {c.breadcrumbSolutions}
-              </Link>
-            </li>
-            <li aria-hidden="true" className="text-warm-gray">
-              /
-            </li>
-            <li className="text-muted">{c.breadcrumbAnalyses}</li>
-            <li aria-hidden="true" className="text-warm-gray">
-              /
-            </li>
-            <li className="font-medium text-brand-800" aria-current="page">
-              {c.breadcrumbCurrent}
-            </li>
-          </ol>
-        </div>
-      </nav>
+      <SolutionBreadcrumb
+        locale={locale}
+        category="analyses"
+        currentTitle={c.breadcrumbCurrent}
+      />
 
-      <SolutionHeroSection
-        backgroundClassName="bg-[#F7F5EF]"
+      <SolutionPageHero
         label={c.heroLabel}
         headline={c.heroHeadline}
         primaryHref={dashboardHref}
         primaryLabel={c.heroBtnPrimary}
         secondaryHref={contactHref}
         secondaryLabel={c.heroBtnSecondary}
-        imageSrc={HERO_IMAGE}
-        imageAlt={
-          locale === "de"
-            ? "Mehrfamilienhäuser und Wohnanlagen als Investitionsimmobilien"
-            : "Multi-family buildings and residential complexes as investment properties"
-        }
+        visual="cashflow"
+        backgroundClassName="bg-surface"
       >
         <p className="mt-8 text-xl font-medium leading-[1.6] text-brand-800">{c.heroSubheadline}</p>
         <p className="mt-6 text-lg leading-[1.8] text-muted">{c.heroText}</p>
-      </SolutionHeroSection>
+      </SolutionPageHero>
 
       {/* ─── WHEN APPLIED ─────────────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.sectionApplyLabel} headline={c.sectionApplyHeadline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {c.applyCards.map((card) => (
@@ -324,35 +292,29 @@ export function ErtragswertverfahrenPage({ locale }: ErtragswertverfahrenPagePro
       </Section>
 
       {/* ─── BASICS ───────────────────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <SectionHeader label={c.sectionBasicsLabel} headline={c.sectionBasicsHeadline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {c.basicsCards.map((card) => (
-            <article key={card.title} className={cardShellClass}>
-              <h3 className={cardTitleClass}>{card.title}</h3>
-              <p className={cardTextClass}>{card.description}</p>
-            </article>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── PROCESS ──────────────────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
-        <SectionHeader label={c.sectionProcessLabel} headline={c.sectionProcessHeadline} />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {c.processSteps.map((step, index) => (
-            <article key={step.title} className={cardShellClass}>
-              <span className="text-label text-gold-600">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className={cardTitleClass}>{step.title}</h3>
-            </article>
-          ))}
-        </div>
-      </Section>
+      <SolutionProcessSteps
+        label={c.sectionProcessLabel}
+        headline={c.sectionProcessHeadline}
+        steps={c.processSteps}
+      />
 
       {/* ─── FACTORS ──────────────────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <SectionHeader headline={c.sectionFactorsHeadline} />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {c.factors.map((factor) => (
@@ -369,61 +331,52 @@ export function ErtragswertverfahrenPage({ locale }: ErtragswertverfahrenPagePro
       </Section>
 
       {/* ─── IMMOWERTV ────────────────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <p className="text-label mb-4 text-gold-600">{c.immowertvLabel}</p>
-            <h2 className="text-h2 text-brand-800">{c.immowertvHeadline}</h2>
-            <div className="gold-rule mt-8" aria-hidden="true" />
-            <div className="mt-8 space-y-6">
+      <Section variant="muted">
+        <p className="text-label mb-8 text-gold-600">{c.immowertvLabel}</p>
+        <ProductSplitSection
+          headline={c.immowertvHeadline}
+          text={
+            <div className="space-y-6">
               {c.immowertvParagraphs.map((paragraph) => (
                 <p key={paragraph.slice(0, 40)} className="text-lg leading-[1.85] text-muted">
                   {paragraph}
                 </p>
               ))}
             </div>
-          </div>
-          <div className="relative h-[380px] overflow-hidden rounded-3xl sm:h-[480px]">
-            <Image
-              src={SECTION_IMAGE}
-              alt={
-                locale === "de"
-                  ? "Wohnanlage als Renditeimmobilie in europäischer Umgebung"
-                  : "Residential complex as investment property in a European setting"
-              }
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-        </div>
+          }
+          visual="cashflow"
+        />
       </Section>
 
       {/* ─── ADVANTAGES ───────────────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <SectionHeader
           label={c.sectionAdvantagesLabel}
           headline={c.sectionAdvantagesHeadline}
         />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {c.advantageCards.map((card) => (
-            <article key={card.title} className={`${cardShellClass} h-full`}>
-              <h3 className={cardTitleClass}>{card.title}</h3>
-              <p className={cardTextClass}>{card.description}</p>
-            </article>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── COMPARISON ───────────────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.sectionCompareLabel} headline={c.sectionCompareHeadline} />
         <div className="grid gap-6 lg:grid-cols-3">
           {c.compareCards.map((card) => {
             const content = (
               <>
                 <h3 className={cardTitleClass}>{card.title}</h3>
-                <p className={cardTextClass}>{card.description}</p>
+                <p className="text-[15px] md:text-base leading-[1.4] text-muted break-words [overflow-wrap:anywhere] hyphens-auto">
+                  {card.description}
+                </p>
               </>
             );
 
@@ -452,20 +405,22 @@ export function ErtragswertverfahrenPage({ locale }: ErtragswertverfahrenPagePro
       </Section>
 
       {/* ─── IMMOWAP SUPPORT ──────────────────────────────────────────────── */}
-      <Section className="bg-[#F7F5EF] py-24 md:py-32">
+      <Section>
         <SectionHeader label={c.sectionSupportLabel} headline={c.sectionSupportHeadline} />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {c.supportCards.map((card) => (
-            <article key={card.title} className={`${cardShellClass} h-full`}>
-              <h3 className={cardTitleClass}>{card.title}</h3>
-              <p className={cardTextClass}>{card.description}</p>
-            </article>
+            <InformationCard
+              key={card.title}
+              title={card.title}
+              description={card.description}
+              className="h-full"
+            />
           ))}
         </div>
       </Section>
 
       {/* ─── AUDIENCE ─────────────────────────────────────────────────────── */}
-      <Section variant="muted" className="py-24 md:py-32">
+      <Section variant="muted">
         <SectionHeader label={c.sectionAudienceLabel} headline={c.sectionAudienceHeadline} />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {c.audienceCards.map((title) => (
@@ -479,15 +434,9 @@ export function ErtragswertverfahrenPage({ locale }: ErtragswertverfahrenPagePro
         </div>
       </Section>
 
-      {/* ─── CTA ──────────────────────────────────────────────────────────── */}
-      <CTASection
-        headline={c.ctaHeadline}
-        text={c.ctaText}
-        primaryLabel={c.ctaBtnPrimary}
-        primaryHref={dashboardHref}
-        secondaryLabel={c.ctaBtnSecondary}
-        secondaryHref={contactHref}
-      />
+      <RelatedSolutionsSection locale={locale} pageKey="ertragswertverfahren" />
+
+      <PageBottomSpacer />
     </>
   );
 }

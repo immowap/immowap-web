@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
-import { Button } from "@/components/ui/Button";
+import { PrimaryButton, SecondaryButton } from "@/components/ui/buttons";
 import { cn } from "@/lib/utils";
+import { animationClasses } from "@/lib/design-system/tokens/animation";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute, isActiveRoute } from "@/lib/i18n/config";
 import type { Translations } from "@/lib/i18n";
@@ -33,6 +34,15 @@ export function MobileMenu({
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [knowledgeOpen, setKnowledgeOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, onClose]);
+
   if (!open) return null;
 
   const staticNavItems = [
@@ -41,24 +51,41 @@ export function MobileMenu({
     { key: "dashboard" as const, label: t.nav.dashboard },
   ];
 
-  const itemLinkClass =
-    "block rounded-lg px-4 py-2.5 text-sm text-brand-800/90 transition-colors hover:bg-black/5";
+  const itemLinkClass = cn(
+    "block min-w-0 break-words rounded-lg px-4 py-2.5 text-body-sm text-brand-800/90",
+    "[overflow-wrap:anywhere] transition-colors hover:bg-black/5",
+    animationClasses.focusRing,
+  );
+
+  const navItemClass = cn(
+    "block min-w-0 break-words rounded-xl px-4 py-3 text-base font-medium",
+    "[overflow-wrap:anywhere] transition-colors",
+    animationClasses.focusRing,
+  );
 
   return (
-    <div className="fixed inset-0 z-50 lg:hidden">
+    <div className="fixed inset-0 z-[var(--z-modal)] lg:hidden">
       <button
         type="button"
-        className="absolute inset-0 bg-brand-900/40 backdrop-blur-sm"
+        className={cn("absolute inset-0 bg-brand-900/40 backdrop-blur-sm", animationClasses.focusRing)}
         onClick={onClose}
         aria-label="Close menu"
       />
-      <div className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream shadow-2xl">
+      <div
+        className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream shadow-2xl"
+        role="dialog"
+        aria-modal="true"
+        aria-label={locale === "de" ? "Menü" : "Menu"}
+      >
         <div className="flex items-center justify-between border-b border-warm-gray/40 px-6 py-5">
           <Logo href={getRoute(locale, "home")} size="sm" onClick={onClose} />
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-2 text-brand-800 hover:bg-black/5"
+            className={cn(
+              "rounded-full p-2 text-brand-800 hover:bg-black/5",
+              animationClasses.focusRing,
+            )}
             aria-label="Close menu"
           >
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -78,7 +105,7 @@ export function MobileMenu({
                 href={getRoute(locale, "home")}
                 onClick={onClose}
                 className={cn(
-                  "block rounded-xl px-4 py-3 text-base font-medium",
+                  navItemClass,
                   isActiveRoute(pathname, getRoute(locale, "home"))
                     ? "bg-gold-500/25 text-brand-800"
                     : "text-brand-800 hover:bg-black/5",
@@ -93,7 +120,8 @@ export function MobileMenu({
                 type="button"
                 onClick={() => setSolutionsOpen(!solutionsOpen)}
                 className={cn(
-                  "flex w-full items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-brand-800 hover:bg-black/5",
+                  "flex w-full min-w-0 items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-brand-800 hover:bg-black/5",
+                  animationClasses.focusRing,
                   isActiveRoute(pathname, getRoute(locale, "solutions")) &&
                     "bg-gold-500/25",
                 )}
@@ -145,7 +173,8 @@ export function MobileMenu({
                 type="button"
                 onClick={() => setKnowledgeOpen(!knowledgeOpen)}
                 className={cn(
-                  "flex w-full items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-brand-800 hover:bg-black/5",
+                  "flex w-full min-w-0 items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-brand-800 hover:bg-black/5",
+                  animationClasses.focusRing,
                   isActiveRoute(pathname, getRoute(locale, "knowledge")) &&
                     "bg-gold-500/25",
                 )}
@@ -180,7 +209,7 @@ export function MobileMenu({
                   href={getRoute(locale, item.key)}
                   onClick={onClose}
                   className={cn(
-                    "block rounded-xl px-4 py-3 text-base font-medium",
+                    navItemClass,
                     isActiveRoute(pathname, getRoute(locale, item.key))
                       ? "bg-gold-500/25 text-brand-800"
                       : "text-brand-800 hover:bg-black/5",
@@ -194,14 +223,12 @@ export function MobileMenu({
         </nav>
 
         <div className="space-y-3 border-t border-warm-gray/40 px-6 py-6">
-          <Link href={getRoute(locale, "packages")} onClick={onClose} className="block">
-            <Button variant="secondary" className="w-full">
-              {t.nav.packages}
-            </Button>
-          </Link>
-          <Link href={getRoute(locale, "dashboard")} onClick={onClose} className="block">
-            <Button className="w-full">{t.nav.startAnalysis}</Button>
-          </Link>
+          <SecondaryButton href={getRoute(locale, "packages")} className="w-full">
+            {t.nav.packages}
+          </SecondaryButton>
+          <PrimaryButton href={getRoute(locale, "dashboard")} className="w-full">
+            {t.nav.startAnalysis}
+          </PrimaryButton>
         </div>
       </div>
     </div>

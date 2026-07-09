@@ -1,24 +1,11 @@
-import Link from "next/link";
+import { ArticleLayout } from "@/components/editorial/ArticleLayout";
 import type { Locale } from "@/lib/i18n/config";
-import {
-  getRelatedArticles,
-  propertyKnowledgeOverview,
-  propertyKnowledgeUi,
-} from "@/lib/i18n/property-knowledge";
+import { propertyKnowledgeOverview } from "@/lib/i18n/property-knowledge";
 import {
   ArticleH2,
-  ArticleMetaRow,
   ArticleP,
-  CategoryBadge,
   EditorialList,
-  PropertyKnowledgeBackLink,
-  PropertyKnowledgeBreadcrumb,
-  PropertyKnowledgePageButtons,
 } from "@/components/property-knowledge/ArticleUi";
-import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
-import { Section, SectionHeader } from "@/components/ui/Section";
-
-const HERO_IMAGE = "/images/wissen/immobilienlexikon-hero.jpg";
 
 const copy = {
   de: {
@@ -434,231 +421,127 @@ const copy = {
   },
 } as const;
 
-function RelatedArticleCard({
-  locale,
-  title,
-  description,
-  href,
-}: {
-  locale: Locale;
-  title: string;
-  description: string;
-  href: string;
-}) {
-  const ui = propertyKnowledgeUi[locale];
-
-  return (
-    <Link href={href} className="group block no-underline">
-      <Card className="h-full border-[#D7D2C8]/80 bg-white shadow-[0_4px_20px_rgba(15,61,46,0.05)] transition-colors duration-300 hover:border-[#B9965B]/35">
-        <p className="text-label text-gold-600">{ui.relatedLabel}</p>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-        <span className="text-label mt-auto inline-flex items-center gap-2 text-gold-600 transition-all duration-300 group-hover:gap-3">
-          {ui.mehrErfahren}
-          <span aria-hidden="true">→</span>
-        </span>
-      </Card>
-    </Link>
-  );
-}
-
 export function ImmobilienlexikonPage({ locale }: { locale: Locale }) {
   const t = copy[locale];
-  const overviewHref = propertyKnowledgeOverview[locale].href;
-  const relatedArticles = getRelatedArticles(locale, "immobilienlexikon");
 
   return (
-    <>
-      <section
-        className="relative min-h-[calc(100svh-5rem)] w-full overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
-        aria-label={t.heroAriaLabel}
-      >
-        <div
-          className="absolute inset-0 z-[1]"
-          style={{ backgroundColor: "rgba(15, 61, 46, 0.60)" }}
-          aria-hidden="true"
-        />
-        <div className="relative z-[2] mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-7xl items-center px-6 pb-20 pt-16 md:px-8 md:pb-24 md:pt-20">
-          <div className="max-w-3xl">
-            <p className="text-label mb-6 block text-[#B9965B]">{t.heroLabel}</p>
-            <h1 className="text-h1 text-white">{t.heroTitle}</h1>
-            <p className="mt-8 max-w-2xl text-lg leading-[1.8] text-white/90">
-              {t.heroSubheadline}
-            </p>
-            <PropertyKnowledgePageButtons locale={locale} onDark className="mt-10" />
-          </div>
-        </div>
-      </section>
+    <ArticleLayout
+      locale={locale}
+      breadcrumbTitle={t.breadcrumbTitle}
+      heroLabel={t.heroLabel}
+      heroHeadline={t.heroTitle}
+      heroSubheadline={t.heroSubheadline}
+      articleTitle={t.pageTitle}
+      articleSubtitle={t.pageSubtitle}
+      readMinutes={t.readMinutes}
+      backLinkHref={propertyKnowledgeOverview[locale].href}
+      relatedExcludeId="immobilienlexikon"
+    >
+      <ArticleP>{t.intro}</ArticleP>
 
-      <div className="bg-[#F7F5EF] py-16 md:py-20">
-        <div className="mx-auto max-w-[850px] px-6 md:px-8">
-          <PropertyKnowledgeBreadcrumb locale={locale} currentTitle={t.breadcrumbTitle} />
+      <ArticleH2 id="afa">{t.afa.title}</ArticleH2>
+      {t.afa.paragraphs.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-          <header className="mb-10">
-            <CategoryBadge locale={locale} />
-            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-[#0F3D2E] md:text-[2.125rem]">
-              {t.pageTitle}
-            </h2>
-            <p className="mt-4 text-lg leading-[1.8] text-[#1D1D1B]/60">{t.pageSubtitle}</p>
-            <div
-              aria-hidden="true"
-              className="mt-7 h-px w-16 rounded-full bg-[#B9965B]/55"
-            />
-            <ArticleMetaRow locale={locale} readMinutes={t.readMinutes} />
-          </header>
+      <ArticleH2 id="cashflow">{t.cashflow.title}</ArticleH2>
+      {t.cashflow.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.cashflow.items} />
+      <ArticleP>{t.cashflow.outro}</ArticleP>
 
-          <article>
-            <ArticleP>{t.intro}</ArticleP>
+      <ArticleH2 id="mietrendite">{t.mietrendite.title}</ArticleH2>
+      {t.mietrendite.paragraphs.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-            <ArticleH2 id="afa">{t.afa.title}</ArticleH2>
-            {t.afa.paragraphs.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
+      <ArticleH2 id="kaufpreisfaktor">{t.kaufpreisfaktor.title}</ArticleH2>
+      {t.kaufpreisfaktor.paragraphs.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-            <ArticleH2 id="cashflow">{t.cashflow.title}</ArticleH2>
-            {t.cashflow.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.cashflow.items} />
-            <ArticleP>{t.cashflow.outro}</ArticleP>
+      <ArticleH2 id="grundschuld">{t.grundschuld.title}</ArticleH2>
+      {t.grundschuld.paragraphs.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-            <ArticleH2 id="mietrendite">{t.mietrendite.title}</ArticleH2>
-            {t.mietrendite.paragraphs.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
+      <ArticleH2 id="niessbrauch">{t.niessbrauch.title}</ArticleH2>
+      {t.niessbrauch.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.niessbrauch.items} />
+      {t.niessbrauch.outro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-            <ArticleH2 id="kaufpreisfaktor">{t.kaufpreisfaktor.title}</ArticleH2>
-            {t.kaufpreisfaktor.paragraphs.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
+      <ArticleH2 id="beleihungsauslauf">{t.beleihungsauslauf.title}</ArticleH2>
+      {t.beleihungsauslauf.paragraphs.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-            <ArticleH2 id="grundschuld">{t.grundschuld.title}</ArticleH2>
-            {t.grundschuld.paragraphs.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
+      <ArticleH2 id="wohnflaeche">{t.wohnflaeche.title}</ArticleH2>
+      {t.wohnflaeche.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.wohnflaeche.items} />
+      {t.wohnflaeche.outro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-            <ArticleH2 id="niessbrauch">{t.niessbrauch.title}</ArticleH2>
-            {t.niessbrauch.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.niessbrauch.items} />
-            {t.niessbrauch.outro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
+      <ArticleH2 id="teilungserklaerung">{t.teilungserklaerung.title}</ArticleH2>
+      {t.teilungserklaerung.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.teilungserklaerung.items} />
+      <ArticleP>{t.teilungserklaerung.outro}</ArticleP>
 
-            <ArticleH2 id="beleihungsauslauf">{t.beleihungsauslauf.title}</ArticleH2>
-            {t.beleihungsauslauf.paragraphs.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
+      <ArticleH2 id="sondernutzungsrecht">{t.sondernutzungsrecht.title}</ArticleH2>
+      {t.sondernutzungsrecht.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.sondernutzungsrecht.items} />
+      <ArticleP>{t.sondernutzungsrecht.outro}</ArticleP>
 
-            <ArticleH2 id="wohnflaeche">{t.wohnflaeche.title}</ArticleH2>
-            {t.wohnflaeche.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.wohnflaeche.items} />
-            {t.wohnflaeche.outro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
+      <ArticleH2 id="maklerprovision">{t.maklerprovision.title}</ArticleH2>
+      {t.maklerprovision.paragraphs.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-            <ArticleH2 id="teilungserklaerung">{t.teilungserklaerung.title}</ArticleH2>
-            {t.teilungserklaerung.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.teilungserklaerung.items} />
-            <ArticleP>{t.teilungserklaerung.outro}</ArticleP>
+      <ArticleH2 id="hausgeld">{t.hausgeld.title}</ArticleH2>
+      {t.hausgeld.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.hausgeld.items} />
+      <ArticleP>{t.hausgeld.outro}</ArticleP>
 
-            <ArticleH2 id="sondernutzungsrecht">{t.sondernutzungsrecht.title}</ArticleH2>
-            {t.sondernutzungsrecht.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.sondernutzungsrecht.items} />
-            <ArticleP>{t.sondernutzungsrecht.outro}</ArticleP>
+      <ArticleH2 id="ertragswert">{t.ertragswert.title}</ArticleH2>
+      {t.ertragswert.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.ertragswert.items} />
+      <ArticleP>{t.ertragswert.outro}</ArticleP>
 
-            <ArticleH2 id="maklerprovision">{t.maklerprovision.title}</ArticleH2>
-            {t.maklerprovision.paragraphs.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
+      <ArticleH2 id="verkehrswert">{t.verkehrswert.title}</ArticleH2>
+      {t.verkehrswert.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.verkehrswert.items} />
+      <ArticleP>{t.verkehrswert.outro}</ArticleP>
 
-            <ArticleH2 id="hausgeld">{t.hausgeld.title}</ArticleH2>
-            {t.hausgeld.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.hausgeld.items} />
-            <ArticleP>{t.hausgeld.outro}</ArticleP>
+      <ArticleH2 id="spekulationssteuer">{t.spekulationssteuer.title}</ArticleH2>
+      {t.spekulationssteuer.intro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+      <EditorialList items={t.spekulationssteuer.items} />
+      {t.spekulationssteuer.outro.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
 
-            <ArticleH2 id="ertragswert">{t.ertragswert.title}</ArticleH2>
-            {t.ertragswert.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.ertragswert.items} />
-            <ArticleP>{t.ertragswert.outro}</ArticleP>
-
-            <ArticleH2 id="verkehrswert">{t.verkehrswert.title}</ArticleH2>
-            {t.verkehrswert.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.verkehrswert.items} />
-            <ArticleP>{t.verkehrswert.outro}</ArticleP>
-
-            <ArticleH2 id="spekulationssteuer">{t.spekulationssteuer.title}</ArticleH2>
-            {t.spekulationssteuer.intro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-            <EditorialList items={t.spekulationssteuer.items} />
-            {t.spekulationssteuer.outro.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-
-            <ArticleH2 id="fazit">{t.fazit.title}</ArticleH2>
-            {t.fazit.paragraphs.map((paragraph) => (
-              <ArticleP key={paragraph}>{paragraph}</ArticleP>
-            ))}
-          </article>
-
-          <PropertyKnowledgeBackLink locale={locale} overviewHref={overviewHref} />
-        </div>
-      </div>
-
-      <Section variant="muted" className="py-24 md:py-32">
-        <SectionHeader
-          label={t.related.label}
-          headline={t.related.headline}
-          description={t.related.description}
-        />
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {relatedArticles.map((article) => (
-            <RelatedArticleCard
-              key={article.href}
-              locale={locale}
-              title={article.title}
-              description={article.description}
-              href={article.href}
-            />
-          ))}
-        </div>
-      </Section>
-
-      <section className="bg-[#0F3D2E] py-24 md:py-32">
-        <div className="mx-auto max-w-[850px] px-6 text-center md:px-8">
-          <p className="text-label mb-6 block text-[#B9965B]">{t.cta.label}</p>
-          <h2 className="text-h2 text-white">{t.cta.headline}</h2>
-          <div
-            aria-hidden="true"
-            className="mx-auto mt-8 h-px w-10 rounded-full bg-[#B9965B]/60"
-          />
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-[1.8] text-white/75">
-            {t.cta.description}
-          </p>
-          <PropertyKnowledgePageButtons
-            locale={locale}
-            onDark
-            className="mt-12 justify-center"
-          />
-        </div>
-      </section>
-
-      <div className="min-h-[120px] bg-cream" aria-hidden="true" />
-    </>
+      <ArticleH2 id="fazit">{t.fazit.title}</ArticleH2>
+      {t.fazit.paragraphs.map((paragraph) => (
+        <ArticleP key={paragraph}>{paragraph}</ArticleP>
+      ))}
+    </ArticleLayout>
   );
 }

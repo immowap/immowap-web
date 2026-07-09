@@ -1,4 +1,6 @@
-import Image from "next/image";
+import type { ReactNode } from "react";
+import { ProductVisual } from "@/components/illustrations/ProductVisual";
+import { ArticleLayout } from "@/components/editorial/ArticleLayout";
 import type { Locale } from "@/lib/i18n/config";
 import {
   propertyKnowledgeOverview,
@@ -6,30 +8,9 @@ import {
 } from "@/lib/i18n/property-knowledge";
 import {
   ArticleH2,
-  ArticleMetaRow,
   ArticleP,
-  CategoryBadge,
   EditorialList,
-  PropertyKnowledgeBackLink,
-  PropertyKnowledgeBreadcrumb,
-  PropertyKnowledgePageButtons,
 } from "@/components/property-knowledge/ArticleUi";
-
-const IMAGE_BASE = "/images/wissen/dokumente-verstehen";
-
-const IMAGES = {
-  hero: "/images/knowledge/dokumente-verstehen.jpg",
-  pruefung: `${IMAGE_BASE}/dokumentenpruefung.jpg`,
-  grundbuch: `${IMAGE_BASE}/grundbuchauszug.jpg`,
-  teilung: `${IMAGE_BASE}/teilungserklaerung.jpg`,
-  wirtschaftsplan: `${IMAGE_BASE}/wirtschaftsplan.jpg`,
-  protokolle: `${IMAGE_BASE}/protokolle.jpg`,
-  energie: `${IMAGE_BASE}/energieausweis.jpg`,
-  mietvertraege: `${IMAGE_BASE}/mietvertraege.jpg`,
-  baulasten: `${IMAGE_BASE}/baulastenverzeichnis.jpg`,
-  fehler: `${IMAGE_BASE}/haeufige-fehler.jpg`,
-  analyse: `${IMAGE_BASE}/analyse.jpg`,
-} as const;
 
 const copy = {
   de: {
@@ -390,55 +371,35 @@ const copy = {
   },
 } as const;
 
-function SectionImage({
-  src,
-  alt,
-  priority = false,
-}: {
-  src: string;
-  alt: string;
-  priority?: boolean;
-}) {
-  return (
-    <div className="overflow-hidden rounded-2xl border border-[#D7D2C8]/60 bg-white">
-      <Image
-        src={src}
-        alt={alt}
-        width={1200}
-        height={800}
-        priority={priority}
-        className="h-auto w-full object-cover object-center"
-        sizes="(max-width: 1024px) 100vw, 50vw"
-      />
-    </div>
-  );
-}
-
-function ContentSection({
-  id,
-  image,
-  imageAlt,
+function EditorialSplitSection({
   reverse = false,
   children,
 }: {
-  id: string;
-  image: string;
-  imageAlt: string;
   reverse?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
+  const visual = (
+    <div className="flex justify-center lg:justify-end">
+      <ProductVisual variant="documents" className="max-w-full" />
+    </div>
+  );
+
   return (
-    <section
-      id={id}
-      className="scroll-mt-28 border-t border-[#D7D2C8]/50 py-16 md:py-20"
-    >
+    <div className="not-prose my-16 border-t border-border/50 pt-16 md:pt-20">
       <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-        <div className={reverse ? "lg:order-2" : undefined}>{children}</div>
-        <div className={reverse ? "lg:order-1" : undefined}>
-          <SectionImage src={image} alt={imageAlt} />
-        </div>
+        {reverse ? (
+          <>
+            {visual}
+            <div>{children}</div>
+          </>
+        ) : (
+          <>
+            <div>{children}</div>
+            {visual}
+          </>
+        )}
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -449,213 +410,115 @@ interface DokumenteVerstehenPageProps {
 export function DokumenteVerstehenPage({ locale }: DokumenteVerstehenPageProps) {
   const t = copy[locale];
   const ui = propertyKnowledgeUi[locale];
-  const overviewHref = propertyKnowledgeOverview[locale].href;
   const s = t.sections;
 
   return (
-    <div className="bg-[#F7F5EF]">
-      <section className="border-b border-[#D7D2C8]/50">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:px-8 md:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-6">
-              <p className="text-label mb-6 block text-gold-600">{ui.categoryShort}</p>
-              <h1 className="text-h1 text-brand-800">{t.hero.title}</h1>
-              <p className="mt-4 text-xl font-medium leading-snug text-[#0F3D2E]/75 md:text-2xl">
-                {t.hero.subtitle}
-              </p>
-              <div className="gold-rule mt-8" aria-hidden="true" />
-              <p className="mt-8 text-lg leading-[1.8] text-muted">{t.hero.intro}</p>
-              <PropertyKnowledgePageButtons locale={locale} className="mt-10" />
-            </div>
-            <div className="lg:col-span-6">
-              <div className="overflow-hidden rounded-3xl border border-[#D7D2C8]/60 shadow-[0_8px_40px_rgba(15,61,46,0.06)]">
-                <Image
-                  src={IMAGES.hero}
-                  alt={t.hero.imageAlt}
-                  width={1400}
-                  height={1120}
-                  priority
-                  className="h-auto w-full object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <ArticleLayout
+      locale={locale}
+      breadcrumbTitle={t.breadcrumbTitle}
+      heroLabel={ui.categoryShort}
+      heroHeadline={t.hero.title}
+      heroSubheadline={t.hero.intro}
+      articleSubtitle={t.hero.subtitle}
+      readMinutes={t.readMinutes}
+      introduction={
+        <>
+          <ArticleP>{t.intro.p1}</ArticleP>
+          <ArticleP>{t.intro.p2}</ArticleP>
+        </>
+      }
+      backLinkHref={propertyKnowledgeOverview[locale].href}
+      relatedExcludeId="dokumente-verstehen"
+    >
+      <EditorialSplitSection>
+        <ArticleH2 id="dokumentenpruefung">{s.dokumentenpruefung.heading}</ArticleH2>
+        <ArticleP>{s.dokumentenpruefung.p1}</ArticleP>
+        <ArticleP>{s.dokumentenpruefung.listIntro}</ArticleP>
+        <EditorialList items={s.dokumentenpruefung.list} />
+        <ArticleP>{s.dokumentenpruefung.p2}</ArticleP>
+      </EditorialSplitSection>
 
-      <div className="mx-auto max-w-[800px] px-6 md:px-8">
-        <div className="py-12 md:py-16">
-          <PropertyKnowledgeBreadcrumb locale={locale} currentTitle={t.breadcrumbTitle} />
+      <EditorialSplitSection reverse>
+        <ArticleH2 id="grundbuchauszug">{s.grundbuchauszug.heading}</ArticleH2>
+        <ArticleP>{s.grundbuchauszug.p1}</ArticleP>
+        <ArticleP>{s.grundbuchauszug.listIntro}</ArticleP>
+        <EditorialList items={s.grundbuchauszug.list} />
+        <ArticleP>{s.grundbuchauszug.p2}</ArticleP>
+      </EditorialSplitSection>
 
-          <header className="mb-4">
-            <CategoryBadge locale={locale} />
-            <ArticleMetaRow locale={locale} readMinutes={t.readMinutes} />
-          </header>
+      <EditorialSplitSection>
+        <ArticleH2 id="teilungserklaerung">{s.teilungserklaerung.heading}</ArticleH2>
+        <ArticleP>{s.teilungserklaerung.p1}</ArticleP>
+        <ArticleP>{s.teilungserklaerung.listIntro}</ArticleP>
+        <EditorialList items={s.teilungserklaerung.list} />
+        <ArticleP>{s.teilungserklaerung.p2}</ArticleP>
+      </EditorialSplitSection>
 
-          <article>
-            <ArticleP>{t.intro.p1}</ArticleP>
-            <ArticleP>{t.intro.p2}</ArticleP>
-          </article>
-        </div>
-      </div>
+      <EditorialSplitSection reverse>
+        <ArticleH2 id="wirtschaftsplan">{s.wirtschaftsplan.heading}</ArticleH2>
+        <ArticleP>{s.wirtschaftsplan.p1}</ArticleP>
+        <ArticleP>{s.wirtschaftsplan.listIntro}</ArticleP>
+        <EditorialList items={s.wirtschaftsplan.list} />
+        <ArticleP>{s.wirtschaftsplan.p2}</ArticleP>
 
-      <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="mx-auto max-w-[800px] lg:max-w-none">
-          <ContentSection
-            id="dokumentenpruefung"
-            image={IMAGES.pruefung}
-            imageAlt={s.dokumentenpruefung.imageAlt}
-          >
-            <ArticleH2 id="dokumentenpruefung-heading">{s.dokumentenpruefung.heading}</ArticleH2>
-            <ArticleP>{s.dokumentenpruefung.p1}</ArticleP>
-            <ArticleP>{s.dokumentenpruefung.listIntro}</ArticleP>
-            <EditorialList items={s.dokumentenpruefung.list} />
-            <ArticleP>{s.dokumentenpruefung.p2}</ArticleP>
-          </ContentSection>
+        <ArticleH2 id="hausgeld">{s.wirtschaftsplan.hausgeldHeading}</ArticleH2>
+        <ArticleP>{s.wirtschaftsplan.hausgeldP1}</ArticleP>
+        <ArticleP>{s.wirtschaftsplan.hausgeldListIntro}</ArticleP>
+        <EditorialList items={s.wirtschaftsplan.hausgeldList} />
+        <ArticleP>{s.wirtschaftsplan.hausgeldP2}</ArticleP>
+      </EditorialSplitSection>
 
-          <ContentSection
-            id="grundbuchauszug"
-            image={IMAGES.grundbuch}
-            imageAlt={s.grundbuchauszug.imageAlt}
-            reverse
-          >
-            <ArticleH2 id="grundbuchauszug-heading">{s.grundbuchauszug.heading}</ArticleH2>
-            <ArticleP>{s.grundbuchauszug.p1}</ArticleP>
-            <ArticleP>{s.grundbuchauszug.listIntro}</ArticleP>
-            <EditorialList items={s.grundbuchauszug.list} />
-            <ArticleP>{s.grundbuchauszug.p2}</ArticleP>
-          </ContentSection>
+      <EditorialSplitSection>
+        <ArticleH2 id="protokolle">{s.protokolle.heading}</ArticleH2>
+        <ArticleP>{s.protokolle.p1}</ArticleP>
+        <ArticleP>{s.protokolle.listIntro}</ArticleP>
+        <EditorialList items={s.protokolle.list} />
+        <ArticleP>{s.protokolle.p2}</ArticleP>
+      </EditorialSplitSection>
 
-          <ContentSection
-            id="teilungserklaerung"
-            image={IMAGES.teilung}
-            imageAlt={s.teilungserklaerung.imageAlt}
-          >
-            <ArticleH2 id="teilungserklaerung-heading">{s.teilungserklaerung.heading}</ArticleH2>
-            <ArticleP>{s.teilungserklaerung.p1}</ArticleP>
-            <ArticleP>{s.teilungserklaerung.listIntro}</ArticleP>
-            <EditorialList items={s.teilungserklaerung.list} />
-            <ArticleP>{s.teilungserklaerung.p2}</ArticleP>
-          </ContentSection>
+      <EditorialSplitSection reverse>
+        <ArticleH2 id="energieausweis">{s.energieausweis.heading}</ArticleH2>
+        <ArticleP>{s.energieausweis.p1}</ArticleP>
+        <ArticleP>{s.energieausweis.listIntro}</ArticleP>
+        <EditorialList items={s.energieausweis.list} />
+        <ArticleP>{s.energieausweis.p2}</ArticleP>
+        <ArticleP>{s.energieausweis.p3}</ArticleP>
+      </EditorialSplitSection>
 
-          <ContentSection
-            id="wirtschaftsplan"
-            image={IMAGES.wirtschaftsplan}
-            imageAlt={s.wirtschaftsplan.imageAlt}
-            reverse
-          >
-            <ArticleH2 id="wirtschaftsplan-heading">{s.wirtschaftsplan.heading}</ArticleH2>
-            <ArticleP>{s.wirtschaftsplan.p1}</ArticleP>
-            <ArticleP>{s.wirtschaftsplan.listIntro}</ArticleP>
-            <EditorialList items={s.wirtschaftsplan.list} />
-            <ArticleP>{s.wirtschaftsplan.p2}</ArticleP>
+      <EditorialSplitSection>
+        <ArticleH2 id="mietvertraege">{s.mietvertraege.heading}</ArticleH2>
+        <ArticleP>{s.mietvertraege.p1}</ArticleP>
+        <ArticleP>{s.mietvertraege.listIntro}</ArticleP>
+        <EditorialList items={s.mietvertraege.list} />
+        <ArticleP>{s.mietvertraege.p2}</ArticleP>
+      </EditorialSplitSection>
 
-            <ArticleH2 id="hausgeld-heading">{s.wirtschaftsplan.hausgeldHeading}</ArticleH2>
-            <ArticleP>{s.wirtschaftsplan.hausgeldP1}</ArticleP>
-            <ArticleP>{s.wirtschaftsplan.hausgeldListIntro}</ArticleP>
-            <EditorialList items={s.wirtschaftsplan.hausgeldList} />
-            <ArticleP>{s.wirtschaftsplan.hausgeldP2}</ArticleP>
-          </ContentSection>
+      <EditorialSplitSection reverse>
+        <ArticleH2 id="baulasten">{s.baulasten.heading}</ArticleH2>
+        <ArticleP>{s.baulasten.p1}</ArticleP>
+        <ArticleP>{s.baulasten.listIntro}</ArticleP>
+        <EditorialList items={s.baulasten.list} />
+        <ArticleP>{s.baulasten.p2}</ArticleP>
+      </EditorialSplitSection>
 
-          <ContentSection
-            id="protokolle"
-            image={IMAGES.protokolle}
-            imageAlt={s.protokolle.imageAlt}
-          >
-            <ArticleH2 id="protokolle-heading">{s.protokolle.heading}</ArticleH2>
-            <ArticleP>{s.protokolle.p1}</ArticleP>
-            <ArticleP>{s.protokolle.listIntro}</ArticleP>
-            <EditorialList items={s.protokolle.list} />
-            <ArticleP>{s.protokolle.p2}</ArticleP>
-          </ContentSection>
+      <EditorialSplitSection>
+        <ArticleH2 id="haeufige-fehler">{s.haeufigeFehler.heading}</ArticleH2>
+        <ArticleP>{s.haeufigeFehler.p1}</ArticleP>
+        <ArticleP>{s.haeufigeFehler.listIntro}</ArticleP>
+        <EditorialList items={s.haeufigeFehler.list} />
+        <ArticleP>{s.haeufigeFehler.p2}</ArticleP>
+      </EditorialSplitSection>
 
-          <ContentSection
-            id="energieausweis"
-            image={IMAGES.energie}
-            imageAlt={s.energieausweis.imageAlt}
-            reverse
-          >
-            <ArticleH2 id="energieausweis-heading">{s.energieausweis.heading}</ArticleH2>
-            <ArticleP>{s.energieausweis.p1}</ArticleP>
-            <ArticleP>{s.energieausweis.listIntro}</ArticleP>
-            <EditorialList items={s.energieausweis.list} />
-            <ArticleP>{s.energieausweis.p2}</ArticleP>
-            <ArticleP>{s.energieausweis.p3}</ArticleP>
-          </ContentSection>
+      <EditorialSplitSection reverse>
+        <ArticleH2 id="professionelle-analyse">{s.professionelleAnalyse.heading}</ArticleH2>
+        <ArticleP>{s.professionelleAnalyse.p1}</ArticleP>
+        <ArticleP>{s.professionelleAnalyse.p2}</ArticleP>
+        <ArticleP>{s.professionelleAnalyse.p3}</ArticleP>
+      </EditorialSplitSection>
 
-          <ContentSection
-            id="mietvertraege"
-            image={IMAGES.mietvertraege}
-            imageAlt={s.mietvertraege.imageAlt}
-          >
-            <ArticleH2 id="mietvertraege-heading">{s.mietvertraege.heading}</ArticleH2>
-            <ArticleP>{s.mietvertraege.p1}</ArticleP>
-            <ArticleP>{s.mietvertraege.listIntro}</ArticleP>
-            <EditorialList items={s.mietvertraege.list} />
-            <ArticleP>{s.mietvertraege.p2}</ArticleP>
-          </ContentSection>
-
-          <ContentSection
-            id="baulasten"
-            image={IMAGES.baulasten}
-            imageAlt={s.baulasten.imageAlt}
-            reverse
-          >
-            <ArticleH2 id="baulasten-heading">{s.baulasten.heading}</ArticleH2>
-            <ArticleP>{s.baulasten.p1}</ArticleP>
-            <ArticleP>{s.baulasten.listIntro}</ArticleP>
-            <EditorialList items={s.baulasten.list} />
-            <ArticleP>{s.baulasten.p2}</ArticleP>
-          </ContentSection>
-
-          <ContentSection
-            id="haeufige-fehler"
-            image={IMAGES.fehler}
-            imageAlt={s.haeufigeFehler.imageAlt}
-          >
-            <ArticleH2 id="haeufige-fehler-heading">{s.haeufigeFehler.heading}</ArticleH2>
-            <ArticleP>{s.haeufigeFehler.p1}</ArticleP>
-            <ArticleP>{s.haeufigeFehler.listIntro}</ArticleP>
-            <EditorialList items={s.haeufigeFehler.list} />
-            <ArticleP>{s.haeufigeFehler.p2}</ArticleP>
-          </ContentSection>
-
-          <ContentSection
-            id="professionelle-analyse"
-            image={IMAGES.analyse}
-            imageAlt={s.professionelleAnalyse.imageAlt}
-            reverse
-          >
-            <ArticleH2 id="professionelle-analyse-heading">
-              {s.professionelleAnalyse.heading}
-            </ArticleH2>
-            <ArticleP>{s.professionelleAnalyse.p1}</ArticleP>
-            <ArticleP>{s.professionelleAnalyse.p2}</ArticleP>
-            <ArticleP>{s.professionelleAnalyse.p3}</ArticleP>
-          </ContentSection>
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-[800px] px-6 pb-12 md:px-8 md:pb-16">
-        <section id="fazit" className="scroll-mt-28 border-t border-[#D7D2C8]/50 pt-16 md:pt-20">
-          <ArticleH2 id="fazit-heading">{t.fazit.heading}</ArticleH2>
-          <ArticleP>{t.fazit.p1}</ArticleP>
-          <ArticleP>{t.fazit.p2}</ArticleP>
-        </section>
-
-        <section className="mt-14 rounded-2xl border border-[#D7D2C8]/80 bg-white px-8 py-10 md:px-10 md:py-12">
-          <p className="text-label mb-4 block text-gold-600">{t.cta.label}</p>
-          <h2 className="text-h2 text-brand-800">{t.cta.heading}</h2>
-          <div className="gold-rule mt-6" aria-hidden="true" />
-          <p className="mt-6 text-lg leading-[1.8] text-muted">{t.cta.text}</p>
-          <PropertyKnowledgePageButtons locale={locale} className="mt-8" />
-        </section>
-
-        <PropertyKnowledgeBackLink locale={locale} overviewHref={overviewHref} />
-      </div>
-
-      <div className="h-16 bg-cream md:h-20" aria-hidden="true" />
-    </div>
+      <ArticleH2 id="fazit">{t.fazit.heading}</ArticleH2>
+      <ArticleP>{t.fazit.p1}</ArticleP>
+      <ArticleP>{t.fazit.p2}</ArticleP>
+    </ArticleLayout>
   );
 }

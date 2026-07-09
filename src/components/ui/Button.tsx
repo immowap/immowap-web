@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import {
+  buttonBase,
+  buttonLoadingSpinner,
+  buttonSizes,
+  buttonVariants,
+} from "@/lib/design-system/classes/buttons";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "white";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "white" | "accent";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -10,17 +16,10 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   type?: "button" | "submit";
+  size?: "default" | "compact";
+  disabled?: boolean;
+  loading?: boolean;
 }
-
-const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    "bg-gold-500 text-brand-800 hover:bg-gold-600 border border-transparent",
-  secondary:
-    "bg-transparent text-foreground border border-warm-gray/80 hover:border-gold-500/60 hover:bg-white/40",
-  ghost: "bg-transparent text-foreground hover:bg-black/5 border border-transparent",
-  white:
-    "bg-white text-[#1D1D1B] border border-white/35 hover:bg-white/90 hover:border-white/60",
-};
 
 export function Button({
   children,
@@ -29,24 +28,72 @@ export function Button({
   className,
   onClick,
   type = "button",
+  size = "default",
+  disabled = false,
+  loading = false,
 }: ButtonProps) {
   const styles = cn(
-    "inline-flex h-14 items-center justify-center rounded-full px-8 text-base font-medium transition-all duration-300",
-    variantStyles[variant],
+    buttonBase,
+    buttonSizes[size],
+    buttonVariants[variant],
     className,
+  );
+
+  const content = loading ? (
+    <>
+      <span className={buttonLoadingSpinner} aria-hidden="true" />
+      <span className="sr-only">{children}</span>
+    </>
+  ) : (
+    children
   );
 
   if (href) {
     return (
-      <Link href={href} className={styles}>
-        {children}
+      <Link
+        href={href}
+        className={cn(styles, (disabled || loading) && "pointer-events-none opacity-[var(--opacity-disabled)]")}
+        aria-disabled={disabled || loading || undefined}
+      >
+        {content}
       </Link>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={styles}>
-      {children}
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled || loading}
+      className={styles}
+      aria-busy={loading || undefined}
+    >
+      {content}
     </button>
+  );
+}
+
+export function PrimaryButton(props: Omit<ButtonProps, "variant">) {
+  return <Button variant="primary" {...props} />;
+}
+
+export function SecondaryButton(props: Omit<ButtonProps, "variant">) {
+  return <Button variant="secondary" {...props} />;
+}
+
+export function GhostButton(props: Omit<ButtonProps, "variant">) {
+  return <Button variant="ghost" {...props} />;
+}
+
+export function AccentButton(props: Omit<ButtonProps, "variant">) {
+  return <Button variant="accent" {...props} />;
+}
+
+export function SecondaryButtonOnDark({
+  className,
+  ...props
+}: Omit<ButtonProps, "variant">) {
+  return (
+    <Button variant="secondary" className={cn(buttonVariants.secondaryOnDark, className)} {...props} />
   );
 }

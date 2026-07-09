@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { animationClasses } from "@/lib/design-system/tokens/animation";
 import { cn } from "@/lib/utils";
 
 type LogoVariant = "green" | "white";
@@ -47,24 +48,24 @@ export function Logo({
         className={cn(
           "translate-y-[4px] font-semibold leading-none tracking-tight",
           text,
-          variant === "green" ? "text-[#1D1D1B]" : "text-white",
+          variant === "green" ? "text-foreground" : "text-white",
         )}
       >
-        immo<span className="text-[#B9965B]">wap</span>
+        immo<span className="text-gold-500">wap</span>
       </span>
     </span>
   );
 
   if (onClick) {
     return (
-      <Link href={href} onClick={onClick} className="inline-flex">
+      <Link href={href} onClick={onClick} className={cn("inline-flex rounded-lg", animationClasses.focusRing)}>
         {content}
       </Link>
     );
   }
 
   return (
-    <Link href={href} className="inline-flex">
+    <Link href={href} className={cn("inline-flex rounded-lg", animationClasses.focusRing)}>
       {content}
     </Link>
   );

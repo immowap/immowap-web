@@ -1,8 +1,8 @@
-import Image from "next/image";
+import { ProductVisual } from "@/components/illustrations/ProductVisual";
 import { MarketTrendsHubCard } from "@/components/market-trends/MarketTrendsHubCard";
-import { CTASection } from "@/components/ui/CTASection";
+import { PageBottomSpacer } from "@/components/ui/PageBottomSpacer";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { SolutionHeroSection } from "@/components/ui/SolutionHeroSection";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
 import {
@@ -19,27 +19,22 @@ interface MarktTrendsPageProps {
 export function MarktTrendsPage({ locale }: MarktTrendsPageProps) {
   const copy = marketTrendsPageCopy[locale];
   const contactHref = getRoute(locale, "contact");
-  const dashboardHref = getRoute(locale, "dashboard");
 
   return (
     <>
-      <SolutionHeroSection
+      <PageHeader
+        layout="split"
         label={copy.heroLabel}
         headline={copy.heroHeadline}
         primaryHref="#kategorien"
         primaryLabel={copy.heroBtnPrimary}
         secondaryHref={contactHref}
         secondaryLabel={copy.heroBtnSecondary}
-        imageSrc="/images/knowledge/market-trends-hero.jpg"
-        imageAlt={
-          locale === "de"
-            ? "Markt und Trends – Immobilienmarktanalyse"
-            : "Market and trends – property market analysis"
-        }
+        visual={<ProductVisual variant="chart" className="max-w-full" />}
       >
         <p className="mt-8 text-lg leading-[1.8] text-muted">{copy.heroSubheadline}</p>
         <p className="mt-4 text-base leading-[1.8] text-muted">{copy.heroIntro}</p>
-      </SolutionHeroSection>
+      </PageHeader>
 
       <Section id="kategorien" variant="muted" className="py-24 md:py-32">
         <SectionHeader
@@ -91,29 +86,12 @@ export function MarktTrendsPage({ locale }: MarktTrendsPageProps) {
       </Section>
 
       <Section variant="muted" className="pb-24 pt-0 md:pb-32">
-        <div className="relative mx-auto aspect-[21/9] max-w-5xl overflow-hidden rounded-[32px] shadow-xl">
-          <Image
-            src="/images/knowledge/mt-hub-overview.jpg"
-            alt={
-              locale === "de"
-                ? "Markt und Trends – Immobilienmarkt Einordnung"
-                : "Market and trends – property market assessment"
-            }
-            fill
-            className="object-cover object-center"
-            sizes="(max-width: 1024px) 100vw, 1024px"
-          />
+        <div className="flex justify-center">
+          <ProductVisual variant="chart" className="max-w-full" />
         </div>
       </Section>
 
-      <CTASection
-        headline={copy.ctaHeadline}
-        text={copy.ctaText}
-        primaryLabel={copy.ctaPrimary}
-        primaryHref={dashboardHref}
-        secondaryLabel={copy.ctaSecondary}
-        secondaryHref={contactHref}
-      />
+      <PageBottomSpacer />
     </>
   );
 }

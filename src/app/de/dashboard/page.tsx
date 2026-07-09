@@ -1,7 +1,5 @@
-import { PlaceholderPage } from "@/components/ui/PlaceholderPage";
-import { getTranslations } from "@/lib/i18n";
+import { redirect } from "next/navigation";
 
 export default function DeDashboardPage() {
-  const t = getTranslations("de");
-  return <PlaceholderPage locale="de" title={t.pages.dashboard} />;
+  redirect("/dashboard");
 }

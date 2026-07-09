@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { animationClasses } from "@/lib/design-system/tokens/animation";
+import { radiusClasses } from "@/lib/design-system/tokens/radius";
 import { cn } from "@/lib/utils";
 
 interface FaqItem {
@@ -16,7 +18,12 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-warm-gray/40 rounded-[28px] border border-black/[0.05] bg-white shadow-[0_4px_24px_rgba(29,29,27,0.04)]">
+    <div
+      className={cn(
+        "divide-y divide-warm-gray/40 border border-black/[0.05] bg-white shadow-[var(--shadow-card)]",
+        radiusClasses.xl,
+      )}
+    >
       {items.map((item, index) => {
         const isOpen = openIndex === index;
 
@@ -25,10 +32,14 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
             <button
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : index)}
-              className="flex w-full items-start justify-between gap-6 py-5 text-left"
+              className={cn(
+                "flex w-full min-w-0 items-start justify-between gap-6 py-5 text-left",
+                animationClasses.focusRing,
+                "rounded-lg",
+              )}
               aria-expanded={isOpen}
             >
-              <span className="text-lg font-semibold leading-snug text-brand-800">
+              <span className="min-w-0 flex-1 break-words text-h4 text-brand-800 [overflow-wrap:anywhere]">
                 {item.question}
               </span>
               <svg
@@ -46,7 +57,9 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
               </svg>
             </button>
             {isOpen && (
-              <p className="pb-5 text-base leading-[1.8] text-muted">{item.answer}</p>
+              <p className="pb-5 break-words text-body text-muted [overflow-wrap:anywhere]">
+                {item.answer}
+              </p>
             )}
           </div>
         );
