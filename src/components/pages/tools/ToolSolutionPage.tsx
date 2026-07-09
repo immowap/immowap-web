@@ -11,6 +11,7 @@ import {
 } from "@/components/solutions";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
+import { getAppAnalysisHref } from "@/lib/app/config";
 import type { SolutionPageKey } from "@/lib/solutions/routes";
 import type { ToolPageContent } from "@/lib/tools/content";
 
@@ -23,7 +24,7 @@ interface ToolSolutionPageProps {
 export function ToolSolutionPage({ locale, pageKey, content }: ToolSolutionPageProps) {
   const c = content[locale];
   const contactHref = getRoute(locale, "contact");
-  const dashboardHref = getRoute(locale, "dashboard");
+  const analysisHref = getAppAnalysisHref(locale);
 
   return (
     <>
@@ -36,7 +37,7 @@ export function ToolSolutionPage({ locale, pageKey, content }: ToolSolutionPageP
       <SolutionPageHero
         label={c.heroLabel}
         headline={c.heroHeadline}
-        primaryHref={dashboardHref}
+        primaryHref={analysisHref}
         primaryLabel={c.heroBtnPrimary}
         secondaryHref={contactHref}
         secondaryLabel={c.heroBtnSecondary}

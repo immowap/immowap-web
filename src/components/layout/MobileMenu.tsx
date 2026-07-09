@@ -9,6 +9,7 @@ import { animationClasses } from "@/lib/design-system/tokens/animation";
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute, isActiveRoute } from "@/lib/i18n/config";
 import type { Translations } from "@/lib/i18n";
+import { getAppAnalysisHref } from "@/lib/app/config";
 import type { MenuColumn, MenuLink } from "@/lib/navigation/menus";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -226,7 +227,7 @@ export function MobileMenu({
           <SecondaryButton href={getRoute(locale, "packages")} className="w-full">
             {t.nav.packages}
           </SecondaryButton>
-          <PrimaryButton href={getRoute(locale, "dashboard")} className="w-full">
+          <PrimaryButton href={getAppAnalysisHref(locale)} className="w-full">
             {t.nav.startAnalysis}
           </PrimaryButton>
         </div>

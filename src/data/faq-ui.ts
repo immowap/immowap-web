@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
+import { getAppAnalysisHref } from "@/lib/app/config";
 import { getRoute } from "@/lib/i18n/config";
 
 export const faqPageCopy = {
@@ -52,7 +53,7 @@ export const faqPageCopy = {
 
 export function getFaqCtaLinks(locale: Locale) {
   return {
-    dashboard: getRoute(locale, "dashboard"),
+    dashboard: getAppAnalysisHref(locale),
     contact: getRoute(locale, "contact"),
   };
 }

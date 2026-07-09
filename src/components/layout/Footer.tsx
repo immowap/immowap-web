@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import type { Locale } from "@/lib/i18n/config";
+import { getAppDashboardHref } from "@/lib/app/config";
 import { getRoute } from "@/lib/i18n/config";
 import { getTranslations } from "@/lib/i18n";
 
@@ -129,7 +130,15 @@ export function Footer({ locale }: FooterProps) {
     t.footer.knowledge,
     t.footer.company,
     t.footer.legal,
-  ];
+  ].map((column) => ({
+    ...column,
+    items: column.items.map((item) => ({
+      ...item,
+      href: item.href.startsWith("/dashboard")
+        ? getAppDashboardHref(locale)
+        : item.href,
+    })),
+  }));
 
   return (
     <footer className="mt-auto bg-brand-800 text-white">

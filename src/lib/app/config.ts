@@ -1,3 +1,4 @@
+import { getAppUrl } from "@/lib/app-url";
 import type { Locale } from "@/lib/i18n/config";
 
 /**
@@ -6,20 +7,25 @@ import type { Locale } from "@/lib/i18n/config";
  * Public marketing site (immowap.de):
  *   Pages, content, SEO, contact, knowledge, solutions
  *
- * App / dashboard (app.immowap.de — future):
+ * App / dashboard (app.immowap.de):
  *   Login, dashboard, analyses, document upload, reports, project management
- *
- * Interim setup: the app entry lives at `/dashboard` on the marketing deployment.
- * Later this route can be moved or connected to https://app.immowap.de without
- * redesigning the website — update FUTURE_APP_ORIGIN / deployment routing when
- * the app is split to its own subdomain.
  */
 export const PUBLIC_SITE_ORIGIN = "https://immowap.de";
-export const FUTURE_APP_ORIGIN = "https://app.immowap.de";
-export const APP_DASHBOARD_PATH = "/dashboard";
 
 export function getAppDashboardHref(locale: Locale = "de"): string {
-  return locale === "en" ? `${APP_DASHBOARD_PATH}?lang=en` : APP_DASHBOARD_PATH;
+  return getAppUrl(locale === "en" ? "/dashboard?lang=en" : "/dashboard");
+}
+
+export function getAppAnalysisHref(locale: Locale = "de"): string {
+  return getAppUrl(locale === "en" ? "/analyse?lang=en" : "/analyse");
+}
+
+export function getAppLoginHref(locale: Locale = "de"): string {
+  return getAppUrl(locale === "en" ? "/login?lang=en" : "/login");
+}
+
+export function getAppRegisterHref(locale: Locale = "de"): string {
+  return getAppUrl(locale === "en" ? "/register?lang=en" : "/register");
 }
 
 export function resolveDashboardLocale(lang: string | undefined): Locale {

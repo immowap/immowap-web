@@ -3,6 +3,7 @@ import { ProductHeroVisual } from "@/components/illustrations/ProductHeroVisual"
 import type { Locale } from "@/lib/i18n/config";
 import { getRoute } from "@/lib/i18n/config";
 import { getTranslations } from "@/lib/i18n";
+import { getAppAnalysisHref } from "@/lib/app/config";
 
 interface HomeHeroProps {
   locale: Locale;
@@ -28,7 +29,7 @@ export function HomeHero({ locale }: HomeHeroProps) {
       subheadline={t.home.hero.subheadline}
       layout="split"
       visual={<ProductHeroVisual locale={locale} className="w-full" />}
-      primaryHref={getRoute(locale, "dashboard")}
+      primaryHref={getAppAnalysisHref(locale)}
       primaryLabel={t.home.hero.ctaPrimary}
       secondaryHref={getRoute(locale, "solutions")}
       secondaryLabel={t.home.hero.ctaSecondary}
